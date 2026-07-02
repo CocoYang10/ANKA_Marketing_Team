@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anka Marketing Team — Recommendation Tracker</title>
+  <title>Anka Marketing Team</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -62,34 +62,43 @@
     .loading-screen { display: flex; align-items: center; justify-content: center; height: 200px; color: var(--muted-lt); font-size: 14px; }
 
     /* ── Page header ── */
-    .pg-hdr { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 26px; }
+    .pg-hdr { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
     .pg-title { font-size: 21px; font-weight: 700; }
     .pg-meta  { font-size: 13px; color: var(--muted); margin-top: 3px; }
+    .rec-shell { display: flex; flex-direction: column; gap: 24px; }
+    .rec-hero { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 18px; align-items: start; padding: 2px 0 2px; }
+    .rec-kicker { font-size: 11px; font-weight: 760; text-transform: uppercase; letter-spacing: .08em; color: #0F766E; margin-bottom: 5px; }
+    .rec-title { font-size: clamp(24px, 3vw, 34px); font-weight: 780; line-height: 1.05; letter-spacing: 0; max-width: 720px; }
+    .rec-sub { max-width: 680px; font-size: 14px; color: #6F6A63; margin-top: 9px; line-height: 1.45; }
+    .rec-week-card { background: #1E1D1B; color: #fff; border-radius: 8px; padding: 11px 14px; min-width: 176px; text-align: right; box-shadow: 0 10px 24px rgba(28,27,26,.12); margin-top: 8px; }
+    .rec-week-card strong { display: block; font-size: 18px; line-height: 1.1; }
+    .rec-week-card span { display: block; font-size: 12px; color: rgba(255,255,255,.68); margin-top: 4px; }
     .week-sel { appearance: none; border: 1px solid var(--border); border-radius: 8px; padding: 8px 34px 8px 13px; font-family: inherit; font-size: 13px; font-weight: 500; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231A1A1A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center; cursor: pointer; color: var(--black); flex-shrink: 0; }
     .week-sel:focus { outline: 2px solid var(--terra); outline-offset: 2px; }
 
     /* ── Stat pills ── */
-    .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
-    .stat  { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 18px; min-width: 90px; }
-    .stat-n { font-size: 24px; font-weight: 700; line-height: 1; }
-    .stat-l { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-top: 4px; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; margin-bottom: 0; }
+    .stat  { background: linear-gradient(180deg, #FFFDFC 0%, #F8F5F0 100%); border: 1px solid #E8E0D8; border-radius: 8px; padding: 16px; min-height: 104px; box-shadow: 0 10px 28px rgba(49,42,35,.05); display: flex; flex-direction: column; justify-content: space-between; }
+    .stat-n { font-size: 26px; font-weight: 780; line-height: 1; }
+    .stat-l { font-size: 11px; font-weight: 760; text-transform: uppercase; letter-spacing: .07em; color: #726B62; margin-top: 10px; }
 
     /* ── Owner section ── */
-    .owner-sec { margin-bottom: 32px; }
+    .owner-sec { margin-bottom: 0; background: #FFFDFC; border: 1px solid #E8E0D8; border-radius: 8px; padding: 18px; box-shadow: 0 10px 28px rgba(49,42,35,.04); }
+    .owner-list { display: flex; flex-direction: column; gap: 18px; }
     .owner-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .owner-av  { width: 34px; height: 34px; border-radius: 50%; background: var(--black); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
-    .owner-nm  { font-size: 16px; font-weight: 600; }
-    .owner-ct  { font-size: 12px; color: var(--muted); background: var(--border); padding: 2px 9px; border-radius: 20px; }
+    .owner-av  { width: 36px; height: 36px; border-radius: 50%; background: #1E1D1B; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 760; flex-shrink: 0; box-shadow: 0 8px 18px rgba(28,27,26,.12); }
+    .owner-nm  { font-size: 17px; font-weight: 760; }
+    .owner-ct  { font-size: 12px; color: #0F766E; background: #DFF5EF; padding: 2px 9px; border-radius: 20px; font-weight: 760; }
 
     /* ── Card / table ── */
-    .card  { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .card  { background: var(--surface); border: 1px solid #E8E0D8; border-radius: 8px; overflow: hidden; }
     .tbl   { width: 100%; border-collapse: collapse; }
-    .tbl thead { background: #F9F7F4; }
-    .tbl th { padding: 9px 16px; text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border-bottom: 1px solid var(--border); white-space: nowrap; }
-    .tbl tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+    .tbl thead { background: #F8F5F0; }
+    .tbl th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 760; text-transform: uppercase; letter-spacing: .07em; color: #726B62; border-bottom: 1px solid #E8E0D8; white-space: nowrap; }
+    .tbl tbody tr { border-bottom: 1px solid #EEE7DF; transition: background .1s; }
     .tbl tbody tr:last-child { border-bottom: none; }
     .tbl tbody tr:hover { background: #FDFCFA; }
-    .tbl td { padding: 12px 16px; vertical-align: top; }
+    .tbl td { padding: 14px 16px; vertical-align: top; }
     .empty { text-align: center; padding: 48px 24px; color: var(--muted-lt); font-size: 14px; }
 
     /* ── Delete column ── */
@@ -112,6 +121,13 @@
     .b-tst { background: var(--tst-bg); color: var(--tst-fg); }
     .b-ana { background: var(--ana-bg); color: var(--ana-fg); }
     .b-inf { background: var(--inf-bg); color: var(--inf-fg); }
+    .p-high { background: #FCE7DF; color: #B4533C; }
+    .p-med { background: #FFF3CC; color: #8A6A37; }
+    .p-low { background: #DFF5EF; color: #0F766E; }
+    .chip-select { border: none; border-radius: 999px; padding: 4px 24px 4px 10px; font-family: inherit; font-size: 12px; font-weight: 720; appearance: none; cursor: pointer; white-space: nowrap; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M1 1l3.5 3L8 1' stroke='%234D4741' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 9px center; }
+    .chip-select:focus { outline: 2px solid rgba(169, 95, 71, .26); outline-offset: 2px; }
+    .type-select { max-width: 154px; }
+    .priority-select { max-width: 118px; }
 
     /* ── Status tag ── */
     .stag { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: opacity .15s, transform .1s; white-space: nowrap; }
@@ -133,7 +149,7 @@
     .co-pill { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: var(--carr-fg); background: var(--carr-bg); padding: 2px 8px; border-radius: 10px; margin-top: 5px; }
 
     /* ── Import section ── */
-    .import-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-top: 32px; overflow: hidden; }
+    .import-card { background: #FFFDFC; border: 1px solid #E8E0D8; border-radius: 8px; margin-top: 0; overflow: hidden; box-shadow: 0 10px 28px rgba(49,42,35,.04); }
     .import-toggle { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; cursor: pointer; background: none; border: none; width: 100%; font-family: inherit; text-align: left; transition: background .1s; }
     .import-toggle:hover { background: #F9F7F4; }
     .import-toggle-title { font-size: 14px; font-weight: 600; color: var(--black); }
@@ -168,8 +184,8 @@
     .btn-cancel-import:hover { border-color: var(--black); color: var(--black); }
 
     /* ── Add form ── */
-    .add-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-top: 32px; }
-    .add-title { font-size: 14px; font-weight: 600; margin-bottom: 18px; }
+    .add-card { background: #FFFDFC; border: 1px solid #E8E0D8; border-radius: 8px; padding: 24px; margin-top: 0; box-shadow: 0 10px 28px rgba(49,42,35,.04); }
+    .add-title { font-size: 15px; font-weight: 760; margin-bottom: 18px; }
     .f-row  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
     .f-full { grid-template-columns: 1fr; }
     .f-field { display: flex; flex-direction: column; gap: 6px; }
@@ -187,6 +203,7 @@
 
     /* ── Filters ── */
     .filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-bottom: 24px; }
+    .rec-filters { margin: -2px 0 18px; padding: 14px; background: #FFFDFC; border: 1px solid #E8E0D8; border-radius: 8px; box-shadow: 0 10px 28px rgba(49,42,35,.04); }
     .flt-grp { display: flex; flex-direction: column; gap: 5px; }
     .flt-lbl { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
     .flt-sel { border: 1px solid var(--border); border-radius: 8px; padding: 7px 30px 7px 12px; font-family: inherit; font-size: 13px; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231A1A1A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 10px center; appearance: none; cursor: pointer; color: var(--black); }
@@ -195,14 +212,14 @@
     .btn-clr:hover { border-color: var(--black); color: var(--black); }
 
     /* ── Funnel Health dashboard ── */
-    .fh-shell { display: flex; flex-direction: column; gap: 24px; }
-    .fh-hero { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 18px; align-items: start; }
-    .fh-kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--terra); margin-bottom: 5px; }
-    .fh-title { font-size: 23px; font-weight: 700; letter-spacing: 0; }
-    .fh-sub { max-width: 660px; font-size: 14px; color: var(--muted); margin-top: 5px; }
-    .fh-week-pill { background: var(--black); color: #fff; border-radius: 8px; padding: 10px 14px; min-width: 150px; text-align: right; }
+    .fh-shell { display: flex; flex-direction: column; gap: 22px; color: #1C1B1A; }
+    .fh-hero { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 18px; align-items: start; padding: 2px 0 4px; }
+    .fh-kicker { font-size: 11px; font-weight: 760; text-transform: uppercase; letter-spacing: .08em; color: #0F766E; margin-bottom: 5px; }
+    .fh-title { font-size: clamp(24px, 3vw, 34px); font-weight: 780; line-height: 1.05; letter-spacing: 0; max-width: 720px; }
+    .fh-sub { max-width: 710px; font-size: 14px; color: #6F6A63; margin-top: 9px; line-height: 1.45; }
+    .fh-week-pill { background: #1D1B1A; color: #fff; border-radius: 8px; padding: 11px 14px; min-width: 176px; text-align: right; box-shadow: 0 10px 24px rgba(28,27,26,.12); }
     .fh-week-pill strong { display: block; font-size: 18px; line-height: 1.1; }
-    .fh-week-pill span { display: block; font-size: 12px; color: rgba(255,255,255,.65); margin-top: 3px; }
+    .fh-week-pill span { display: block; font-size: 12px; color: rgba(255,255,255,.68); margin-top: 4px; }
     .fh-input { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
     .fh-input-toggle { width: 100%; border: none; background: #F9F7F4; padding: 13px 18px; display: flex; justify-content: space-between; align-items: center; font-family: inherit; cursor: pointer; color: var(--black); }
     .fh-input-title { font-size: 13px; font-weight: 650; }
@@ -218,76 +235,132 @@
     .fh-msg { font-size: 13px; font-weight: 500; }
     .fh-msg.err { color: var(--carr-fg); }
     .fh-msg.ok { color: var(--done-fg); }
-    .fh-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
-    .fh-kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 17px; min-height: 142px; display: flex; flex-direction: column; gap: 10px; }
+    .fh-snapshot { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+    .fh-kpi { background: linear-gradient(180deg, #FFFDFC 0%, #F8F5F0 100%); border: 1px solid #E8E0D8; border-radius: 8px; padding: 16px; min-height: 150px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 28px rgba(49,42,35,.05); }
     .fh-kpi-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
-    .fh-kpi-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
-    .fh-kpi-value { font-size: 26px; font-weight: 750; line-height: 1.05; letter-spacing: 0; }
-    .fh-kpi-sub { font-size: 12px; color: var(--muted); line-height: 1.4; margin-top: auto; }
+    .fh-kpi-label { font-size: 11px; font-weight: 760; text-transform: uppercase; letter-spacing: .07em; color: #726B62; }
+    .fh-kpi-track { height: 13px; background: #E9E1D8; border-radius: 99px; overflow: hidden; box-shadow: inset 0 1px 2px rgba(0,0,0,.04); }
+    .fh-kpi-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #9ED4CC, #1F7A70); min-width: 8px; }
+    .fh-kpi-main { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; align-items: center; }
+    .fh-kpi-value { font-size: 22px; font-weight: 780; line-height: 1; letter-spacing: 0; white-space: nowrap; }
+    .fh-kpi-sub { font-size: 12px; color: #6F6A63; line-height: 1.4; margin-top: auto; }
+    .fh-kpi.best { background: #1E1D1B; color: #fff; border-color: #1E1D1B; }
+    .fh-kpi.best .fh-kpi-label, .fh-kpi.best .fh-kpi-sub { color: rgba(255,255,255,.68); }
+    .fh-kpi-best-name { font-size: 24px; font-weight: 780; line-height: 1.05; }
+    .fh-kpi-best-meta { font-size: 12px; color: rgba(255,255,255,.68); margin-top: 5px; }
     .fh-badge { display: inline-flex; align-items: center; border-radius: 20px; padding: 3px 8px; font-size: 11px; font-weight: 700; white-space: nowrap; }
     .fh-badge.good { background: var(--done-bg); color: var(--done-fg); }
     .fh-badge.warn { background: var(--prog-bg); color: var(--prog-fg); }
     .fh-badge.bad { background: var(--carr-bg); color: var(--carr-fg); }
-    .fh-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .fh-section-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 12px; }
+    .fh-section-title { font-size: 17px; font-weight: 780; letter-spacing: 0; }
+    .fh-section-note { font-size: 12px; color: #777068; margin-top: 3px; }
+    .fh-panel { background: var(--surface); border: 1px solid #E8E0D8; border-radius: 8px; padding: 20px; box-shadow: 0 10px 28px rgba(49,42,35,.04); }
     .fh-panel-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
-    .fh-panel-title { font-size: 16px; font-weight: 700; }
-    .fh-panel-note { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    .pipe { width: 100%; height: 174px; }
-    .pipe-stage-label { font-size: 12px; font-weight: 700; fill: var(--black); }
-    .pipe-caption { font-size: 11px; font-weight: 600; fill: var(--muted); }
-    .pipe-good { fill: #DFF6EA; stroke: #15803D; }
-    .pipe-mid { fill: #FFF7DF; stroke: #D97706; stroke-dasharray: 7 5; opacity: .78; }
-    .pipe-bad { fill: #FDE2E2; stroke: #B91C1C; opacity: .72; }
-    .pipe-link-good { stroke: #15803D; stroke-width: 10; stroke-linecap: round; }
-    .pipe-link-mid { stroke: #D97706; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 8 8; opacity: .75; }
-    .pipe-link-bad { stroke: #B91C1C; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 5 10; opacity: .7; }
-    .fh-two-col { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); gap: 18px; }
-    .funnel-stack { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 6px 0; }
-    .funnel-seg { min-width: 210px; max-width: 100%; border-radius: 8px; border: 1px solid var(--border); padding: 10px 14px; text-align: center; position: relative; background: #F9F7F4; transition: width .2s; }
-    .funnel-seg:nth-child(1) { background: #E0F2FE; border-color: #BAE6FD; }
-    .funnel-seg:nth-child(2) { background: #DCFCE7; border-color: #BBF7D0; }
-    .funnel-seg:nth-child(3) { background: #FEF3C7; border-color: #FDE68A; }
-    .funnel-seg:nth-child(4) { background: #FEE2E2; border-color: #FECACA; }
-    .funnel-name { font-size: 12px; font-weight: 750; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-    .funnel-val { font-size: 20px; font-weight: 750; margin-top: 2px; }
-    .funnel-rate { font-size: 12px; color: var(--muted); }
-    .drop-badge { margin-left: 6px; color: var(--carr-fg); font-weight: 800; }
-    .mini-bars { display: flex; flex-direction: column; gap: 11px; }
-    .mini-bar-row { display: grid; grid-template-columns: 118px minmax(0,1fr) 56px; gap: 10px; align-items: center; font-size: 12px; }
-    .mini-bar-label { font-weight: 650; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .mini-track { height: 12px; background: var(--border); border-radius: 20px; overflow: hidden; }
-    .mini-fill { height: 100%; background: var(--terra); border-radius: 20px; min-width: 4px; }
-    .mini-value { text-align: right; color: var(--muted); font-weight: 650; }
-    .issue-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
-    .issue-card { border: 1px solid var(--border); border-radius: 10px; padding: 14px; background: #FDFCFA; }
-    .issue-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; margin-bottom: 8px; }
-    .issue-title { font-size: 14px; font-weight: 700; line-height: 1.3; }
-    .issue-copy { font-size: 12px; color: var(--muted); line-height: 1.45; }
-    .impact-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .impact-table th { text-align: left; padding: 9px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border-bottom: 1px solid var(--border); background: #F9F7F4; }
-    .impact-table td { padding: 11px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
-    .impact-table tr:last-child td { border-bottom: none; }
-    .fh-flow-note { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; color: var(--muted); }
-    .fh-flow-note div { background: #F9F7F4; border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
-    .fh-flow-note strong { display: block; color: var(--black); margin-bottom: 4px; }
+    .fh-panel-title { font-size: 16px; font-weight: 760; }
+    .fh-panel-note { font-size: 12px; color: #777068; margin-top: 2px; }
+    .fh-channel-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .fh-channel-card { position: relative; overflow: hidden; background: #FFFDFC; border: 1px solid #E6DED5; border-radius: 8px; padding: 18px; min-height: 244px; box-shadow: 0 12px 30px rgba(49,42,35,.05); }
+    .fh-channel-card:before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--tone, #1F7A70); opacity: .82; }
+    .fh-channel-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+    .fh-channel-name { font-size: 18px; font-weight: 780; }
+    .fh-channel-sub { font-size: 12px; color: #777068; margin-top: 3px; }
+    .fh-delta { display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 760; white-space: nowrap; background: #F2EFE9; color: #70685F; }
+    .fh-delta.up { color: #0F766E; background: #DFF5EF; }
+    .fh-delta.down { color: #B4533C; background: #FCE7DF; }
+    .fh-delta.flat { color: #746D64; background: #EEE9E2; }
+    .fh-signal-bubble { position: absolute; right: 18px; bottom: 18px; width: var(--bubble, 42px); height: var(--bubble, 42px); min-width: 24px; min-height: 24px; max-width: 76px; max-height: 76px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.88), var(--tone, #1F7A70)); opacity: .22; pointer-events: none; }
+    .fh-metric-stack { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
+    .fh-metric-row { display: grid; grid-template-columns: 96px minmax(0,1fr) 88px; gap: 10px; align-items: center; }
+    .fh-metric-label { font-size: 12px; font-weight: 760; color: #4D4741; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .fh-metric-track { height: 14px; border-radius: 999px; background: #EEE8E0; overflow: hidden; box-shadow: inset 0 1px 2px rgba(0,0,0,.04); }
+    .fh-metric-fill { height: 100%; width: var(--w, 0%); min-width: 7px; border-radius: inherit; background: var(--tone, #1F7A70); background: linear-gradient(90deg, color-mix(in srgb, var(--tone, #1F7A70) 38%, white), var(--tone, #1F7A70)); }
+    .fh-metric-row:nth-child(1) .fh-metric-fill { opacity: .55; }
+    .fh-metric-row:nth-child(2) .fh-metric-fill { opacity: .76; }
+    .fh-metric-row:nth-child(3) .fh-metric-fill { opacity: 1; }
+    .fh-metric-value { display: flex; align-items: center; justify-content: flex-end; gap: 6px; text-align: right; color: #4D4741; font-size: 12px; font-weight: 760; white-space: nowrap; }
+    .fh-metric-delta { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; border-radius: 999px; padding: 2px 5px; line-height: 1; font-size: 10px; font-weight: 780; background: #EEE9E2; color: #746D64; }
+    .fh-metric-delta.up { color: #0F766E; background: #DFF5EF; }
+    .fh-metric-delta.down { color: #B4533C; background: #FCE7DF; }
+    .fh-metric-delta.flat { color: #746D64; background: #EEE9E2; }
+    .fh-signal { margin-top: 15px; padding-top: 13px; border-top: 1px solid #EEE7DF; font-size: 12px; line-height: 1.45; color: #70685F; position: relative; z-index: 1; }
+    .fh-month-trend { margin-top: 15px; padding-top: 14px; border-top: 1px solid #EEE7DF; position: relative; z-index: 1; }
+    .fh-month-trend-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 8px; }
+    .fh-month-trend-title { font-size: 11px; font-weight: 780; text-transform: uppercase; letter-spacing: .07em; color: #746D64; }
+    .fh-month-trend-note { font-size: 11px; color: #8A837A; white-space: nowrap; }
+    .fh-spark { width: 100%; height: 104px; overflow: visible; display: block; }
+    .fh-spark-axis { stroke: #EEE7DF; stroke-width: 1; }
+    .fh-spark-line { fill: none; stroke: var(--line, #1F7A70); stroke-width: var(--line-w, 2); stroke-linecap: round; stroke-linejoin: round; opacity: var(--line-o, .42); }
+    .fh-spark-line.primary { stroke-width: 3.2; opacity: .95; }
+    .fh-spark-dot { fill: var(--line, #1F7A70); opacity: var(--line-o, .42); }
+    .fh-spark-dot.primary { opacity: .95; }
+    .fh-spark-week { fill: #8A837A; font-size: 10px; font-weight: 700; }
+    .fh-spark-legend { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 4px; }
+    .fh-spark-key { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 720; color: #746D64; }
+    .fh-spark-swatch { width: 14px; height: 3px; border-radius: 99px; background: var(--line, #1F7A70); opacity: var(--line-o, .42); }
+    .fh-spark-key.primary { color: #2D2A27; }
+    .fh-spark-key.primary .fh-spark-swatch { opacity: .95; height: 4px; }
+    .fh-traffic-grid { display: grid; grid-template-columns: minmax(260px,.82fr) minmax(0,1.18fr); gap: 18px; }
+    .fh-donut-wrap { display: grid; grid-template-columns: 150px minmax(0,1fr); gap: 18px; align-items: center; }
+    .fh-donut { width: 138px; height: 138px; border-radius: 50%; background: conic-gradient(#B8B0A6 0 360deg); position: relative; box-shadow: inset 0 0 0 1px rgba(0,0,0,.04); }
+    .fh-donut:after { content: ""; position: absolute; inset: 34px; background: #FFFDFC; border-radius: 50%; box-shadow: 0 0 0 1px #EEE7DF; }
+    .fh-donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; font-weight: 780; pointer-events: none; }
+    .fh-donut-center span { display: block; font-size: 11px; color: #777068; font-weight: 700; margin-top: 2px; }
+    .fh-legend { display: flex; flex-direction: column; gap: 10px; }
+    .fh-legend-row { display: grid; grid-template-columns: 10px minmax(0,1fr) auto; gap: 8px; align-items: center; font-size: 12px; }
+    .fh-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--dot, #8A6A37); }
+    .fh-legend-name { color: #4D4741; font-weight: 680; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .fh-legend-value { color: #777068; font-weight: 760; }
+    .fh-line-card { min-height: 216px; }
+    .fh-line-chart { width: 100%; height: 132px; margin-top: 12px; overflow: visible; }
+    .fh-line-axis { stroke: #EEE7DF; stroke-width: 1; }
+    .fh-line-path { fill: none; stroke: #1F7A70; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .fh-line-dot { fill: #1F7A70; stroke: #FFFDFC; stroke-width: 3; }
+    .fh-line-label { fill: #777068; font-size: 11px; font-weight: 700; }
+    .fh-line-value { fill: #2D2A27; font-size: 12px; font-weight: 780; }
+    .fh-path-grid { display: grid; grid-template-columns: minmax(0,1fr); gap: 18px; }
+    .fh-path-card { background: #FFFDFC; border: 1px solid #E6DED5; border-radius: 8px; padding: 18px; }
+    .fh-bubble-funnel { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; align-items: end; margin-top: 16px; min-height: 190px; }
+    .fh-funnel-node { display: flex; flex-direction: column; align-items: center; gap: 9px; min-width: 0; }
+    .fh-funnel-bubble { width: var(--size, 90px); height: var(--size, 90px); border-radius: 50%; background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.95), var(--tone, #1F7A70)); box-shadow: 0 18px 36px rgba(49,42,35,.12); display: flex; align-items: center; justify-content: center; color: #1E1D1B; font-size: 14px; font-weight: 820; }
+    .fh-funnel-label { font-size: 12px; font-weight: 780; text-transform: uppercase; letter-spacing: .05em; color: #4D4741; text-align: center; }
+    .fh-funnel-rate { font-size: 12px; color: #777068; text-align: center; line-height: 1.35; }
+    .fh-beads { width: 100%; display: flex; justify-content: center; align-items: end; gap: 8px; min-height: 44px; margin-top: 3px; }
+    .fh-bead-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 28px; }
+    .fh-bead { width: var(--bead, 18px); height: var(--bead, 18px); border-radius: 50%; background: var(--tone, #1F7A70); opacity: var(--bead-o, .42); box-shadow: 0 8px 18px rgba(49,42,35,.12); }
+    .fh-bead-week { font-size: 10px; font-weight: 720; color: #8A837A; }
+    .fh-path-summary { margin: 16px auto 0; max-width: 720px; border-top: 1px solid #EEE7DF; padding-top: 12px; text-align: center; font-size: 12px; color: #6F6A63; line-height: 1.45; }
+    .fh-path-summary strong { color: #2D2A27; }
+    .fh-insight-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+    .fh-insight { border: 1px solid #E6DED5; border-radius: 8px; padding: 16px; background: #FFFDFC; min-height: 132px; }
+    .fh-insight-label { font-size: 11px; font-weight: 780; text-transform: uppercase; letter-spacing: .07em; color: #8A6A37; }
+    .fh-insight-text { font-size: 14px; line-height: 1.42; margin-top: 12px; color: #2D2A27; }
 
     /* ── Responsive ── */
     @media (max-width: 700px) {
       .hdr { padding-left: 16px; padding-right: 16px; }
+      .hdr-sub, .hdr-sep, .hdr-right { display: none; }
+      .hdr-logo { font-size: 15px; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
       .tab-bar { padding: 0 16px; overflow-x: auto; }
       .tab-btn { white-space: nowrap; }
       .main { padding: 20px 12px 64px; }
       .f-row { grid-template-columns: 1fr; }
-      .stats { gap: 8px; }
+      .stats { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
       .import-controls { flex-direction: column; align-items: stretch; }
       .import-inp-key { width: 100%; }
       .local-banner { padding: 10px 16px; }
-      .fh-hero, .fh-two-col, .fh-flow-note { grid-template-columns: 1fr; }
-      .fh-week-pill { text-align: left; }
-      .fh-grid, .issue-grid { grid-template-columns: 1fr; }
+      .fh-hero, .fh-path-grid, .fh-traffic-grid, .rec-hero { grid-template-columns: 1fr; }
+      .fh-week-pill, .rec-week-card { text-align: left; }
+      .fh-snapshot, .fh-channel-grid, .fh-insight-grid { grid-template-columns: 1fr; }
       .fh-panel { padding: 16px; }
-      .pipe { height: 420px; }
-      .mini-bar-row { grid-template-columns: 96px minmax(0,1fr) 50px; }
+      .fh-channel-card, .fh-path-card { padding: 16px; }
+      .fh-donut-wrap { grid-template-columns: 1fr; justify-items: center; }
+      .fh-metric-row { grid-template-columns: 84px minmax(0,1fr) 76px; gap: 8px; }
+      .fh-metric-value { gap: 4px; }
+      .fh-metric-delta { min-width: 30px; padding: 2px 4px; font-size: 9px; }
+      .fh-month-trend-head { align-items: flex-start; flex-direction: column; gap: 2px; }
+      .fh-month-trend-note { white-space: normal; }
+      .fh-bubble-funnel { grid-template-columns: 1fr; align-items: center; }
     }
   </style>
 </head>
@@ -305,9 +378,12 @@ e<script>
   const STORAGE_KEY    = 'anka_recs_v1';
   const FUNNEL_LS      = 'anka_funnel_metrics_v1';
   const ANTHROPIC_LS   = 'anka_anthropic_key';
+  const LAST_MONTH     = '__last_1_month__';
+  const LAST_MONTH_LABEL = 'Last 1 month';
   const TYPES    = ['🔍 Investigate', '🧪 Test', '📊 Analysis', '🔧 Infra'];
   const OWNERS   = ['Vanessa', 'Coco'];
   const STATUSES = ['Pending', 'In Progress', 'Done', 'Carried Over'];
+  const PRIORITIES = ['High', 'Medium', 'Low'];
 
   const TYPE_MAP = {
     investigate: '🔍 Investigate',
@@ -319,6 +395,7 @@ e<script>
   const S_CLS  = { 'Pending': 's-pend', 'In Progress': 's-prog', 'Done': 's-done', 'Carried Over': 's-carr' };
   const S_ICON = { 'Pending': '○', 'In Progress': '◐', 'Done': '✓', 'Carried Over': '↻' };
   const T_CLS  = { '🔍 Investigate': 'b-inv', '🧪 Test': 'b-tst', '📊 Analysis': 'b-ana', '🔧 Infra': 'b-inf' };
+  const P_CLS  = { 'High': 'p-high', 'Medium': 'p-med', 'Low': 'p-low' };
 
   // ── Seed data ──────────────────────────────────────────────────────
   const SEED = [
@@ -390,9 +467,19 @@ e<script>
 
   // ── Local storage helpers ──────────────────────────────────────────
   const wNum      = function(w) { return parseInt((w || '').replace('W',''), 10) || 0; };
+  const lastMonthWeeks = function(weeks) { return (weeks || []).slice(0, 4); };
   const uid       = function() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); };
-  const loadLocal = function() { try { var d = localStorage.getItem(STORAGE_KEY); return d ? JSON.parse(d) : null; } catch(e) { return null; } };
-  const saveLocal = function(d) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch(e) {} };
+  const normalizeRec = function(r) {
+    r = r || {};
+    return Object.assign({}, r, {
+      type: Array.isArray(r.type) && r.type.length ? r.type : ['🧪 Test'],
+      priority: PRIORITIES.indexOf(r.priority) >= 0 ? r.priority : 'Medium',
+      status: STATUSES.indexOf(r.status) >= 0 ? r.status : 'Pending',
+    });
+  };
+  const normalizeRecs = function(rows) { return (rows || []).map(normalizeRec); };
+  const loadLocal = function() { try { var d = localStorage.getItem(STORAGE_KEY); return d ? normalizeRecs(JSON.parse(d)) : null; } catch(e) { return null; } };
+  const saveLocal = function(d) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeRecs(d))); } catch(e) {} };
   const loadFunnelLocal = function() { try { var d = localStorage.getItem(FUNNEL_LS); return d ? JSON.parse(d) : null; } catch(e) { return null; } };
   const saveFunnelLocal = function(d) { try { localStorage.setItem(FUNNEL_LS, JSON.stringify(d)); } catch(e) {} };
   const cleanRec  = function(r) { var c = Object.assign({}, r); delete c._row; return c; };
@@ -448,15 +535,19 @@ e<script>
   function handleLoad(sheet) {
     var vals = sheet.getDataRange().getValues();
     return vals.slice(1).filter(function(r){return r[0];}).map(function(r){
+      var hasPriority = ['High','Medium','Low'].indexOf(String(r[5])) >= 0;
       return {id:String(r[0]),week:String(r[1]),owner:String(r[2]),action:String(r[3]),
               type:String(r[4]).split(',').map(function(t){return t.trim();}).filter(Boolean),
-              status:String(r[5])||'Pending',result:String(r[6]),createdAt:String(r[7])};
+              priority:hasPriority ? String(r[5]) : 'Medium',
+              status:(hasPriority ? String(r[6]) : String(r[5])) || 'Pending',
+              result:hasPriority ? String(r[7]) : String(r[6]),
+              createdAt:hasPriority ? String(r[8]) : String(r[7])};
     });
   }
 
   function handleAdd(sheet, rec) {
     sheet.appendRow([rec.id,rec.week,rec.owner,rec.action,
-                     (rec.type||[]).join(','),rec.status||'Pending',rec.result||'',rec.createdAt||'']);
+                     (rec.type||[]).join(','),rec.priority||'Medium',rec.status||'Pending',rec.result||'',rec.createdAt||'']);
     return {ok:true};
   }
 
@@ -464,8 +555,8 @@ e<script>
     var vals = sheet.getDataRange().getValues();
     for (var i=1;i<vals.length;i++) {
       if (String(vals[i][0])===String(rec.id)) {
-        sheet.getRange(i+1,1,1,8).setValues([[rec.id,rec.week,rec.owner,rec.action,
-          (rec.type||[]).join(','),rec.status||'Pending',rec.result||'',rec.createdAt||'']]);
+        sheet.getRange(i+1,1,1,9).setValues([[rec.id,rec.week,rec.owner,rec.action,
+          (rec.type||[]).join(','),rec.priority||'Medium',rec.status||'Pending',rec.result||'',rec.createdAt||'']]);
         return {ok:true};
       }
     }
@@ -486,7 +577,7 @@ e<script>
   4. If deploying fresh: Deploy → New deployment, Execute as: Me, Who has access: Anyone
 
   Make sure the "Recommendations" sheet tab has row 1 as headers:
-  id | week | owner | action | type | status | result | createdAt
+  id | week | owner | action | type | priority | status | result | createdAt
   ════════════════════════════════════════════════════════════════════
   */
 
@@ -508,9 +599,9 @@ e<script>
       var timer = setTimeout(function() {
         if (!settled) {
           cleanup();
-          reject(new Error('Request timed out after 15s — check Apps Script URL'));
+          reject(new Error('Request timed out after 25s — check Apps Script URL'));
         }
-      }, 15000);
+      }, 25000);
 
       window[cbName] = function(data) {
         clearTimeout(timer);
@@ -546,25 +637,27 @@ e<script>
   var _cachedSheetId = null;
 
   function rowToRec(row) {
+    var hasPriority = PRIORITIES.indexOf((row[5] || '').trim()) >= 0;
     return {
       id:        (row[0] || '').trim(),
       week:      (row[1] || '').trim(),
       owner:     (row[2] || '').trim(),
       action:    (row[3] || '').trim(),
       type:      (row[4] || '').split(',').map(function(t) { return t.trim(); }).filter(Boolean),
-      status:    (row[5] || 'Pending').trim(),
-      result:    (row[6] || '').trim(),
-      createdAt: (row[7] || '').trim(),
+      priority:  hasPriority ? (row[5] || 'Medium').trim() : 'Medium',
+      status:    (hasPriority ? (row[6] || 'Pending') : (row[5] || 'Pending')).trim(),
+      result:    (hasPriority ? (row[7] || '') : (row[6] || '')).trim(),
+      createdAt: (hasPriority ? (row[8] || '') : (row[7] || '')).trim(),
     };
   }
 
   function recToRow(rec) {
     return [rec.id||'', rec.week||'', rec.owner||'', rec.action||'',
-            (rec.type||[]).join(','), rec.status||'Pending', rec.result||'', rec.createdAt||''];
+            (rec.type||[]).join(','), rec.priority||'Medium', rec.status||'Pending', rec.result||'', rec.createdAt||''];
   }
 
   function sheetsLoad() {
-    var range = encodeURIComponent(CONFIG.SHEET_NAME + '!A2:H');
+    var range = encodeURIComponent(CONFIG.SHEET_NAME + '!A2:I');
     var url   = SHEETS_BASE + '/values/' + range + '?key=' + CONFIG.GOOGLE_API_KEY;
     return fetch(url)
       .then(function(res) {
@@ -635,17 +728,28 @@ e<script>
   }
 
   function funnelRowsToMetrics(rows, week) {
-    var selected = (rows||[]).filter(function(r){return r.week === week;});
+    var selectedWeeks = Array.isArray(week) ? week : [week];
+    var selected = (rows||[]).filter(function(r){return selectedWeeks.indexOf(r.week) >= 0;});
     if (!selected.length) return SAMPLE_FUNNEL_METRICS;
 
-    function channelRow(name, metric) {
-      return selected.find(function(r){return r.channel === name && r.metric === metric;}) || null;
+    function channelRowsAny(names, metrics) {
+      names = Array.isArray(names) ? names : [names];
+      metrics = Array.isArray(metrics) ? metrics : [metrics];
+      return selected.filter(function(r) {
+        var c = String(r.channel || '').toLowerCase();
+        var m = String(r.metric || '').toLowerCase();
+        return names.some(function(n){return c === String(n).toLowerCase();}) &&
+          metrics.some(function(mt){return m === String(mt).toLowerCase();});
+      });
     }
     function value(name, metric) {
-      var row = channelRow(name, metric);
-      return row ? metricNumber(row.value) : 0;
+      return valueAny(name, metric);
+    }
+    function valueAny(names, metrics) {
+      return channelRowsAny(names, metrics).reduce(function(sum, row){return sum + metricNumber(row.value);}, 0);
     }
     function dateRangeForWeek() {
+      if (selectedWeeks.length > 1) return selectedWeeks.slice().reverse().join(' - ');
       var row = selected.find(function(r){return r.dateRange;});
       return row ? row.dateRange : '';
     }
@@ -659,6 +763,14 @@ e<script>
       linkClicks: value('Instagram Feed', 'link_clicks'),
       newFollows: value('Instagram Feed', 'new_follows'),
       netFollows: value('Instagram Feed', 'net_follows'),
+    };
+    var facebook = {
+      channel: 'Facebook',
+      views: valueAny(['Facebook', 'Facebook Feed', 'Meta Facebook'], ['views', 'post_views']),
+      reach: valueAny(['Facebook', 'Facebook Feed', 'Meta Facebook'], ['reach', 'impressions']),
+      interactions: valueAny(['Facebook', 'Facebook Feed', 'Meta Facebook'], ['interactions', 'engagements', 'engagement']),
+      profileVisits: valueAny(['Facebook', 'Facebook Feed', 'Meta Facebook'], ['profile_visits', 'profile_views']),
+      linkClicks: valueAny(['Facebook', 'Facebook Feed', 'Meta Facebook'], ['link_clicks', 'clicks']),
     };
     var newsletter = {
       channel: 'Newsletter',
@@ -676,14 +788,14 @@ e<script>
     };
 
     return {
-      week: week,
+      week: selectedWeeks.length > 1 ? LAST_MONTH_LABEL : selectedWeeks[0],
       dateRange: dateRangeForWeek(),
-      channels: [instagram, newsletter, tiktok],
+      channels: [facebook, instagram, newsletter, tiktok],
     };
   }
 
   function sheetsAppend(rec) {
-    var range = encodeURIComponent(CONFIG.SHEET_NAME + '!A:H');
+    var range = encodeURIComponent(CONFIG.SHEET_NAME + '!A:I');
     var url   = SHEETS_BASE + '/values/' + range + ':append?valueInputOption=RAW&insertDataOption=INSERT_ROWS&key=' + CONFIG.GOOGLE_API_KEY;
     return fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({values:[recToRow(rec)]}) })
       .then(function(res) { if (!res.ok) return res.json().then(function(e) { throw new Error((e.error&&e.error.message)||'Sheets append failed: '+res.status); }); });
@@ -694,7 +806,7 @@ e<script>
       var found = rows.find(function(r) { return r.id === rec.id; });
       if (!found) throw new Error('Row not found for id: ' + rec.id);
       var rn    = found._row;
-      var range = encodeURIComponent(CONFIG.SHEET_NAME + '!A' + rn + ':H' + rn);
+      var range = encodeURIComponent(CONFIG.SHEET_NAME + '!A' + rn + ':I' + rn);
       var url   = SHEETS_BASE + '/values/' + range + '?valueInputOption=RAW&key=' + CONFIG.GOOGLE_API_KEY;
       return fetch(url, { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({values:[recToRow(rec)]}) });
     }).then(function(res) { if (res&&!res.ok) return res.json().then(function(e) { throw new Error((e.error&&e.error.message)||'Sheets update failed: '+res.status); }); });
@@ -772,6 +884,7 @@ e<script>
         return {
           action: String(item.action||'').trim(),
           type:   [TYPE_MAP[(String(item.type||'')).toLowerCase()] || '🧪 Test'],
+          priority: PRIORITIES.indexOf(item.priority) >= 0 ? item.priority : 'Medium',
           owner:  (item.owner==='Coco'||item.owner==='Vanessa') ? item.owner : 'Vanessa',
         };
       }).filter(function(item) { return item.action.length > 0; });
@@ -789,6 +902,20 @@ e<script>
   // ── TypeBadge ──────────────────────────────────────────────────────
   function TypeBadge(props) {
     return html`<span className=${'badge ' + (T_CLS[props.t]||'b-inv')}>${props.t}</span>`;
+  }
+
+  function TypeSelect(props) {
+    var value = (props.value && props.value[0]) || '🧪 Test';
+    return html`<select className=${'chip-select type-select '+(T_CLS[value]||'b-tst')} value=${value} onChange=${function(e){props.onChange([e.target.value]);}} title="Change type">
+      ${TYPES.map(function(t){return html`<option key=${t} value=${t}>${t}</option>`;})}
+    </select>`;
+  }
+
+  function PrioritySelect(props) {
+    var value = props.value || 'Medium';
+    return html`<select className=${'chip-select priority-select '+(P_CLS[value]||'p-med')} value=${value} onChange=${function(e){props.onChange(e.target.value);}} title="Change priority">
+      ${PRIORITIES.map(function(p){return html`<option key=${p} value=${p}>${p}</option>`;})}
+    </select>`;
   }
 
   // ── StatusTag ──────────────────────────────────────────────────────
@@ -810,6 +937,7 @@ e<script>
   // ── RecRow ─────────────────────────────────────────────────────────
   function RecRow(props) {
     var rec=props.rec, onStatus=props.onStatus, onResult=props.onResult, onDelete=props.onDelete,
+        onType=props.onType, onPriority=props.onPriority,
         showWeek=props.showWeek, showOwner=props.showOwner, carriedFrom=props.carriedFrom;
 
     var editSt = useState(false); var editing=editSt[0],setEditing=editSt[1];
@@ -827,7 +955,6 @@ e<script>
     var weekCell  = showWeek  ? html`<td style=${{fontSize:12,color:'var(--muted)',fontWeight:600,whiteSpace:'nowrap'}}>${rec.week}</td>` : null;
     var ownerCell = showOwner ? html`<td style=${{fontSize:13,fontWeight:500,whiteSpace:'nowrap'}}>${rec.owner}</td>` : null;
     var carried   = carriedFrom ? html`<div className="co-pill">↻ carried from ${carriedFrom}</div>` : null;
-    var badges    = rec.type.map(function(t) { return html`<${TypeBadge} key=${t} t=${t} />`; });
 
     var resultCell;
     if (showInput) {
@@ -862,7 +989,8 @@ e<script>
         <div style=${{fontSize:14,lineHeight:1.5}}>${rec.action}</div>
         ${carried}
       </td>
-      <td><div className="badge-wrap">${badges}</div></td>
+      <td><${TypeSelect} value=${rec.type} onChange=${function(next){onType(rec.id, next);}} /></td>
+      <td><${PrioritySelect} value=${rec.priority || 'Medium'} onChange=${function(next){onPriority(rec.id, next);}} /></td>
       <td><${StatusTag} status=${rec.status} onClick=${handleStatus} /></td>
       <td>${resultCell}</td>
       ${delCell}
@@ -984,28 +1112,22 @@ e<script>
   // ── AddForm ────────────────────────────────────────────────────────
   function AddForm(props) {
     var weeks=props.weeks, onAdd=props.onAdd, instanceId=props.instanceId;
-    var fSt=useState({week:weeks[0]||'W25',action:'',type:['🧪 Test'],owner:'Vanessa'});
+    var fSt=useState({week:weeks[0]||'W25',action:'',type:['🧪 Test'],priority:'Medium',owner:'Vanessa'});
     var form=fSt[0],setForm=fSt[1];
 
-    function toggleType(t) {
-      setForm(function(f){var next=f.type.includes(t)?f.type.filter(function(x){return x!==t;}):f.type.concat([t]);return Object.assign({},f,{type:next});});
-    }
     function submit(e) {
       e.preventDefault();
       if (!form.action.trim()||!form.type.length) return;
       var w=form.week.trim().toUpperCase();
       if (!/^W\d+$/.test(w)){var n=parseInt(w.replace(/\D/g,''),10);if(isNaN(n))return;w='W'+n;}
       onAdd(Object.assign({},form,{week:w,action:form.action.trim()}));
-      setForm(function(f){return Object.assign({},f,{action:'',type:['🧪 Test']});});
+      setForm(function(f){return Object.assign({},f,{action:'',type:['🧪 Test'],priority:'Medium'});});
     }
 
     var lid = 'wl-'+instanceId;
     var can = form.action.trim().length > 0 && form.type.length > 0;
     var wOpts = weeks.map(function(w){return html`<option key=${w} value=${w}>${w}</option>`;});
     var oOpts = OWNERS.map(function(o){return html`<option key=${o}>${o}</option>`;});
-    var checks = TYPES.map(function(t){return html`<label key=${t}>
-      <input type="checkbox" checked=${form.type.includes(t)} onChange=${function(){toggleType(t);}} />${t}
-    </label>`;});
 
     return html`<div className="add-card">
       <div className="add-title">+ Add Recommendation</div>
@@ -1023,7 +1145,17 @@ e<script>
           </div>
           <div className="f-field">
             <label className="f-lbl">Type</label>
-            <div className="type-checks">${checks}</div>
+            <select className="f-sel" value=${form.type[0]} onChange=${function(e){setForm(function(f){return Object.assign({},f,{type:[e.target.value]});});}}>
+              ${TYPES.map(function(t){return html`<option key=${t} value=${t}>${t}</option>`;})}
+            </select>
+          </div>
+        </div>
+        <div className="f-row">
+          <div className="f-field">
+            <label className="f-lbl">Priority</label>
+            <select className="f-sel" value=${form.priority} onChange=${function(e){setForm(function(f){return Object.assign({},f,{priority:e.target.value});});}}>
+              ${PRIORITIES.map(function(p){return html`<option key=${p} value=${p}>${p}</option>`;})}
+            </select>
           </div>
         </div>
         <div className="f-row f-full">
@@ -1039,13 +1171,25 @@ e<script>
     </div>`;
   }
 
-  // ── ThisWeekTab ────────────────────────────────────────────────────
-  function ThisWeekTab(props) {
+  // ── RecommendationTab ───────────────────────────────────────────────
+  function RecommendationTab(props) {
     var recs=props.recs, weeks=props.weeks, curWeek=props.curWeek, setCurWeek=props.setCurWeek,
         onStatus=props.onStatus, onResult=props.onResult, onDelete=props.onDelete,
+        onType=props.onType, onPriority=props.onPriority,
         onAdd=props.onAdd, onImport=props.onImport;
+    var filtSt=useState({type:'All',priority:'All',status:'All'}); var filt=filtSt[0],setFilt=filtSt[1];
+    function setFilter(k){return function(e){var v=e.target.value;setFilt(function(f){return Object.assign({},f,{[k]:v});});};}
+    function passesFilters(r) {
+      if (filt.type !== 'All' && !(r.type || []).includes(filt.type)) return false;
+      if (filt.priority !== 'All' && (r.priority || 'Medium') !== filt.priority) return false;
+      if (filt.status !== 'All' && r.status !== filt.status) return false;
+      return true;
+    }
 
-    var wr=recs.filter(function(r){return r.week===curWeek;});
+    var periodWeeks = curWeek === LAST_MONTH ? lastMonthWeeks(weeks) : [curWeek];
+    var isRange = curWeek === LAST_MONTH;
+    var activeWeek = isRange ? (periodWeeks[0] || weeks[0] || 'W26') : curWeek;
+    var wr=recs.filter(function(r){return periodWeeks.indexOf(r.week) >= 0;});
     var total=wr.length, done=wr.filter(function(r){return r.status==='Done';}).length,
         inprog=wr.filter(function(r){return r.status==='In Progress';}).length,
         pend=wr.filter(function(r){return r.status==='Pending';}).length;
@@ -1053,26 +1197,47 @@ e<script>
     var statItems=[{n:total,l:'Total',c:'var(--black)'},{n:pend,l:'Pending',c:'var(--pend-fg)'},
                    {n:inprog,l:'In Progress',c:'var(--prog-fg)'},{n:done,l:'Done',c:'var(--done-fg)'}];
 
-    var wOpts = weeks.map(function(w){return html`<option key=${w}>${w}</option>`;});
+    var wOpts = weeks.concat([LAST_MONTH]).map(function(w){
+      return html`<option key=${w} value=${w}>${w===LAST_MONTH ? LAST_MONTH_LABEL : w}</option>`;
+    });
     var stats = statItems.map(function(s){return html`<div key=${s.l} className="stat">
       <div className="stat-n" style=${{color:s.c}}>${s.n}</div>
       <div className="stat-l">${s.l}</div>
     </div>`;});
 
+    var filterDefs = [
+      {key:'type', label:'Type', opts:['All'].concat(TYPES)},
+      {key:'priority', label:'Priority', opts:['All'].concat(PRIORITIES)},
+      {key:'status', label:'Status', opts:['All'].concat(STATUSES)},
+    ];
+    var activeFilters = Object.keys(filt).some(function(k){return filt[k] !== 'All';});
+    var filters = html`<div className="filters rec-filters">
+      ${filterDefs.map(function(f){return html`<div key=${f.key} className="flt-grp">
+        <label className="flt-lbl">${f.label}</label>
+        <select className="flt-sel" value=${filt[f.key]} onChange=${setFilter(f.key)}>
+          ${f.opts.map(function(o){return html`<option key=${o} value=${o}>${o}</option>`;})}
+        </select>
+      </div>`;})}
+      ${activeFilters ? html`<button className="btn-clr" onClick=${function(){setFilt({type:'All',priority:'All',status:'All'});}}>Clear filters</button>` : null}
+    </div>`;
+
     var sections = OWNERS.map(function(owner) {
-      var mine    = recs.filter(function(r){return r.owner===owner&&r.week===curWeek;});
-      var carried = recs.filter(function(r){return r.owner===owner&&r.status==='Carried Over'&&r.week!==curWeek&&wNum(r.week)<wNum(curWeek);});
+      var mine    = recs.filter(function(r){return r.owner===owner&&periodWeeks.indexOf(r.week) >= 0&&passesFilters(r);})
+        .sort(function(a,b){return wNum(b.week)-wNum(a.week);});
+      var carried = isRange ? [] : recs.filter(function(r){return r.owner===owner&&r.status==='Carried Over'&&r.week!==curWeek&&wNum(r.week)<wNum(curWeek)&&passesFilters(r);});
       var all     = mine.concat(carried);
 
-      var mRows = mine.map(function(r){return html`<${RecRow} key=${r.id} rec=${r} onStatus=${onStatus} onResult=${onResult} onDelete=${onDelete} />`;});
-      var cRows = carried.map(function(r){return html`<${RecRow} key=${r.id} rec=${r} onStatus=${onStatus} onResult=${onResult} onDelete=${onDelete} carriedFrom=${r.week} />`;});
+      var mRows = mine.map(function(r){return html`<${RecRow} key=${r.id} rec=${r} onStatus=${onStatus} onResult=${onResult} onDelete=${onDelete} onType=${onType} onPriority=${onPriority} showWeek=${isRange} />`;});
+      var cRows = carried.map(function(r){return html`<${RecRow} key=${r.id} rec=${r} onStatus=${onStatus} onResult=${onResult} onDelete=${onDelete} onType=${onType} onPriority=${onPriority} carriedFrom=${r.week} />`;});
 
       var body = all.length === 0
-        ? html`<div style=${{color:'var(--muted)',paddingLeft:44,fontSize:14}}>No items this week.</div>`
+        ? html`<div style=${{color:'var(--muted)',paddingLeft:44,fontSize:14}}>No recommendations in this period.</div>`
         : html`<div className="card"><table className="tbl">
             <thead><tr>
-              <th style=${{width:'44%'}}>Action</th>
-              <th style=${{width:'18%'}}>Type</th>
+              ${isRange ? html`<th style=${{width:'7%'}}>Week</th>` : null}
+              <th style=${{width:'38%'}}>Action</th>
+              <th style=${{width:'16%'}}>Type</th>
+              <th style=${{width:'12%'}}>Priority</th>
               <th style=${{width:'14%'}}>Status</th>
               <th style=${{width:'20%'}}>Result</th>
               <th className="del-col"></th>
@@ -1090,19 +1255,24 @@ e<script>
       </div>`;
     });
 
-    return html`<div>
-      <div className="pg-hdr">
+    return html`<div className="rec-shell">
+      <div className="rec-hero">
         <div>
-          <div className="pg-title">${curWeek} — This Week</div>
-          <div className="pg-meta">${done}/${total} done · ${inprog} in progress · ${pend} pending</div>
+          <div className="rec-kicker">Recommendation</div>
+          <div className="rec-title">${isRange ? LAST_MONTH_LABEL : curWeek} action follow-through</div>
+          <div className="rec-sub">Track owners, status, and results for recommendations coming out of each weekly marketing report.</div>
         </div>
-        <select className="week-sel" value=${curWeek} onChange=${function(e){setCurWeek(e.target.value);}}>
-          ${wOpts}
-        </select>
+        <div>
+          <select className="week-sel" value=${curWeek} onChange=${function(e){setCurWeek(e.target.value);}}>
+            ${wOpts}
+          </select>
+          <div className="rec-week-card"><strong>${isRange ? LAST_MONTH_LABEL : curWeek}</strong><span>${done}/${total} done · ${inprog} in progress · ${pend} pending</span></div>
+        </div>
       </div>
       <div className="stats">${stats}</div>
-      ${sections}
-      <${ImportSection} weeks=${weeks} currentWeek=${curWeek} onImport=${onImport} />
+      ${filters}
+      <div className="owner-list">${sections}</div>
+      <${ImportSection} weeks=${weeks} currentWeek=${activeWeek} onImport=${onImport} />
       <${AddForm} weeks=${weeks} onAdd=${onAdd} instanceId="tw" />
     </div>`;
   }
@@ -1111,9 +1281,10 @@ e<script>
   function AllRecsTab(props) {
     var recs=props.recs, weeks=props.weeks,
         onStatus=props.onStatus, onResult=props.onResult, onDelete=props.onDelete,
+        onType=props.onType, onPriority=props.onPriority,
         onAdd=props.onAdd, onImport=props.onImport;
 
-    var fSt=useState({week:'All',owner:'All',type:'All',status:'All'});
+    var fSt=useState({week:'All',owner:'All',type:'All',priority:'All',status:'All'});
     var filt=fSt[0],setFilt=fSt[1];
     function setKey(k){return function(e){var v=e.target.value;setFilt(function(f){return Object.assign({},f,{[k]:v});});};}
 
@@ -1122,6 +1293,7 @@ e<script>
         if(filt.week!=='All'&&r.week!==filt.week) return false;
         if(filt.owner!=='All'&&r.owner!==filt.owner) return false;
         if(filt.type!=='All'&&!r.type.includes(filt.type)) return false;
+        if(filt.priority!=='All'&&(r.priority||'Medium')!==filt.priority) return false;
         if(filt.status!=='All'&&r.status!==filt.status) return false;
         return true;
       })
@@ -1129,7 +1301,7 @@ e<script>
 
     var active = Object.values(filt).some(function(v){return v!=='All';});
     var defs = [{key:'week',label:'Week',opts:['All'].concat(weeks)},{key:'owner',label:'Owner',opts:['All'].concat(OWNERS)},
-                {key:'type',label:'Type',opts:['All'].concat(TYPES)},{key:'status',label:'Status',opts:['All'].concat(STATUSES)}];
+                {key:'type',label:'Type',opts:['All'].concat(TYPES)},{key:'priority',label:'Priority',opts:['All'].concat(PRIORITIES)},{key:'status',label:'Status',opts:['All'].concat(STATUSES)}];
 
     var filters = defs.map(function(f){return html`<div key=${f.key} className="flt-grp">
       <label className="flt-lbl">${f.label}</label>
@@ -1138,10 +1310,10 @@ e<script>
       </select>
     </div>`;});
 
-    var clearBtn = active ? html`<button className="btn-clr" onClick=${function(){setFilt({week:'All',owner:'All',type:'All',status:'All'});}}>Clear filters</button>` : null;
+    var clearBtn = active ? html`<button className="btn-clr" onClick=${function(){setFilt({week:'All',owner:'All',type:'All',priority:'All',status:'All'});}}>Clear filters</button>` : null;
 
     var rows = shown.map(function(r){return html`<${RecRow} key=${r.id} rec=${r}
-      onStatus=${onStatus} onResult=${onResult} onDelete=${onDelete} showWeek=${true} showOwner=${true} />`;});
+      onStatus=${onStatus} onResult=${onResult} onDelete=${onDelete} onType=${onType} onPriority=${onPriority} showWeek=${true} showOwner=${true} />`;});
 
     var tableBody = shown.length===0
       ? html`<div className="empty">No recommendations match your filters.</div>`
@@ -1150,6 +1322,7 @@ e<script>
           <th style=${{width:'7%'}}>Owner</th>
           <th style=${{width:'38%'}}>Action</th>
           <th style=${{width:'16%'}}>Type</th>
+          <th style=${{width:'12%'}}>Priority</th>
           <th style=${{width:'13%'}}>Status</th>
           <th style=${{width:'17%'}}>Result</th>
           <th className="del-col"></th>
@@ -1207,7 +1380,7 @@ e<script>
 
     function changeWeek(week) {
       setSelectedWeek(week);
-      var next = funnelRowsToMetrics(funnelRows, week);
+      var next = funnelRowsToMetrics(funnelRows, week === LAST_MONTH ? lastMonthWeeks(weeksFromFunnelRows(funnelRows)) : week);
       setMetrics(next);
       setJsonText(JSON.stringify(next, null, 2));
       saveFunnelLocal(next);
@@ -1216,6 +1389,7 @@ e<script>
     function num(v) { return typeof v === 'number' && isFinite(v) ? v : 0; }
     function fmt(v) { return Math.round(num(v)).toLocaleString(); }
     function pct(v) { return isFinite(v) && v > 0 ? (v * 100).toFixed(v >= .1 ? 1 : 2) + '%' : '0%'; }
+    function per10k(v) { return isFinite(v) && v > 0 ? (v * 10000).toFixed(v >= .001 ? 1 : 2) + ' clicks per 10K attention' : '0 clicks per 10K attention'; }
     function channel(name) {
       return (metrics.channels || []).find(function(c) { return c.channel === name; }) || {};
     }
@@ -1474,13 +1648,738 @@ e<script>
     </div>`;
   }
 
+  // ── FunnelHealthDashboard ───────────────────────────────────────────
+  function FunnelHealthDashboard() {
+    var initialMetrics = loadFunnelLocal() || SAMPLE_FUNNEL_METRICS;
+    var metricsSt = useState(initialMetrics); var metrics=metricsSt[0],setMetrics=metricsSt[1];
+    var rowsSt = useState([]); var funnelRows=rowsSt[0],setFunnelRows=rowsSt[1];
+    var weekSt = useState(initialMetrics.week || 'W25'); var selectedWeek=weekSt[0],setSelectedWeek=weekSt[1];
+    var loadSt = useState('loading'); var loadStatus=loadSt[0],setLoadStatus=loadSt[1];
+    var jsonSt = useState(JSON.stringify(initialMetrics, null, 2)); var jsonText=jsonSt[0],setJsonText=jsonSt[1];
+    var openSt = useState(false); var inputOpen=openSt[0],setInputOpen=openSt[1];
+    var msgSt = useState({type:'', text:''}); var msg=msgSt[0],setMsg=msgSt[1];
+
+    useEffect(function() {
+      var cancelled = false;
+      setLoadStatus('loading');
+      loadFunnelMetrics()
+        .then(function(rows) {
+          if (cancelled) return;
+          var weeks = weeksFromFunnelRows(rows);
+          var week = weeks[0] || selectedWeek || SAMPLE_FUNNEL_METRICS.week;
+          var next = funnelRowsToMetrics(rows, week);
+          setFunnelRows(rows);
+          setSelectedWeek(week);
+          setMetrics(next);
+          setJsonText(JSON.stringify(next, null, 2));
+          saveFunnelLocal(next);
+          setLoadStatus('sheet');
+        })
+        .catch(function(err) {
+          if (cancelled) return;
+          console.warn('Funnel metrics load failed:', err.message||err);
+          setLoadStatus('local');
+          setMsg({type:'err', text:'Could not load FunnelMetrics yet. Showing local/sample data.'});
+        });
+      return function() { cancelled = true; };
+    }, []);
+
+    function changeWeek(week) {
+      setSelectedWeek(week);
+      var next = funnelRowsToMetrics(funnelRows, week);
+      setMetrics(next);
+      setJsonText(JSON.stringify(next, null, 2));
+      saveFunnelLocal(next);
+    }
+
+    function num(v) { return typeof v === 'number' && isFinite(v) ? v : 0; }
+    function cleanNumber(v) {
+      if (typeof v === 'number') return isFinite(v) ? v : 0;
+      var text = String(v || '').replace(/,/g, '').trim();
+      if (!text) return 0;
+      if (text.endsWith('%')) {
+        var pctNum = Number(text.slice(0, -1));
+        return isFinite(pctNum) ? pctNum / 100 : 0;
+      }
+      var n = Number(text);
+      return isFinite(n) ? n : 0;
+    }
+    function fmt(v) { return Math.round(num(v)).toLocaleString(); }
+    function fmtCompact(v) {
+      return new Intl.NumberFormat('en-US', { notation:'compact', maximumFractionDigits:1 }).format(Math.round(num(v)));
+    }
+    function fmtMetric(v, unit) {
+      if (unit === 'pct') return pct(num(v));
+      return fmtCompact(v);
+    }
+    function pct(v) { return isFinite(v) && v > 0 ? (v * 100).toFixed(v >= .1 ? 1 : 2) + '%' : '0%'; }
+    function per10k(v) { return isFinite(v) && v > 0 ? (v * 10000).toFixed(v >= .001 ? 1 : 2) + ' clicks per 10K attention' : '0 clicks per 10K attention'; }
+    function safeDiv(a, b) { return num(b) ? num(a) / num(b) : 0; }
+    function norm(s) { return String(s || '').trim().toLowerCase(); }
+    function channel(name) {
+      return (metrics.channels || []).find(function(c) { return c.channel === name; }) || {};
+    }
+    function canonicalMetricRow(rows, channelAliases, metricAliases) {
+      if (!rows.length) return null;
+      var channelText = channelAliases.map(norm).join(' ');
+      var metricList = metricAliases.map(norm);
+      function rank(r) {
+        var section = norm(r.section);
+        if (channelText.indexOf('newsletter') >= 0 || channelText.indexOf('email') >= 0) {
+          if (section === 'channel scorecard') return 0;
+          if (section === 'newsletter') return 1;
+          return 2;
+        }
+        if (channelText.indexOf('facebook') >= 0 || channelText.indexOf('instagram') >= 0) {
+          if (section === 'social media') return 0;
+          if (section === 'channel scorecard') return 1;
+          return 2;
+        }
+        if (channelText.indexOf('tiktok') >= 0) {
+          if (section === 'tiktok') return 0;
+          if (section === 'channel scorecard') return 1;
+          return 2;
+        }
+        return section === 'channel scorecard' ? 0 : 1;
+      }
+      function metricRank(r) {
+        var idx = metricList.indexOf(norm(r.metric));
+        return idx >= 0 ? idx : 99;
+      }
+      return rows.slice().sort(function(a,b) {
+        var d = rank(a) - rank(b);
+        if (d) return d;
+        d = metricRank(a) - metricRank(b);
+        if (d) return d;
+        return String(a.id || '').localeCompare(String(b.id || ''));
+      })[0];
+    }
+    function rowForSingleWeek(week, channelAliases, metricAliases) {
+      var rows = (funnelRows || []).filter(function(r) { return r.week === week; });
+      channelAliases = Array.isArray(channelAliases) ? channelAliases : [channelAliases];
+      metricAliases = Array.isArray(metricAliases) ? metricAliases : [metricAliases];
+      var matches = rows.filter(function(r) {
+        return channelAliases.some(function(c) { return norm(r.channel) === norm(c); }) &&
+          metricAliases.some(function(m) { return norm(r.metric) === norm(m); });
+      });
+      return canonicalMetricRow(matches, channelAliases, metricAliases);
+    }
+    function metricFromRow(row, fallback, unit) {
+      var value = row ? cleanNumber(row.value) : num(fallback);
+      var previous = row && row.previousValue !== '' ? cleanNumber(row.previousValue) : null;
+      var change = row && row.changePct !== '' ? cleanNumber(row.changePct) : null;
+      if (change !== null && Math.abs(change) > 3) change = change / 100;
+      if (change === null && previous && previous !== 0) change = (value - previous) / previous;
+      return { value:value, previous:previous, change:change, unit:unit || 'count' };
+    }
+    function metricForSingleWeek(week, channelAliases, metricAliases, fallback, unit) {
+      return metricFromRow(rowForSingleWeek(week, channelAliases, metricAliases), fallback, unit);
+    }
+    function previousPeriodWeeks(weeksList) {
+      var sorted = (weeksList || []).slice().sort(function(a,b){return wNum(a)-wNum(b);});
+      if (!sorted.length) return [];
+      var count = sorted.length;
+      var firstNum = wNum(sorted[0]);
+      var out = [];
+      for (var i = count; i > 0; i--) out.push('W' + (firstNum - i));
+      return out;
+    }
+    function metricForWeeks(weeksList, channelAliases, metricAliases, fallback, unit) {
+      var parts = (weeksList || []).map(function(w) {
+        return metricForSingleWeek(w, channelAliases, metricAliases, 0, unit);
+      });
+      if (!parts.length) return { value:num(fallback), previous:null, change:null, unit:unit || 'count' };
+      var value = parts.reduce(function(sum, p) { return sum + num(p.value); }, 0);
+      var previousParts = previousPeriodWeeks(weeksList).map(function(w) {
+        return metricForSingleWeek(w, channelAliases, metricAliases, 0, unit);
+      });
+      var previous = previousParts.some(function(p) { return num(p.value) > 0; })
+        ? previousParts.reduce(function(sum, p) { return sum + num(p.value); }, 0)
+        : null;
+      var change = previous ? (value - previous) / previous : null;
+      return { value:value, previous:previous, change:change, unit:unit || 'count' };
+    }
+    function metric(channelAliases, metricAliases, fallback, unit) {
+      if (selectedWeek === LAST_MONTH) {
+        return metricForWeeks(lastMonthWeeks(weeksFromFunnelRows(funnelRows)), channelAliases, metricAliases, fallback, unit);
+      }
+      return metricForSingleWeek(selectedWeek, channelAliases, metricAliases, fallback, unit);
+    }
+    function rowsForWeek(week) {
+      return (funnelRows || []).filter(function(r) { return r.week === week; });
+    }
+    function isWebsiteSessionRow(r) {
+      var hay = [r.section, r.channel, r.metric, r.notes].map(norm).join(' ');
+      var m = norm(r.metric);
+      var isSessionMetric = ['sessions','session','users','active_users'].indexOf(m) >= 0;
+      return isSessionMetric && (hay.indexOf('ga4') >= 0 || hay.indexOf('website') >= 0 || hay.indexOf('traffic') >= 0 || hay.indexOf('session') >= 0);
+    }
+    function isTotalSource(name) {
+      var n = norm(name);
+      return !n || n === 'total' || n === 'website' || n === 'ga4' || n === 'all traffic' || n === 'site';
+    }
+    function friendlySource(name) {
+      var n = norm(name);
+      if (n.indexOf('newsletter') >= 0 || n.indexOf('email') >= 0 || n.indexOf('mail') >= 0) return 'Newsletter';
+      if (n.indexOf('instagram') >= 0 || n === 'ig / social' || n.indexOf('ig') >= 0) return 'Instagram / Social';
+      if (n.indexOf('facebook') >= 0 || n.indexOf('fb') >= 0) return 'Facebook / Social';
+      if (n.indexOf('tiktok') >= 0) return 'TikTok / Social';
+      if (n.indexOf('direct') >= 0) return 'Direct';
+      if (n.indexOf('organic') >= 0 || n.indexOf('search') >= 0) return 'Organic Search';
+      if (n.indexOf('social') >= 0) return 'Social';
+      return name || 'Other';
+    }
+    function websiteSessionRows(week) {
+      return rowsForWeek(week).filter(isWebsiteSessionRow);
+    }
+    function websiteSessionsForWeek(week) {
+      var rows = websiteSessionRows(week);
+      var total = rows.find(function(r) { return isTotalSource(r.channel); });
+      if (total) return metricNumber(total.value);
+      return rows.reduce(function(sum, r) { return sum + metricNumber(r.value); }, 0);
+    }
+    function websiteSourcesForWeek(week) {
+      var grouped = {};
+      websiteSessionRows(week).forEach(function(r) {
+        if (isTotalSource(r.channel)) return;
+        var key = friendlySource(r.channel);
+        grouped[key] = (grouped[key] || 0) + metricNumber(r.value);
+      });
+      return Object.keys(grouped).map(function(name) { return { name:name, value:grouped[name] }; })
+        .filter(function(s) { return s.value > 0; })
+        .sort(function(a,b) { return b.value - a.value; });
+    }
+    function aggregateChange(items) {
+      var current = items.reduce(function(sum, item) { return sum + num(item.value); }, 0);
+      var previous = items.reduce(function(sum, item) { return sum + (item.previous !== null ? num(item.previous) : 0); }, 0);
+      var hasPrevious = items.some(function(item) { return item.previous !== null && item.previous !== 0; });
+      if (hasPrevious && previous) return (current - previous) / previous;
+      var changes = items.map(function(item) { return item.change; }).filter(function(c) { return c !== null && isFinite(c); });
+      if (!changes.length) return null;
+      return changes.reduce(function(sum, c) { return sum + c; }, 0) / changes.length;
+    }
+    function deltaEl(change) {
+      if (change === null || !isFinite(change)) return html`<span className="fh-delta flat">new data</span>`;
+      var cls = Math.abs(change) < .005 ? 'flat' : change > 0 ? 'up' : 'down';
+      var arrow = cls === 'up' ? '↑' : cls === 'down' ? '↓' : '→';
+      return html`<span className=${'fh-delta '+cls}>${arrow} ${Math.abs(change * 100).toFixed(Math.abs(change) >= .1 ? 0 : 1)}%</span>`;
+    }
+    function metricDeltaEl(change) {
+      if (change === null || !isFinite(change)) return null;
+      var cls = Math.abs(change) < .005 ? 'flat' : change > 0 ? 'up' : 'down';
+      var arrow = cls === 'up' ? '↑' : cls === 'down' ? '↓' : '→';
+      return html`<span className=${'fh-metric-delta '+cls}>${arrow}${Math.abs(change * 100).toFixed(Math.abs(change) >= .1 ? 0 : 1)}%</span>`;
+    }
+    function width(value, max) {
+      if (!max || !value) return 0;
+      return Math.max(7, Math.min(100, Math.round((value / max) * 100)));
+    }
+    function bubbleSize(value, max) {
+      if (!max || !value) return 30;
+      return Math.max(28, Math.min(76, 28 + Math.round((value / max) * 48)));
+    }
+    function funnelBubbleSize(value, max) {
+      if (!max || !value) return 54;
+      return Math.max(62, Math.min(160, 62 + Math.round(Math.sqrt(value / max) * 98)));
+    }
+    function metricSeries(weeksList, channelAliases, metricAliases, unit) {
+      return (weeksList || []).slice().sort(function(a,b){return wNum(a)-wNum(b);}).map(function(w) {
+        var item = metricForSingleWeek(w, channelAliases, metricAliases, 0, unit);
+        return { week:w, value:item.value, unit:item.unit };
+      });
+    }
+    function ctorSeries(weeksList) {
+      return (weeksList || []).slice().sort(function(a,b){return wNum(a)-wNum(b);}).map(function(w) {
+        var opens = metricForSingleWeek(w, ['Newsletter','Email'], ['opens','open'], 0).value;
+        var clicks = metricForSingleWeek(w, ['Newsletter','Email'], ['clicks','link_clicks'], 0).value;
+        return { week:w, value:safeDiv(clicks, opens), unit:'pct' };
+      });
+    }
+    function seriesChange(series) {
+      var vals = (series || []).map(function(p){return num(p.value);});
+      if (vals.length < 2) return null;
+      var first = vals[0], last = vals[vals.length - 1];
+      return first ? (last - first) / first : null;
+    }
+    function trendPhrase(label, change) {
+      if (change === null || !isFinite(change)) return label + ' is still building a usable trend.';
+      if (Math.abs(change) < .03) return label + ' stayed mostly steady across the month.';
+      return label + (change > 0 ? ' rose ' : ' fell ') + Math.abs(change * 100).toFixed(Math.abs(change) >= .1 ? 0 : 1) + '% from the first week in view.';
+    }
+
+    var facebook = channel('Facebook');
+    var instagram = channel('Instagram Feed');
+    var newsletter = channel('Newsletter');
+    var tiktok = channel('TikTok');
+    var availableWeeks = weeksFromFunnelRows(funnelRows);
+    var selectedMetricWeeks = selectedWeek === LAST_MONTH ? lastMonthWeeks(weeksFromFunnelRows(funnelRows)) : [selectedWeek];
+    var selectedPeriodLabel = selectedWeek === LAST_MONTH ? LAST_MONTH_LABEL : selectedWeek;
+    var isMonthView = selectedWeek === LAST_MONTH;
+    var trendWeeks = selectedMetricWeeks.slice().sort(function(a,b){return wNum(a)-wNum(b);});
+
+    var fbAttention = metric(['Facebook','Facebook Feed','Meta Facebook'], ['views','post_views'], num(facebook.views) || num(facebook.reach));
+    var fbEngagement = metric(['Facebook','Facebook Feed','Meta Facebook'], ['interactions','engagements','engagement'], num(facebook.interactions));
+    var fbIntent = metric(['Facebook','Facebook Feed','Meta Facebook'], ['profile_visits','profile_views'], num(facebook.profileVisits));
+    var fbClicks = metric(['Facebook','Facebook Feed','Meta Facebook'], ['link_clicks','clicks'], num(facebook.linkClicks));
+
+    var igAttention = metric(['Instagram Feed'], ['views'], num(instagram.views) || num(instagram.reach));
+    var igEngagement = metric(['Instagram Feed'], ['interactions','engagements','engagement'], num(instagram.interactions));
+    var igIntent = metric(['Instagram Feed'], ['profile_visits','profile_views'], num(instagram.profileVisits));
+    var igClicks = metric(['Instagram Feed'], ['link_clicks','clicks'], num(instagram.linkClicks));
+
+    var ttAttention = metric(['TikTok'], ['post_views','views','video_views'], num(tiktok.postViews));
+    var ttEngagement = metric(['TikTok'], ['likes','interactions','engagements'], num(tiktok.likes) + num(tiktok.shares));
+    var ttIntent = metric(['TikTok'], ['profile_views','profile_visits'], num(tiktok.profileViews));
+
+    var emailOpens = metric(['Newsletter','Email'], ['opens','open'], num(newsletter.opens));
+    var emailClicks = metric(['Newsletter','Email'], ['clicks','link_clicks'], num(newsletter.clicks));
+    var emailCtor = metric(['Newsletter','Email'], ['ctor','click_to_open_rate'], num(newsletter.ctor) || safeDiv(emailClicks.value, emailOpens.value), 'pct');
+    if (emailOpens.value) emailCtor.value = safeDiv(emailClicks.value, emailOpens.value);
+
+    var socialAttention = fbAttention.value + igAttention.value + ttAttention.value;
+    var totalAttention = socialAttention + emailOpens.value;
+    var socialEngagement = fbEngagement.value + igEngagement.value + ttEngagement.value;
+    var socialIntent = fbIntent.value + igIntent.value + ttIntent.value;
+    var socialLinkClicks = fbClicks.value + igClicks.value;
+    var trackedClicks = socialLinkClicks + emailClicks.value;
+    function websiteSourcesForWeeks(weeksList) {
+      var grouped = {};
+      (weeksList || []).forEach(function(w) {
+        websiteSourcesForWeek(w).forEach(function(s) {
+          grouped[s.name] = (grouped[s.name] || 0) + s.value;
+        });
+      });
+      return Object.keys(grouped).map(function(name) { return { name:name, value:grouped[name] }; })
+        .filter(function(s) { return s.value > 0; })
+        .sort(function(a,b) { return b.value - a.value; });
+    }
+    var websiteSessions = selectedMetricWeeks.reduce(function(sum, w) { return sum + websiteSessionsForWeek(w); }, 0);
+    var websiteSources = websiteSourcesForWeeks(selectedMetricWeeks);
+    var sourceColors = ['#1F7A70', '#A85F7A', '#3B6C9E', '#8A6A37', '#6957A8', '#C75E3C'];
+    var sourceTotal = websiteSources.reduce(function(sum, s) { return sum + s.value; }, 0);
+    var donutCursor = 0;
+    var donutStops = websiteSources.length ? websiteSources.map(function(s, i) {
+      var start = donutCursor;
+      donutCursor += sourceTotal ? (s.value / sourceTotal) * 360 : 0;
+      return sourceColors[i % sourceColors.length] + ' ' + start.toFixed(1) + 'deg ' + donutCursor.toFixed(1) + 'deg';
+    }).join(', ') : '#D9D2C9 0deg 360deg';
+    var trendAnchorWeek = selectedWeek === LAST_MONTH ? (selectedMetricWeeks[0] || '') : selectedWeek;
+    var websiteWeeks = (availableWeeks && availableWeeks.length ? availableWeeks.slice() : weeksFromFunnelRows(funnelRows))
+      .filter(function(w) { return !trendAnchorWeek || wNum(w) <= wNum(trendAnchorWeek); })
+      .sort(function(a,b){return wNum(a)-wNum(b);}).slice(-6);
+    if (!websiteWeeks.length) websiteWeeks = [selectedWeek || metrics.week || 'W25'];
+    var websiteTrend = websiteWeeks.map(function(w) { return { week:w, value:websiteSessionsForWeek(w) }; });
+    var websiteMax = Math.max.apply(null, websiteTrend.map(function(p) { return p.value; }).concat([1]));
+    var previousWebsiteSessions = isMonthView
+      ? previousPeriodWeeks(selectedMetricWeeks).reduce(function(sum, w) { return sum + websiteSessionsForWeek(w); }, 0)
+      : (websiteTrend.length > 1 ? websiteTrend[websiteTrend.length - 2].value : null);
+    if (isMonthView && !previousWebsiteSessions) previousWebsiteSessions = null;
+
+    var channelData = [
+      {
+        name:'Facebook', tone:'#3B6C9E', sub:'Views → engagement → profile intent → link clicks', unavailable:!(fbAttention.value || fbEngagement.value || fbIntent.value || fbClicks.value),
+        rows:[
+          { label:'Views', item:fbAttention, series:metricSeries(trendWeeks, ['Facebook','Facebook Feed','Meta Facebook'], ['views','post_views']) },
+          { label:'Engage', item:fbEngagement, series:metricSeries(trendWeeks, ['Facebook','Facebook Feed','Meta Facebook'], ['interactions','engagements','engagement']) },
+          { label:'Profile', item:fbIntent, series:metricSeries(trendWeeks, ['Facebook','Facebook Feed','Meta Facebook'], ['profile_visits','profile_views']) },
+          { label:'Link Clicks', item:fbClicks, series:metricSeries(trendWeeks, ['Facebook','Facebook Feed','Meta Facebook'], ['link_clicks','clicks']), primary:true },
+        ],
+        score:fbClicks.value * 2 + fbIntent.value + fbEngagement.value * .2,
+        delta:aggregateChange([fbAttention, fbEngagement, fbIntent, fbClicks]),
+      },
+      {
+        name:'Instagram', tone:'#A85F7A', sub:'Views → engagement → profile intent → link clicks', unavailable:!(igAttention.value || igEngagement.value || igIntent.value || igClicks.value),
+        rows:[
+          { label:'Views', item:igAttention, series:metricSeries(trendWeeks, ['Instagram Feed'], ['views']) },
+          { label:'Engage', item:igEngagement, series:metricSeries(trendWeeks, ['Instagram Feed'], ['interactions','engagements','engagement']) },
+          { label:'Profile', item:igIntent, series:metricSeries(trendWeeks, ['Instagram Feed'], ['profile_visits','profile_views']) },
+          { label:'Link Clicks', item:igClicks, series:metricSeries(trendWeeks, ['Instagram Feed'], ['link_clicks','clicks']), primary:true },
+        ],
+        score:igClicks.value * 2 + igIntent.value + igEngagement.value * .2,
+        delta:aggregateChange([igAttention, igEngagement, igIntent, igClicks]),
+      },
+      {
+        name:'TikTok', tone:'#246B63', sub:'Views → engagement → profile intent', unavailable:!(ttAttention.value || ttEngagement.value || ttIntent.value),
+        rows:[
+          { label:'Views', item:ttAttention, series:metricSeries(trendWeeks, ['TikTok'], ['post_views','views','video_views']) },
+          { label:'Engage', item:ttEngagement, series:metricSeries(trendWeeks, ['TikTok'], ['likes','interactions','engagements']) },
+          { label:'Profile', item:ttIntent, series:metricSeries(trendWeeks, ['TikTok'], ['profile_views','profile_visits']), primary:true },
+        ],
+        score:ttIntent.value + ttEngagement.value * .2,
+        delta:aggregateChange([ttAttention, ttIntent, ttEngagement]),
+      },
+      {
+        name:'Newsletter', tone:'#8A6A37', sub:'Email open to click quality', unavailable:!(emailOpens.value || emailClicks.value),
+        rows:[
+          { label:'Opens', item:emailOpens, series:metricSeries(trendWeeks, ['Newsletter','Email'], ['opens','open']) },
+          { label:'Clicks', item:emailClicks, series:metricSeries(trendWeeks, ['Newsletter','Email'], ['clicks','link_clicks']), primary:true },
+          { label:'CTOR', item:emailCtor, barValue:Math.min(.5, emailCtor.value) * 2, unit:'pct', series:ctorSeries(trendWeeks) },
+        ],
+        score:emailClicks.value * 2 + emailCtor.value * 1000,
+        delta:aggregateChange([emailOpens, emailClicks]),
+      },
+    ];
+    var bestChannel = channelData.filter(function(c){return !c.unavailable;}).sort(function(a,b){return b.score-a.score;})[0] || channelData[0];
+    var maxBubble = Math.max.apply(null, channelData.map(function(c){ return Math.max.apply(null, c.rows.map(function(r){ return r.item.value; })); }));
+
+    var kpiMax = Math.max(totalAttention, websiteSessions, trackedClicks, 1);
+    var snapshot = [
+      { label:'Total Attention', value:totalAttention, max:kpiMax, delta:aggregateChange([fbAttention, igAttention, ttAttention, emailOpens]), sub:'Social attention plus newsletter opens currently tracked.' },
+      { label:'Website Sessions', value:websiteSessions, max:kpiMax, delta:aggregateChange([{value:websiteSessions, previous:previousWebsiteSessions, change:null}]), sub:'GA4 website visits from currently trusted traffic data.' },
+      { label:'Tracked Link Clicks', value:trackedClicks, max:kpiMax, delta:aggregateChange([fbClicks, igClicks, emailClicks]), sub:'Known link clicks from social and newsletter.' },
+    ];
+    var snapshotEls = snapshot.map(function(k) {
+      return html`<div key=${k.label} className="fh-kpi">
+        <div className="fh-kpi-top">
+          <div className="fh-kpi-label">${k.label}</div>
+          ${deltaEl(k.delta)}
+        </div>
+        <div className="fh-kpi-main">
+          <div className="fh-kpi-track"><div className="fh-kpi-fill" style=${{width:width(k.value,k.max)+'%'}}></div></div>
+          <div className="fh-kpi-value">${fmtCompact(k.value)}</div>
+        </div>
+        <div className="fh-kpi-sub">${k.sub}</div>
+      </div>`;
+    });
+    snapshotEls.push(html`<div key="Top Action Channel" className="fh-kpi best">
+      <div className="fh-kpi-top">
+        <div className="fh-kpi-label">Top Action Channel</div>
+        ${deltaEl(bestChannel.delta)}
+      </div>
+      <div>
+        <div className="fh-kpi-best-name">${bestChannel.name}</div>
+        <div className="fh-kpi-best-meta">Strongest tracked action signal ${isMonthView ? 'in this view' : 'this week'}.</div>
+      </div>
+      <div className="fh-kpi-sub">Based on clicks and intent signals currently available.</div>
+    </div>`);
+
+    function indexedLine(row, index, rows) {
+      var values = (row.series || []).map(function(p) { return num(p.value); });
+      if (!values.length) return '';
+      var base = values.find(function(v) { return v > 0; }) || 1;
+      var indexed = values.map(function(v) { return base ? (v / base) * 100 : 0; });
+      var allIndexed = [];
+      rows.forEach(function(r) {
+        var rowValues = (r.series || []).map(function(p) { return num(p.value); });
+        var rowBase = rowValues.find(function(v) { return v > 0; }) || 1;
+        rowValues.forEach(function(v) { allIndexed.push(rowBase ? (v / rowBase) * 100 : 0); });
+      });
+      var min = Math.min.apply(null, allIndexed.concat([0]));
+      var max = Math.max.apply(null, allIndexed.concat([100]));
+      if (max === min) max = min + 1;
+      return indexed.map(function(v, i) {
+        var x = indexed.length === 1 ? 34 : 18 + (i * (244 / Math.max(1, indexed.length - 1)));
+        var y = 70 - ((v - min) / (max - min)) * 50;
+        return x.toFixed(1) + ',' + y.toFixed(1);
+      }).join(' ');
+    }
+    function monthTrend(c) {
+      if (!isMonthView || trendWeeks.length < 2) return null;
+      var rows = c.rows.filter(function(r) { return r.series && r.series.length; });
+      if (!rows.length) return null;
+      var primary = rows.find(function(r) { return r.primary; }) || rows[rows.length - 1];
+      var palette = ['#B8B0A6', '#6F8F88', '#6957A8', c.tone];
+      return html`<div className="fh-month-trend">
+        <div className="fh-month-trend-head">
+          <div className="fh-month-trend-title">4-week movement</div>
+          <div className="fh-month-trend-note">Each line indexed to its own first week</div>
+        </div>
+        <svg className="fh-spark" viewBox="0 0 280 104" role="img" aria-label=${c.name + ' 4-week movement'}>
+          <line className="fh-spark-axis" x1="18" y1="70" x2="262" y2="70"></line>
+          ${rows.map(function(r, i) {
+            var isPrimary = r === primary;
+            return html`<polyline key=${r.label} className=${'fh-spark-line'+(isPrimary ? ' primary' : '')}
+              style=${{'--line':palette[i % palette.length], '--line-o':isPrimary ? .95 : .36, '--line-w':isPrimary ? 3.2 : 2}}
+              points=${indexedLine(r, i, rows)}></polyline>`;
+          })}
+          ${trendWeeks.map(function(w, i) {
+            var x = trendWeeks.length === 1 ? 34 : 18 + (i * (244 / Math.max(1, trendWeeks.length - 1)));
+            return html`<text key=${w} className="fh-spark-week" x=${x} y="94" text-anchor="middle">${w}</text>`;
+          })}
+        </svg>
+        <div className="fh-spark-legend">
+          ${rows.map(function(r, i) {
+            var isPrimary = r === primary;
+            return html`<span key=${r.label} className=${'fh-spark-key'+(isPrimary ? ' primary' : '')}
+              style=${{'--line':palette[i % palette.length], '--line-o':isPrimary ? .95 : .36}}>
+              <span className="fh-spark-swatch"></span>${r.label}
+            </span>`;
+          })}
+        </div>
+      </div>`;
+    }
+    function channelCard(c) {
+      var max = Math.max.apply(null, c.rows.map(function(r) { return r.barValue !== undefined ? r.barValue : r.item.value; }));
+      if (!max) max = 1;
+      return html`<div key=${c.name} className="fh-channel-card" style=${{'--tone':c.tone,'--bubble':bubbleSize(max,maxBubble)+'px'}}>
+        <div className="fh-signal-bubble"></div>
+        <div className="fh-channel-head">
+          <div>
+            <div className="fh-channel-name">${c.name}</div>
+            <div className="fh-channel-sub">${c.sub}</div>
+          </div>
+          ${deltaEl(c.delta)}
+        </div>
+        <div className="fh-metric-stack">
+          ${c.rows.map(function(r) {
+            var barValue = r.barValue !== undefined ? r.barValue : r.item.value;
+            return html`<div key=${r.label} className="fh-metric-row">
+              <div className="fh-metric-label">${r.label}</div>
+              <div className="fh-metric-track"><div className="fh-metric-fill" style=${{'--w':width(barValue,max)+'%'}}></div></div>
+              <div className="fh-metric-value">
+                <span>${fmtMetric(r.item.value, r.unit || r.item.unit)}</span>
+                ${metricDeltaEl(r.item.change)}
+              </div>
+            </div>`;
+          })}
+        </div>
+        ${monthTrend(c)}
+        <div className="fh-signal">${c.unavailable ? 'Tracked data is not available for this channel in the selected week.' : signalFor(c)}</div>
+      </div>`;
+    }
+    function signalFor(c) {
+      if (c.name === 'Newsletter') {
+        return emailClicks.value ? fmtCompact(emailClicks.value) + ' email clicks from ' + fmtCompact(emailOpens.value) + ' opens; CTOR is ' + pct(emailCtor.value) + '.' : 'Newsletter opens are visible, but click movement is not showing yet.';
+      }
+      if (c.name === 'TikTok') {
+        return ttIntent.value ? fmtCompact(ttAttention.value) + ' views created ' + fmtCompact(ttIntent.value) + ' profile views; no tracked website click step is available.' : 'TikTok reach is visible, but profile intent needs a clearer signal.';
+      }
+      if (c.name === 'Instagram') {
+        return igClicks.value ? fmtCompact(igIntent.value) + ' profile visits led to ' + fmtCompact(igClicks.value) + ' tracked link clicks.' : 'Instagram attention is visible; link-click movement is still the thin point.';
+      }
+      return fbClicks.value ? fmtCompact(fbAttention.value) + ' views led to ' + fmtCompact(fbClicks.value) + ' tracked link clicks.' : fmtCompact(fbAttention.value) + ' views are visible, but tracked website clicks are not showing.';
+    }
+
+    function bubbleFunnel(nodes) {
+      var max = Math.max.apply(null, nodes.map(function(n) { return n.value; }).concat([1]));
+      return nodes.map(function(n) {
+        var beadMax = Math.max.apply(null, (n.series || []).map(function(p) { return p.value; }).concat([1]));
+        return html`<div key=${n.label} className="fh-funnel-node">
+          <div className="fh-funnel-bubble" style=${{'--size':funnelBubbleSize(n.value,max)+'px','--tone':n.tone}}>${fmtCompact(n.value)}</div>
+          <div className="fh-funnel-label">${n.label}</div>
+          <div className="fh-funnel-rate">${n.note}</div>
+          ${isMonthView && n.series && n.series.length ? html`<div className="fh-beads">
+            ${n.series.map(function(p) {
+              var strength = beadMax ? p.value / beadMax : 0;
+              return html`<div key=${p.week} className="fh-bead-wrap">
+                <span className="fh-bead" style=${{'--bead':Math.max(10, Math.min(24, 10 + Math.round(strength * 14)))+'px','--bead-o':Math.max(.26, Math.min(.92, .26 + strength * .66)),'--tone':n.tone}}></span>
+                <span className="fh-bead-week">${p.week}</span>
+              </div>`;
+            })}
+          </div>` : null}
+        </div>`;
+      });
+    }
+    function linePoint(point, index, arr) {
+      var x = arr.length === 1 ? 60 : 26 + (index * (248 / Math.max(1, arr.length - 1)));
+      var y = 94 - (point.value / websiteMax) * 64;
+      return { x:x, y:y, point:point };
+    }
+    function lineChart(points) {
+      var pts = points.map(linePoint);
+      var line = pts.map(function(p) { return p.x.toFixed(1) + ',' + p.y.toFixed(1); }).join(' ');
+      return html`<svg className="fh-line-chart" viewBox="0 0 300 132" role="img" aria-label="Website sessions trend">
+        <line className="fh-line-axis" x1="24" y1="98" x2="276" y2="98"></line>
+        <polyline className="fh-line-path" points=${line}></polyline>
+        ${pts.map(function(p) { return html`<g key=${p.point.week}>
+          <circle className="fh-line-dot" cx=${p.x} cy=${p.y} r="5"></circle>
+          <text className="fh-line-value" x=${p.x} y=${Math.max(14, p.y - 12)} text-anchor="middle">${fmtCompact(p.point.value)}</text>
+          <text className="fh-line-label" x=${p.x} y="120" text-anchor="middle">${p.point.week}</text>
+        </g>`; })}
+      </svg>`;
+    }
+
+    var weekOptions = (availableWeeks.length ? availableWeeks : [metrics.week || selectedWeek || 'W25']).concat([LAST_MONTH]);
+    var sourceBadge = loadStatus === 'sheet'
+      ? html`<span className="fh-badge good">Google Sheet</span>`
+      : loadStatus === 'loading'
+        ? html`<span className="fh-badge warn">Loading</span>`
+        : html`<span className="fh-badge warn">Local fallback</span>`;
+    var weekPicker = html`<div style=${{display:'flex',gap:8,alignItems:'center',justifyContent:'flex-end',flexWrap:'wrap'}}>
+      ${sourceBadge}
+      <select className="week-sel" value=${selectedWeek} onChange=${function(e){changeWeek(e.target.value);}}>
+        ${weekOptions.map(function(w){return html`<option key=${w} value=${w}>${w===LAST_MONTH ? LAST_MONTH_LABEL : w}</option>`;})}
+      </select>
+    </div>`;
+
+    var socialClickRate = safeDiv(socialLinkClicks, socialAttention);
+    var socialIntentRate = safeDiv(socialIntent, socialAttention);
+    var bestSource = websiteSources[0] || null;
+    function primaryTrendForChannel(c) {
+      if (!c || !c.rows) return null;
+      return c.rows.find(function(r) { return r.primary; }) || c.rows[c.rows.length - 1] || null;
+    }
+    function socialTotalsForWeek(w) {
+      var fbA = metricForSingleWeek(w, ['Facebook','Facebook Feed','Meta Facebook'], ['views','post_views'], 0).value;
+      var igA = metricForSingleWeek(w, ['Instagram Feed'], ['views'], 0).value;
+      var ttA = metricForSingleWeek(w, ['TikTok'], ['post_views','views','video_views'], 0).value;
+      var fbI = metricForSingleWeek(w, ['Facebook','Facebook Feed','Meta Facebook'], ['profile_visits','profile_views'], 0).value;
+      var igI = metricForSingleWeek(w, ['Instagram Feed'], ['profile_visits','profile_views'], 0).value;
+      var ttI = metricForSingleWeek(w, ['TikTok'], ['profile_views','profile_visits'], 0).value;
+      var fbC = metricForSingleWeek(w, ['Facebook','Facebook Feed','Meta Facebook'], ['link_clicks','clicks'], 0).value;
+      var igC = metricForSingleWeek(w, ['Instagram Feed'], ['link_clicks','clicks'], 0).value;
+      return { week:w, attention:fbA + igA + ttA, intent:fbI + igI + ttI, clicks:fbC + igC, rate:safeDiv(fbC + igC, fbA + igA + ttA) };
+    }
+    var socialWeekRates = trendWeeks.map(socialTotalsForWeek).filter(function(p) { return p.attention || p.clicks; });
+    var bestSocialWeek = socialWeekRates.slice().sort(function(a,b){return b.rate-a.rate;})[0] || null;
+    var weakestSocialWeek = socialWeekRates.slice().sort(function(a,b){return a.rate-b.rate;})[0] || null;
+    var primaryActionTrend = primaryTrendForChannel(bestChannel);
+    var insightWins = isMonthView
+      ? (bestSource
+        ? bestSource.name + ' led website sessions with ' + fmtCompact(bestSource.value) + ' visits, while ' + bestChannel.name + ' was the top action channel.'
+        : bestChannel.name + ' was the top action channel across the selected month.')
+      : bestChannel && !bestChannel.unavailable
+      ? (bestChannel.name === 'Newsletter'
+        ? 'Newsletter generated ' + fmtCompact(emailClicks.value) + ' clicks from ' + fmtCompact(emailOpens.value) + ' opens, with ' + pct(emailCtor.value) + ' CTOR.'
+        : bestChannel.name + ' is the strongest social action channel, with ' + fmtCompact(bestChannel.name === 'Instagram' ? igIntent.value : bestChannel.name === 'Facebook' ? fbIntent.value : ttIntent.value) + ' profile intent actions.')
+      : 'The selected week is loaded, but channel-level signals are still sparse.';
+    var insightWatch = isMonthView
+      ? trendPhrase((primaryActionTrend ? bestChannel.name + ' ' + primaryActionTrend.label : bestChannel.name + ' action'), primaryActionTrend ? seriesChange(primaryActionTrend.series) : null)
+      : socialLinkClicks
+      ? 'Social click-through is ' + pct(socialClickRate) + ': ' + fmtCompact(socialAttention) + ' social views/reach created ' + fmtCompact(socialLinkClicks) + ' tracked link clicks.'
+      : 'Social attention is visible, but tracked website clicks are not appearing for the selected week.';
+    var insightNext = isMonthView
+      ? (bestSocialWeek && weakestSocialWeek
+        ? 'Best social click-through week was ' + bestSocialWeek.week + ' at ' + pct(bestSocialWeek.rate) + '; weakest was ' + weakestSocialWeek.week + ' at ' + pct(weakestSocialWeek.rate) + '.'
+        : 'Keep the same weekly fields in future reports so month-level conversion patterns become easier to compare.')
+      : bestSource
+      ? 'Website sessions are led by ' + bestSource.name + ' (' + fmtCompact(bestSource.value) + ' sessions); compare that source against channel clicks next week.'
+      : 'Keep source-level website sessions in the report so traffic origin can be compared with channel clicks.';
+    var socialFunnelNodes = [
+      { label:'Attention', value:socialAttention, tone:'#1F7A70', note:'social views / reach', series:socialWeekRates.map(function(p) { return {week:p.week, value:p.attention}; }) },
+      { label:'Profile Intent', value:socialIntent, tone:'#6957A8', note:pct(socialIntentRate) + ' of attention', series:socialWeekRates.map(function(p) { return {week:p.week, value:p.intent}; }) },
+      { label:'Link Clicks', value:socialLinkClicks, tone:'#C75E3C', note:pct(safeDiv(socialLinkClicks, socialIntent)) + ' of profile intent', series:socialWeekRates.map(function(p) { return {week:p.week, value:p.clicks}; }) },
+    ];
+    var pathSummary = bestSocialWeek && weakestSocialWeek
+      ? html`<div className="fh-path-summary"><strong>Best conversion Week:</strong> ${bestSocialWeek.week} at ${per10k(bestSocialWeek.rate)} · <strong>weakest click-through Week:</strong> ${weakestSocialWeek.week} at ${per10k(weakestSocialWeek.rate)}</div>`
+      : html`<div className="fh-path-summary">Weekly social conversion patterns will become clearer as more weeks are added.</div>`;
+
+    function importMetrics() {
+      try {
+        var parsed = JSON.parse(jsonText);
+        if (!parsed || !parsed.week || !Array.isArray(parsed.channels)) throw new Error('Expected JSON with week and channels.');
+        setMetrics(parsed);
+        setSelectedWeek(parsed.week || selectedWeek);
+        saveFunnelLocal(parsed);
+        setMsg({type:'ok', text:'Metrics imported and saved locally.'});
+        setLoadStatus('local');
+      } catch(e) {
+        setMsg({type:'err', text:'That JSON did not import. Check the format and try again.'});
+      }
+    }
+    function loadSample() {
+      setMetrics(SAMPLE_FUNNEL_METRICS);
+      setSelectedWeek(SAMPLE_FUNNEL_METRICS.week);
+      setJsonText(JSON.stringify(SAMPLE_FUNNEL_METRICS, null, 2));
+      saveFunnelLocal(SAMPLE_FUNNEL_METRICS);
+      setMsg({type:'ok', text:'Sample W25 data loaded.'});
+      setLoadStatus('local');
+    }
+
+    return html`<div className="fh-shell">
+      <div className="fh-hero">
+        <div>
+          <div className="fh-kicker">Funnel Health</div>
+          <div className="fh-title">Weekly marketing performance, by channel and conversion path.</div>
+          <div className="fh-sub">A focused read on what gained attention, what created intent, and which tracked clicks moved closest to action this week.</div>
+        </div>
+        <div>
+          ${weekPicker}
+          <div className="fh-week-pill" style=${{marginTop:8}}><strong>${selectedPeriodLabel}</strong><span>${selectedWeek === LAST_MONTH ? selectedMetricWeeks.slice().reverse().join(' - ') : (metrics.dateRange || 'Selected report period')}</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div className="fh-section-head">
+          <div><div className="fh-section-title">Weekly Snapshot</div><div className="fh-section-note">Top-line readout across tracked social and newsletter signals.</div></div>
+        </div>
+        <div className="fh-snapshot">${snapshotEls}</div>
+      </div>
+
+      <div>
+        <div className="fh-section-head">
+          <div><div className="fh-section-title">Website Traffic</div><div className="fh-section-note">Where site sessions came from before reading each channel in detail.</div></div>
+          ${deltaEl(aggregateChange([{value:websiteSessions, previous:previousWebsiteSessions, change:null}]))}
+        </div>
+        <div className="fh-traffic-grid">
+          <div className="fh-panel">
+            <div className="fh-panel-title">Traffic Source Mix</div>
+            <div className="fh-panel-note">GA4 sessions by visible source for ${selectedPeriodLabel}.</div>
+            <div className="fh-donut-wrap" style=${{marginTop:16}}>
+              <div className="fh-donut" style=${{background:'conic-gradient('+donutStops+')'}}>
+                <div className="fh-donut-center">${fmtCompact(websiteSessions)}<span>sessions</span></div>
+              </div>
+              <div className="fh-legend">
+                ${websiteSources.length ? websiteSources.slice(0,6).map(function(s, i) {
+                  return html`<div key=${s.name} className="fh-legend-row">
+                    <span className="fh-dot" style=${{'--dot':sourceColors[i % sourceColors.length]}}></span>
+                    <span className="fh-legend-name">${s.name}</span>
+                    <span className="fh-legend-value">${fmtCompact(s.value)}</span>
+                  </div>`;
+                }) : html`<div className="fh-panel-note">Source breakdown is not available for this week yet.</div>`}
+              </div>
+            </div>
+          </div>
+          <div className="fh-panel fh-line-card">
+            <div className="fh-panel-title">Sessions Trend</div>
+            <div className="fh-panel-note">Week-over-week movement from available Website / GA4 rows.</div>
+            ${lineChart(websiteTrend)}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div className="fh-section-head">
+          <div><div className="fh-section-title">Channel Performance</div><div className="fh-section-note">Each panel shows the channel's visible movement from attention toward action.</div></div>
+        </div>
+        <div className="fh-channel-grid">${channelData.map(channelCard)}</div>
+      </div>
+
+      <div className="fh-path-grid">
+        <div className="fh-path-card">
+          <div className="fh-panel-title">Social Conversion Path</div>
+          <div className="fh-panel-note">Views/reach → profile intent → tracked website link clicks.</div>
+          <div className="fh-bubble-funnel">
+            ${bubbleFunnel(socialFunnelNodes)}
+          </div>
+          ${isMonthView ? pathSummary : null}
+        </div>
+      </div>
+
+      <div className="fh-panel">
+        <div className="fh-panel-head"><div><div className="fh-panel-title">Key Insights</div><div className="fh-panel-note">Short weekly takeaways for fast review.</div></div></div>
+        <div className="fh-insight-grid">
+          <div className="fh-insight"><div className="fh-insight-label">${isMonthView ? 'Consistent Driver' : 'Wins'}</div><div className="fh-insight-text">${insightWins}</div></div>
+          <div className="fh-insight"><div className="fh-insight-label">${isMonthView ? 'Action Trend' : 'Watchouts'}</div><div className="fh-insight-text">${insightWatch}</div></div>
+          <div className="fh-insight"><div className="fh-insight-label">${isMonthView ? 'Week Pattern' : 'Next Focus'}</div><div className="fh-insight-text">${insightNext}</div></div>
+        </div>
+      </div>
+
+      <div className="fh-input">
+        <button className="fh-input-toggle" onClick=${function(){setInputOpen(function(o){return !o;});}}>
+          <span className="fh-input-title">Data tools</span>
+          <span>${inputOpen ? 'Hide' : 'Show'}</span>
+        </button>
+        ${inputOpen ? html`<div className="fh-input-body">
+          <textarea className="fh-json" value=${jsonText} onInput=${function(e){setJsonText(e.target.value);}}
+            placeholder="Paste weekly metrics JSON"></textarea>
+          <div className="fh-input-actions">
+            <button className="fh-primary" onClick=${importMetrics}>Import metrics</button>
+            <button className="fh-secondary" onClick=${loadSample}>Load sample W25 data</button>
+            ${msg.text ? html`<span className=${'fh-msg '+msg.type}>${msg.text}</span>` : null}
+          </div>
+        </div>` : null}
+      </div>
+    </div>`;
+  }
+
   // ── App ────────────────────────────────────────────────────────────
   function App() {
     var recsSt    = useState([]);    var recs=recsSt[0],setRecs=recsSt[1];
     var loadSt    = useState(true);  var loading=loadSt[0],setLoading=loadSt[1];
     var localSt   = useState(false); var localMode=localSt[0],setLocalMode=localSt[1];
     var syncSt    = useState('idle');var syncStatus=syncSt[0],setSyncStatus=syncSt[1];
-    var tabSt     = useState('tw');  var tab=tabSt[0],setTab=tabSt[1];
+    var tabSt     = useState('fh');  var tab=tabSt[0],setTab=tabSt[1];
     var errSt     = useState('');    var connErr=errSt[0],setConnErr=errSt[1];
 
     var weeks = Array.from(new Set(recs.map(function(r){return r.week;}))).sort(function(a,b){return wNum(b)-wNum(a);});
@@ -1498,7 +2397,7 @@ e<script>
       db.load()
         .then(function(rows) {
           if (cancelled) return;
-          setRecs(rows.length ? rows : (loadLocal()||SEED));
+          setRecs(rows.length ? normalizeRecs(rows) : normalizeRecs(loadLocal()||SEED));
         })
         .catch(function(err) {
           if (cancelled) return;
@@ -1507,7 +2406,7 @@ e<script>
           setConnErr(msg);
           setLocalMode(true);
           setSyncStatus('local');
-          setRecs(loadLocal()||SEED);
+          setRecs(normalizeRecs(loadLocal()||SEED));
         })
         .finally(function() { if (!cancelled) setLoading(false); });
       return function() { cancelled = true; };
@@ -1536,7 +2435,7 @@ e<script>
     function handleRefresh() {
       setLoading(true);
       db.load()
-        .then(function(rows) { setRecs(rows.length?rows:(loadLocal()||SEED)); setLocalMode(false); setSyncStatus('idle'); })
+        .then(function(rows) { setRecs(rows.length?normalizeRecs(rows):normalizeRecs(loadLocal()||SEED)); setLocalMode(false); setSyncStatus('idle'); })
         .catch(function(err) { console.warn('Refresh failed:', err.message||err); })
         .finally(function() { setLoading(false); });
     }
@@ -1563,6 +2462,28 @@ e<script>
       if (updated) syncOp(function(){ return db.update(updated); });
     }
 
+    function onType(id, type) {
+      var updated = null;
+      setRecs(function(prev) {
+        return prev.map(function(r) {
+          if (r.id===id) { updated=Object.assign({},r,{type:type && type.length ? type : ['🧪 Test']}); return updated; }
+          return r;
+        });
+      });
+      if (updated) syncOp(function(){ return db.update(updated); });
+    }
+
+    function onPriority(id, priority) {
+      var updated = null;
+      setRecs(function(prev) {
+        return prev.map(function(r) {
+          if (r.id===id) { updated=Object.assign({},r,{priority:priority || 'Medium'}); return updated; }
+          return r;
+        });
+      });
+      if (updated) syncOp(function(){ return db.update(updated); });
+    }
+
     function onDelete(id) {
       setRecs(function(prev){return prev.filter(function(r){return r.id!==id;});});
       syncOp(function(){ return db.remove(id); });
@@ -1570,19 +2491,19 @@ e<script>
 
     function onAdd(item) {
       var rec = { id:uid(), week:item.week, action:item.action, type:item.type,
-                  owner:item.owner, status:'Pending', result:'', createdAt:new Date().toISOString().slice(0,10) };
+                  priority:item.priority||'Medium', owner:item.owner, status:'Pending', result:'', createdAt:new Date().toISOString().slice(0,10) };
       setRecs(function(prev){return prev.concat([rec]);});
-      if (wNum(item.week) > wNum(curWeek)) setCurWeek(item.week);
+      if (curWeek !== LAST_MONTH && wNum(item.week) > wNum(curWeek)) setCurWeek(item.week);
       syncOp(function(){ return db.add(rec); });
     }
 
     function onImport(items, week) {
       var newRecs = items.map(function(item) {
         return { id:uid(), week:week, action:item.action, type:item.type,
-                 owner:item.owner, status:'Pending', result:'', createdAt:new Date().toISOString().slice(0,10) };
+                 priority:item.priority||'Medium', owner:item.owner, status:'Pending', result:'', createdAt:new Date().toISOString().slice(0,10) };
       });
       setRecs(function(prev){return prev.concat(newRecs);});
-      if (wNum(week) > wNum(curWeek)) setCurWeek(week);
+      if (curWeek !== LAST_MONTH && wNum(week) > wNum(curWeek)) setCurWeek(week);
       if (!localMode) {
         setSyncStatus('syncing');
         var chain = Promise.resolve();
@@ -1593,7 +2514,7 @@ e<script>
       }
     }
 
-    var shared = { recs:recs, weeks:weeks, onStatus:onStatus, onResult:onResult, onDelete:onDelete, onAdd:onAdd, onImport:onImport };
+    var shared = { recs:recs, weeks:weeks, onStatus:onStatus, onResult:onResult, onDelete:onDelete, onType:onType, onPriority:onPriority, onAdd:onAdd, onImport:onImport };
 
     var localBanner = localMode
       ? html`<div className="local-banner" style=${{flexDirection:'column',alignItems:'flex-start',gap:4}}>
@@ -1604,20 +2525,16 @@ e<script>
 
     var content;
     if (tab === 'fh') {
-      content = html`<${FunnelHealthTab} />`;
+      content = html`<${FunnelHealthDashboard} />`;
     } else if (loading) {
       content = html`<div className="loading-screen">Loading recommendations…</div>`;
-    } else if (tab === 'tw') {
-      content = html`<${ThisWeekTab} ...${shared} curWeek=${curWeek} setCurWeek=${setCurWeek} />`;
     } else {
-      content = html`<${AllRecsTab}  ...${shared} />`;
+      content = html`<${RecommendationTab} ...${shared} curWeek=${curWeek} setCurWeek=${setCurWeek} />`;
     }
 
     return html`<div>
       <header className="hdr">
         <span className="hdr-logo">Anka Marketing Team</span>
-        <div className="hdr-sep"></div>
-        <span className="hdr-sub">Recommendation Tracker</span>
         <div className="hdr-right">
           <${SyncBadge} status=${syncStatus} />
           <button className="btn-refresh" onClick=${handleRefresh}>↻ Refresh</button>
@@ -1625,9 +2542,8 @@ e<script>
       </header>
       ${localBanner}
       <nav className="tab-bar">
-        <button className=${'tab-btn'+(tab==='tw'?' active':'')} onClick=${function(){setTab('tw');}}>This Week</button>
-        <button className=${'tab-btn'+(tab==='ar'?' active':'')} onClick=${function(){setTab('ar');}}>All Recommendations</button>
         <button className=${'tab-btn'+(tab==='fh'?' active':'')} onClick=${function(){setTab('fh');}}>Funnel Health</button>
+        <button className=${'tab-btn'+(tab==='rec'?' active':'')} onClick=${function(){setTab('rec');}}>Recommendation</button>
       </nav>
       <main className="main">${content}</main>
     </div>`;
