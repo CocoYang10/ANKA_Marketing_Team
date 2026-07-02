@@ -691,6 +691,23 @@ e<script>
     };
   }
 
+  function normalizeFunnelMetricRow(row) {
+    row = row || {};
+    var prevVal = String(row.previousValue || '').trim();
+    var noteVal = String(row.note || row.notes || '').trim();
+    if (/^W\d+$/i.test(prevVal) && noteVal !== '') {
+      return Object.assign({}, row, {
+        previousWeek: prevVal.toUpperCase(),
+        previousValue: row.changePct,
+        changePct: noteVal,
+        changeValue: row.source || '',
+        sourceReport: row.owner || row.sourceReport || '',
+        notes: row.createdAt || row.notes || '',
+      });
+    }
+    return row;
+  }
+
   function sheetsLoadFunnel() {
     var range = encodeURIComponent(CONFIG.FUNNEL_SHEET_NAME + '!A2:O');
     var url   = SHEETS_BASE + '/values/' + range + '?key=' + CONFIG.GOOGLE_API_KEY;
@@ -706,7 +723,9 @@ e<script>
 
   function loadFunnelMetrics() {
     if (CONFIG.WEB_APP_URL) {
-      return gasLoadFunnel().catch(function(err) {
+      return gasLoadFunnel().then(function(rows) {
+        return (rows || []).map(normalizeFunnelMetricRow);
+      }).catch(function(err) {
         console.warn('Apps Script funnel load failed; trying direct Sheets fallback:', err.message||err);
         return sheetsLoadFunnel();
       });
@@ -1769,6 +1788,7 @@ e<script>
       var previous = row && row.previousValue !== '' ? cleanNumber(row.previousValue) : null;
       var change = row && row.changePct !== '' ? cleanNumber(row.changePct) : null;
       if (change !== null && Math.abs(change) > 3) change = change / 100;
+      if (change !== null && Math.abs(change) > 10) change = null;
       if (change === null && previous && previous !== 0) change = (value - previous) / previous;
       return { value:value, previous:previous, change:change, unit:unit || 'count' };
     }
