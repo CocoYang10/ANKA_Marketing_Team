@@ -2461,47 +2461,35 @@ e<script>
     }
 
     function onStatus(id, next) {
-      var updated = null;
-      setRecs(function(prev) {
-        return prev.map(function(r) {
-          if (r.id===id) { updated=Object.assign({},r,{status:next}); return updated; }
-          return r;
-        });
-      });
-      if (updated) syncOp(function(){ return db.update(updated); });
+      var found = recs.find(function(r){return r.id===id;});
+      if (!found) return;
+      var updated = Object.assign({},found,{status:next});
+      setRecs(function(prev){ return prev.map(function(r){ return r.id===id ? updated : r; }); });
+      syncOp(function(){ return db.update(updated); });
     }
 
     function onResult(id, result) {
-      var updated = null;
-      setRecs(function(prev) {
-        return prev.map(function(r) {
-          if (r.id===id) { updated=Object.assign({},r,{result:result}); return updated; }
-          return r;
-        });
-      });
-      if (updated) syncOp(function(){ return db.update(updated); });
+      var found = recs.find(function(r){return r.id===id;});
+      if (!found) return;
+      var updated = Object.assign({},found,{result:result});
+      setRecs(function(prev){ return prev.map(function(r){ return r.id===id ? updated : r; }); });
+      syncOp(function(){ return db.update(updated); });
     }
 
     function onType(id, type) {
-      var updated = null;
-      setRecs(function(prev) {
-        return prev.map(function(r) {
-          if (r.id===id) { updated=Object.assign({},r,{type:type && type.length ? type : ['🧪 Test']}); return updated; }
-          return r;
-        });
-      });
-      if (updated) syncOp(function(){ return db.update(updated); });
+      var found = recs.find(function(r){return r.id===id;});
+      if (!found) return;
+      var updated = Object.assign({},found,{type:type && type.length ? type : ['🧪 Test']});
+      setRecs(function(prev){ return prev.map(function(r){ return r.id===id ? updated : r; }); });
+      syncOp(function(){ return db.update(updated); });
     }
 
     function onPriority(id, priority) {
-      var updated = null;
-      setRecs(function(prev) {
-        return prev.map(function(r) {
-          if (r.id===id) { updated=Object.assign({},r,{priority:priority || 'Medium'}); return updated; }
-          return r;
-        });
-      });
-      if (updated) syncOp(function(){ return db.update(updated); });
+      var found = recs.find(function(r){return r.id===id;});
+      if (!found) return;
+      var updated = Object.assign({},found,{priority:priority || 'Medium'});
+      setRecs(function(prev){ return prev.map(function(r){ return r.id===id ? updated : r; }); });
+      syncOp(function(){ return db.update(updated); });
     }
 
     function onDelete(id) {
