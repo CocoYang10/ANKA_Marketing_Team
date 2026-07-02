@@ -599,9 +599,9 @@ e<script>
       var timer = setTimeout(function() {
         if (!settled) {
           cleanup();
-          reject(new Error('Request timed out after 25s — check Apps Script URL'));
+          reject(new Error('Request timed out after 60s — Apps Script may be slow to start. Try refreshing.'));
         }
-      }, 25000);
+      }, 60000);
 
       window[cbName] = function(data) {
         clearTimeout(timer);
