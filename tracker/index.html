@@ -194,100 +194,16 @@
     .btn-clr { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-family: inherit; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .15s; }
     .btn-clr:hover { border-color: var(--black); color: var(--black); }
 
-    /* ── Funnel Health dashboard ── */
-    .fh-shell { display: flex; flex-direction: column; gap: 24px; }
-    .fh-hero { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 18px; align-items: start; }
-    .fh-kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--terra); margin-bottom: 5px; }
-    .fh-title { font-size: 23px; font-weight: 700; letter-spacing: 0; }
-    .fh-sub { max-width: 660px; font-size: 14px; color: var(--muted); margin-top: 5px; }
-    .fh-week-pill { background: var(--black); color: #fff; border-radius: 8px; padding: 10px 14px; min-width: 150px; text-align: right; }
-    .fh-week-pill strong { display: block; font-size: 18px; line-height: 1.1; }
-    .fh-week-pill span { display: block; font-size: 12px; color: rgba(255,255,255,.65); margin-top: 3px; }
-    .fh-input { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .fh-input-toggle { width: 100%; border: none; background: #F9F7F4; padding: 13px 18px; display: flex; justify-content: space-between; align-items: center; font-family: inherit; cursor: pointer; color: var(--black); }
-    .fh-input-title { font-size: 13px; font-weight: 650; }
-    .fh-input-body { padding: 16px 18px 18px; border-top: 1px solid var(--border); }
-    .fh-json { width: 100%; min-height: 150px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 1.45; resize: vertical; background: var(--bg); color: var(--black); }
-    .fh-json:focus { outline: none; border-color: var(--terra); }
-    .fh-input-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
-    .fh-primary, .fh-secondary { border-radius: 8px; padding: 9px 14px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; }
-    .fh-primary { border: none; background: var(--terra); color: #fff; }
-    .fh-primary:hover { opacity: .88; }
-    .fh-secondary { border: 1px solid var(--border); background: var(--surface); color: var(--black); }
-    .fh-secondary:hover { border-color: var(--black); }
-    .fh-msg { font-size: 13px; font-weight: 500; }
-    .fh-msg.err { color: var(--carr-fg); }
-    .fh-msg.ok { color: var(--done-fg); }
-    .fh-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
-    .fh-kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 17px; min-height: 142px; display: flex; flex-direction: column; gap: 10px; }
-    .fh-kpi-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
-    .fh-kpi-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
-    .fh-kpi-value { font-size: 26px; font-weight: 750; line-height: 1.05; letter-spacing: 0; }
-    .fh-kpi-sub { font-size: 12px; color: var(--muted); line-height: 1.4; margin-top: auto; }
-    .fh-badge { display: inline-flex; align-items: center; border-radius: 20px; padding: 3px 8px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-    .fh-badge.good { background: var(--done-bg); color: var(--done-fg); }
-    .fh-badge.warn { background: var(--prog-bg); color: var(--prog-fg); }
-    .fh-badge.bad { background: var(--carr-bg); color: var(--carr-fg); }
-    .fh-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-    .fh-panel-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
-    .fh-panel-title { font-size: 16px; font-weight: 700; }
-    .fh-panel-note { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    .pipe { width: 100%; height: 174px; }
-    .pipe-stage-label { font-size: 12px; font-weight: 700; fill: var(--black); }
-    .pipe-caption { font-size: 11px; font-weight: 600; fill: var(--muted); }
-    .pipe-good { fill: #DFF6EA; stroke: #15803D; }
-    .pipe-mid { fill: #FFF7DF; stroke: #D97706; stroke-dasharray: 7 5; opacity: .78; }
-    .pipe-bad { fill: #FDE2E2; stroke: #B91C1C; opacity: .72; }
-    .pipe-link-good { stroke: #15803D; stroke-width: 10; stroke-linecap: round; }
-    .pipe-link-mid { stroke: #D97706; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 8 8; opacity: .75; }
-    .pipe-link-bad { stroke: #B91C1C; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 5 10; opacity: .7; }
-    .fh-two-col { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); gap: 18px; }
-    .funnel-stack { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 6px 0; }
-    .funnel-seg { min-width: 210px; max-width: 100%; border-radius: 8px; border: 1px solid var(--border); padding: 10px 14px; text-align: center; position: relative; background: #F9F7F4; transition: width .2s; }
-    .funnel-seg:nth-child(1) { background: #E0F2FE; border-color: #BAE6FD; }
-    .funnel-seg:nth-child(2) { background: #DCFCE7; border-color: #BBF7D0; }
-    .funnel-seg:nth-child(3) { background: #FEF3C7; border-color: #FDE68A; }
-    .funnel-seg:nth-child(4) { background: #FEE2E2; border-color: #FECACA; }
-    .funnel-name { font-size: 12px; font-weight: 750; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-    .funnel-val { font-size: 20px; font-weight: 750; margin-top: 2px; }
-    .funnel-rate { font-size: 12px; color: var(--muted); }
-    .drop-badge { margin-left: 6px; color: var(--carr-fg); font-weight: 800; }
-    .mini-bars { display: flex; flex-direction: column; gap: 11px; }
-    .mini-bar-row { display: grid; grid-template-columns: 118px minmax(0,1fr) 56px; gap: 10px; align-items: center; font-size: 12px; }
-    .mini-bar-label { font-weight: 650; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .mini-track { height: 12px; background: var(--border); border-radius: 20px; overflow: hidden; }
-    .mini-fill { height: 100%; background: var(--terra); border-radius: 20px; min-width: 4px; }
-    .mini-value { text-align: right; color: var(--muted); font-weight: 650; }
-    .issue-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
-    .issue-card { border: 1px solid var(--border); border-radius: 10px; padding: 14px; background: #FDFCFA; }
-    .issue-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; margin-bottom: 8px; }
-    .issue-title { font-size: 14px; font-weight: 700; line-height: 1.3; }
-    .issue-copy { font-size: 12px; color: var(--muted); line-height: 1.45; }
-    .impact-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .impact-table th { text-align: left; padding: 9px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border-bottom: 1px solid var(--border); background: #F9F7F4; }
-    .impact-table td { padding: 11px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
-    .impact-table tr:last-child td { border-bottom: none; }
-    .fh-flow-note { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px; color: var(--muted); }
-    .fh-flow-note div { background: #F9F7F4; border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
-    .fh-flow-note strong { display: block; color: var(--black); margin-bottom: 4px; }
-
     /* ── Responsive ── */
     @media (max-width: 700px) {
       .hdr { padding-left: 16px; padding-right: 16px; }
-      .tab-bar { padding: 0 16px; overflow-x: auto; }
-      .tab-btn { white-space: nowrap; }
+      .tab-bar { padding: 0 16px; }
       .main { padding: 20px 12px 64px; }
       .f-row { grid-template-columns: 1fr; }
       .stats { gap: 8px; }
       .import-controls { flex-direction: column; align-items: stretch; }
       .import-inp-key { width: 100%; }
       .local-banner { padding: 10px 16px; }
-      .fh-hero, .fh-two-col, .fh-flow-note { grid-template-columns: 1fr; }
-      .fh-week-pill { text-align: left; }
-      .fh-grid, .issue-grid { grid-template-columns: 1fr; }
-      .fh-panel { padding: 16px; }
-      .pipe { height: 420px; }
-      .mini-bar-row { grid-template-columns: 96px minmax(0,1fr) 50px; }
     }
   </style>
 </head>
@@ -303,7 +219,6 @@ e<script>
 
   // ── Constants ──────────────────────────────────────────────────────
   const STORAGE_KEY    = 'anka_recs_v1';
-  const FUNNEL_LS      = 'anka_funnel_metrics_v1';
   const ANTHROPIC_LS   = 'anka_anthropic_key';
   const TYPES    = ['🔍 Investigate', '🧪 Test', '📊 Analysis', '🔧 Infra'];
   const OWNERS   = ['Vanessa', 'Coco'];
@@ -357,44 +272,11 @@ e<script>
       status:'Pending', result:'', createdAt:'2026-06-16' },
   ];
 
-  const SAMPLE_FUNNEL_METRICS = {
-    week: 'W25',
-    dateRange: 'June 15–21, 2026',
-    channels: [
-      {
-        channel: 'Instagram Feed',
-        views: 79469,
-        reach: 37400,
-        interactions: 4200,
-        profileVisits: 1700,
-        linkClicks: 16,
-        newFollows: 917,
-        netFollows: -845,
-      },
-      {
-        channel: 'Newsletter',
-        opens: 71041,
-        clicks: 3315,
-        ctor: 0.0467,
-      },
-      {
-        channel: 'TikTok',
-        postViews: 19000,
-        profileViews: 281,
-        likes: 363,
-        shares: 50,
-        netFollowers: -54,
-      },
-    ],
-  };
-
   // ── Local storage helpers ──────────────────────────────────────────
   const wNum      = function(w) { return parseInt((w || '').replace('W',''), 10) || 0; };
   const uid       = function() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); };
   const loadLocal = function() { try { var d = localStorage.getItem(STORAGE_KEY); return d ? JSON.parse(d) : null; } catch(e) { return null; } };
   const saveLocal = function(d) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch(e) {} };
-  const loadFunnelLocal = function() { try { var d = localStorage.getItem(FUNNEL_LS); return d ? JSON.parse(d) : null; } catch(e) { return null; } };
-  const saveFunnelLocal = function(d) { try { localStorage.setItem(FUNNEL_LS, JSON.stringify(d)); } catch(e) {} };
   const cleanRec  = function(r) { var c = Object.assign({}, r); delete c._row; return c; };
 
   // ── Backend config ────────────────────────────────────────────────
@@ -408,7 +290,6 @@ e<script>
     SHEETS_ID:      '1BNVjU8UuOwu5iQP9JDUUO2iH_6IbncqKjST_iPL5xgI',
     GOOGLE_API_KEY: 'AIzaSyD0cn2Ppu-UosrRO8xlx3lG9q49avEh_z8',
     SHEET_NAME:     'Recommendations',
-    FUNNEL_SHEET_NAME: 'FunnelMetrics',
   };
 
   /*
@@ -492,53 +373,35 @@ e<script>
 
   // ── Apps Script backend (JSONP — bypasses CORS entirely) ────────
   // JSONP loads the response as a <script> tag, so no CORS headers are needed.
-  // Works from localhost, file://, or any origin.
+  // Uses fetch — the non-Workspace Apps Script URL returns Access-Control-Allow-Origin: *
+  // so this works from any HTTPS origin (GitHub Pages, Netlify, etc.).
   function gasRequest(params) {
-    return new Promise(function(resolve, reject) {
-      var cbName = '_gas_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
-      var script = document.createElement('script');
-      var settled = false;
-
-      function cleanup() {
-        settled = true;
-        delete window[cbName];
-        if (script.parentNode) script.parentNode.removeChild(script);
-      }
-
-      var timer = setTimeout(function() {
-        if (!settled) {
-          cleanup();
-          reject(new Error('Request timed out after 15s — check Apps Script URL'));
-        }
-      }, 15000);
-
-      window[cbName] = function(data) {
-        clearTimeout(timer);
-        cleanup();
-        if (data && data.error) reject(new Error('Script error: ' + data.error));
-        else resolve(data);
-      };
-
-      script.onerror = function() {
-        clearTimeout(timer);
-        cleanup();
-        reject(new Error('Could not load Apps Script URL — check CONFIG.WEB_APP_URL'));
-      };
-
-      params.callback = cbName;
-      var qs = Object.keys(params).map(function(k) {
-        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
-      }).join('&');
-      script.src = CONFIG.WEB_APP_URL + '?' + qs;
-      document.head.appendChild(script);
-    });
+    var qs = Object.keys(params).map(function(k) {
+      return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+    }).join('&');
+    var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var timer = controller ? setTimeout(function() { controller.abort(); }, 60000) : null;
+    return fetch(CONFIG.WEB_APP_URL + '?' + qs, controller ? { signal: controller.signal } : {})
+      .then(function(res) {
+        if (timer) clearTimeout(timer);
+        if (!res.ok) throw new Error('HTTP ' + res.status + ' from Apps Script');
+        return res.json();
+      })
+      .then(function(data) {
+        if (data && data.error) throw new Error('Script error: ' + data.error);
+        return data;
+      })
+      .catch(function(err) {
+        if (timer) clearTimeout(timer);
+        if (err.name === 'AbortError') throw new Error('Request timed out after 60s — try refreshing');
+        throw err;
+      });
   }
 
   function gasLoad()        { return gasRequest({ action: 'load' }); }
   function gasAdd(rec)      { return gasRequest({ action: 'add',    data: JSON.stringify(cleanRec(rec)) }); }
   function gasUpdate(rec)   { return gasRequest({ action: 'update', data: JSON.stringify(cleanRec(rec)) }); }
   function gasRemove(id)    { return gasRequest({ action: 'delete', id: id }); }
-  function gasLoadFunnel()  { return gasRequest({ action: 'loadFunnel' }); }
 
   // ── Direct Sheets API (fallback — reads only, writes will 403) ────
   // TODO: migrate to Service Account (Option B) for production security.
@@ -576,110 +439,6 @@ e<script>
           var rec = rowToRec(row); rec._row = i + 2; return rec;
         });
       });
-  }
-
-  function rowToFunnelMetric(row) {
-    return {
-      id:            (row[0]  || '').trim(),
-      week:          (row[1]  || '').trim(),
-      dateRange:     (row[2]  || '').trim(),
-      section:       (row[3]  || '').trim(),
-      channel:       (row[4]  || '').trim(),
-      metric:        (row[5]  || '').trim(),
-      value:         (row[6]  || '').trim(),
-      unit:          (row[7]  || '').trim(),
-      previousWeek:  (row[8]  || '').trim(),
-      previousValue: (row[9]  || '').trim(),
-      changeValue:   (row[10] || '').trim(),
-      changePct:     (row[11] || '').trim(),
-      status:        (row[12] || '').trim(),
-      sourceReport:  (row[13] || '').trim(),
-      notes:         (row[14] || '').trim(),
-    };
-  }
-
-  function sheetsLoadFunnel() {
-    var range = encodeURIComponent(CONFIG.FUNNEL_SHEET_NAME + '!A2:O');
-    var url   = SHEETS_BASE + '/values/' + range + '?key=' + CONFIG.GOOGLE_API_KEY;
-    return fetch(url)
-      .then(function(res) {
-        if (!res.ok) return res.json().then(function(e) { throw new Error((e.error&&e.error.message)||'FunnelMetrics read failed: '+res.status); });
-        return res.json();
-      })
-      .then(function(data) {
-        return (data.values||[]).filter(function(r){return r[0];}).map(rowToFunnelMetric);
-      });
-  }
-
-  function loadFunnelMetrics() {
-    if (CONFIG.WEB_APP_URL) {
-      return gasLoadFunnel().catch(function(err) {
-        console.warn('Apps Script funnel load failed; trying direct Sheets fallback:', err.message||err);
-        return sheetsLoadFunnel();
-      });
-    }
-    return sheetsLoadFunnel();
-  }
-
-  function metricNumber(v) {
-    if (typeof v === 'number') return isFinite(v) ? v : 0;
-    var cleaned = String(v || '').replace(/,/g, '').trim();
-    if (!cleaned) return 0;
-    var n = Number(cleaned);
-    return isFinite(n) ? n : 0;
-  }
-
-  function weeksFromFunnelRows(rows) {
-    return Array.from(new Set((rows||[]).map(function(r){return r.week;}).filter(Boolean)))
-      .sort(function(a,b){return wNum(b)-wNum(a);});
-  }
-
-  function funnelRowsToMetrics(rows, week) {
-    var selected = (rows||[]).filter(function(r){return r.week === week;});
-    if (!selected.length) return SAMPLE_FUNNEL_METRICS;
-
-    function channelRow(name, metric) {
-      return selected.find(function(r){return r.channel === name && r.metric === metric;}) || null;
-    }
-    function value(name, metric) {
-      var row = channelRow(name, metric);
-      return row ? metricNumber(row.value) : 0;
-    }
-    function dateRangeForWeek() {
-      var row = selected.find(function(r){return r.dateRange;});
-      return row ? row.dateRange : '';
-    }
-
-    var instagram = {
-      channel: 'Instagram Feed',
-      views: value('Instagram Feed', 'views'),
-      reach: value('Instagram Feed', 'reach'),
-      interactions: value('Instagram Feed', 'interactions'),
-      profileVisits: value('Instagram Feed', 'profile_visits'),
-      linkClicks: value('Instagram Feed', 'link_clicks'),
-      newFollows: value('Instagram Feed', 'new_follows'),
-      netFollows: value('Instagram Feed', 'net_follows'),
-    };
-    var newsletter = {
-      channel: 'Newsletter',
-      opens: value('Newsletter', 'opens'),
-      clicks: value('Newsletter', 'clicks'),
-      ctor: value('Newsletter', 'ctor'),
-    };
-    var tiktok = {
-      channel: 'TikTok',
-      postViews: value('TikTok', 'post_views'),
-      profileViews: value('TikTok', 'profile_views'),
-      likes: value('TikTok', 'likes'),
-      shares: value('TikTok', 'shares'),
-      netFollowers: value('TikTok', 'net_followers'),
-    };
-
-    return {
-      week: week,
-      dateRange: dateRangeForWeek(),
-      channels: [instagram, newsletter, tiktok],
-    };
   }
 
   function sheetsAppend(rec) {
@@ -1169,311 +928,6 @@ e<script>
     </div>`;
   }
 
-  // ── FunnelHealthTab ─────────────────────────────────────────────────
-  function FunnelHealthTab() {
-    var initialMetrics = loadFunnelLocal() || SAMPLE_FUNNEL_METRICS;
-    var metricsSt = useState(initialMetrics); var metrics=metricsSt[0],setMetrics=metricsSt[1];
-    var rowsSt = useState([]); var funnelRows=rowsSt[0],setFunnelRows=rowsSt[1];
-    var weekSt = useState(initialMetrics.week || 'W25'); var selectedWeek=weekSt[0],setSelectedWeek=weekSt[1];
-    var loadSt = useState('loading'); var loadStatus=loadSt[0],setLoadStatus=loadSt[1];
-    var jsonSt = useState(JSON.stringify(initialMetrics, null, 2)); var jsonText=jsonSt[0],setJsonText=jsonSt[1];
-    var openSt = useState(false); var inputOpen=openSt[0],setInputOpen=openSt[1];
-    var msgSt = useState({type:'', text:''}); var msg=msgSt[0],setMsg=msgSt[1];
-
-    useEffect(function() {
-      var cancelled = false;
-      setLoadStatus('loading');
-      loadFunnelMetrics()
-        .then(function(rows) {
-          if (cancelled) return;
-          var weeks = weeksFromFunnelRows(rows);
-          var week = weeks[0] || selectedWeek || SAMPLE_FUNNEL_METRICS.week;
-          var next = funnelRowsToMetrics(rows, week);
-          setFunnelRows(rows);
-          setSelectedWeek(week);
-          setMetrics(next);
-          setJsonText(JSON.stringify(next, null, 2));
-          saveFunnelLocal(next);
-          setLoadStatus('sheet');
-        })
-        .catch(function(err) {
-          if (cancelled) return;
-          console.warn('Funnel metrics load failed:', err.message||err);
-          setLoadStatus('local');
-          setMsg({type:'err', text:'Could not load FunnelMetrics yet. Showing local/sample data.'});
-        });
-      return function() { cancelled = true; };
-    }, []);
-
-    function changeWeek(week) {
-      setSelectedWeek(week);
-      var next = funnelRowsToMetrics(funnelRows, week);
-      setMetrics(next);
-      setJsonText(JSON.stringify(next, null, 2));
-      saveFunnelLocal(next);
-    }
-
-    function num(v) { return typeof v === 'number' && isFinite(v) ? v : 0; }
-    function fmt(v) { return Math.round(num(v)).toLocaleString(); }
-    function pct(v) { return isFinite(v) && v > 0 ? (v * 100).toFixed(v >= .1 ? 1 : 2) + '%' : '0%'; }
-    function channel(name) {
-      return (metrics.channels || []).find(function(c) { return c.channel === name; }) || {};
-    }
-    function total(arr) { return arr.reduce(function(sum, v) { return sum + num(v); }, 0); }
-    function safeDiv(a, b) { return num(b) ? num(a) / num(b) : 0; }
-    function widthFor(value, max) { return Math.max(36, Math.round(safeDiv(value, max) * 100)); }
-
-    var instagram = channel('Instagram Feed');
-    var newsletter = channel('Newsletter');
-    var tiktok = channel('TikTok');
-
-    var socialReach = total([instagram.reach, tiktok.postViews]);
-    var socialViews = total([instagram.views, tiktok.postViews]);
-    var socialInteractions = total([instagram.interactions, tiktok.likes, tiktok.shares]);
-    var socialProfiles = total([instagram.profileVisits, tiktok.profileViews]);
-    var socialClicks = num(instagram.linkClicks);
-    var emailOpens = num(newsletter.opens);
-    var emailClicks = num(newsletter.clicks);
-    var ctor = num(newsletter.ctor) || safeDiv(emailClicks, emailOpens);
-
-    function importMetrics() {
-      try {
-        var parsed = JSON.parse(jsonText);
-        if (!parsed || !parsed.week || !Array.isArray(parsed.channels)) {
-          throw new Error('Expected JSON with week and channels.');
-        }
-        setMetrics(parsed);
-        setSelectedWeek(parsed.week || selectedWeek);
-        saveFunnelLocal(parsed);
-        setMsg({type:'ok', text:'Metrics imported and saved locally.'});
-        setLoadStatus('local');
-      } catch(e) {
-        setMsg({type:'err', text:'That JSON did not import. Check the format and try again.'});
-      }
-    }
-
-    function loadSample() {
-      setMetrics(SAMPLE_FUNNEL_METRICS);
-      setSelectedWeek(SAMPLE_FUNNEL_METRICS.week);
-      setJsonText(JSON.stringify(SAMPLE_FUNNEL_METRICS, null, 2));
-      saveFunnelLocal(SAMPLE_FUNNEL_METRICS);
-      setMsg({type:'ok', text:'Sample W25 data loaded.'});
-      setLoadStatus('local');
-    }
-
-    var kpis = [
-      { label:'Attention', value:fmt(socialViews || socialReach), badge:'Measurable', badgeClass:'good',
-        sub:'Views/reach are visible across Instagram and TikTok.' },
-      { label:'Intent', value:fmt(socialProfiles + socialClicks + emailClicks), badge:'Thin clicks', badgeClass:'warn',
-        sub:fmt(socialProfiles) + ' profile visits, ' + fmt(socialClicks) + ' social link clicks, ' + fmt(emailClicks) + ' email clicks.' },
-      { label:'Email Health', value:pct(ctor), badge:'CTOR', badgeClass:'good',
-        sub:fmt(emailOpens) + ' opens and ' + fmt(emailClicks) + ' clicks from newsletter.' },
-      { label:'Tracking Status', value:'Unreliable', badge:'Warning', badgeClass:'bad',
-        sub:'Purchase and revenue tracking are not connected to the visible funnel yet.' },
-    ];
-
-    var kpiEls = kpis.map(function(k) {
-      return html`<div key=${k.label} className="fh-kpi">
-        <div className="fh-kpi-top">
-          <div className="fh-kpi-label">${k.label}</div>
-          <span className=${'fh-badge '+k.badgeClass}>${k.badge}</span>
-        </div>
-        <div className="fh-kpi-value">${k.value}</div>
-        <div className="fh-kpi-sub">${k.sub}</div>
-      </div>`;
-    });
-
-    var socialStages = [
-      { name:'Reach', value:socialReach, rate:'baseline' },
-      { name:'Engagement', value:socialInteractions, rate:pct(safeDiv(socialInteractions, socialReach)) + ' of reach' },
-      { name:'Profile Visits', value:socialProfiles, rate:pct(safeDiv(socialProfiles, socialReach)) + ' of reach' },
-      { name:'Link Clicks', value:socialClicks, rate:pct(safeDiv(socialClicks, socialProfiles)) + ' of visits' },
-    ];
-    var dropRates = [
-      { name:'Engagement', rate:safeDiv(socialInteractions, socialReach) },
-      { name:'Profile Visits', rate:safeDiv(socialProfiles, socialInteractions) },
-      { name:'Link Clicks', rate:safeDiv(socialClicks, socialProfiles) },
-    ];
-    var biggestDrop = dropRates.sort(function(a,b){return a.rate-b.rate;})[0].name;
-    var socialMax = Math.max.apply(null, socialStages.map(function(s){return s.value;}));
-    var socialEls = socialStages.map(function(s) {
-      return html`<div key=${s.name} className="funnel-seg" style=${{width:widthFor(s.value, socialMax)+'%'}}>
-        <div className="funnel-name">${s.name}${s.name===biggestDrop ? html`<span className="drop-badge">drop-off</span>` : null}</div>
-        <div className="funnel-val">${fmt(s.value)}</div>
-        <div className="funnel-rate">${s.rate}</div>
-      </div>`;
-    });
-
-    var emailStages = [
-      { name:'Opened', value:emailOpens, rate:'visible' },
-      { name:'Clicked', value:emailClicks, rate:pct(safeDiv(emailClicks, emailOpens)) + ' click/open' },
-    ];
-    var emailMax = Math.max.apply(null, emailStages.map(function(s){return s.value;}));
-    var emailEls = emailStages.map(function(s) {
-      return html`<div key=${s.name} className="funnel-seg" style=${{width:widthFor(s.value, emailMax)+'%'}}>
-        <div className="funnel-name">${s.name}</div>
-        <div className="funnel-val">${fmt(s.value)}</div>
-        <div className="funnel-rate">${s.rate}</div>
-      </div>`;
-    });
-
-    var intentRows = [
-      { label:'Newsletter clicks', value:emailClicks },
-      { label:'Instagram profiles', value:num(instagram.profileVisits) },
-      { label:'TikTok profiles', value:num(tiktok.profileViews) },
-      { label:'Instagram link clicks', value:num(instagram.linkClicks) },
-    ];
-    var intentMax = Math.max.apply(null, intentRows.map(function(r){return r.value;}));
-    var intentBars = intentRows.map(function(r) {
-      return html`<div key=${r.label} className="mini-bar-row">
-        <div className="mini-bar-label">${r.label}</div>
-        <div className="mini-track"><div className="mini-fill" style=${{width:widthFor(r.value, intentMax)+'%'}}></div></div>
-        <div className="mini-value">${fmt(r.value)}</div>
-      </div>`;
-    });
-
-    var issues = [
-      { title:'Purchase & revenue tracking not connected', badge:'Critical', cls:'bad',
-        copy:'The team can see interest, but cannot reliably tie it to orders or revenue yet.' },
-      { title:'Product path only partially visible', badge:'High', cls:'warn',
-        copy:'Clicks after the content layer are too thin to diagnose product behavior with confidence.' },
-      { title:'Traffic quality is noisy', badge:'Watch', cls:'warn',
-        copy:'Strong reach does not automatically translate into high-intent sessions or follows.' },
-    ].map(function(i) {
-      return html`<div key=${i.title} className="issue-card">
-        <div className="issue-top">
-          <div className="issue-title">${i.title}</div>
-          <span className=${'fh-badge '+i.cls}>${i.badge}</span>
-        </div>
-        <div className="issue-copy">${i.copy}</div>
-      </div>`;
-    });
-
-    var impactRows = [
-      ['Add direct Story link sticker', 'Click', fmt(instagram.linkClicks), 'Higher link-click rate', 'Ready to test'],
-      ['Replicate high-performing Reel format', 'Reach', fmt(instagram.views), 'Sustained qualified reach', 'In progress'],
-      ['Connect product events to orders', 'Purchase', 'Not reliable', 'Attributed purchase/revenue', 'Blocked'],
-    ].map(function(r) {
-      return html`<tr key=${r[0]}>
-        <td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td><span className="fh-badge warn">${r[4]}</span></td>
-      </tr>`;
-    });
-    var availableWeeks = weeksFromFunnelRows(funnelRows);
-    var weekOptions = availableWeeks.length ? availableWeeks : [metrics.week || selectedWeek || 'W25'];
-    var sourceBadge = loadStatus === 'sheet'
-      ? html`<span className="fh-badge good">Google Sheet</span>`
-      : loadStatus === 'loading'
-        ? html`<span className="fh-badge warn">Loading</span>`
-        : html`<span className="fh-badge warn">Local fallback</span>`;
-    var weekPicker = html`<div style=${{display:'flex',gap:8,alignItems:'center',justifyContent:'flex-end',flexWrap:'wrap'}}>
-      ${sourceBadge}
-      <select className="week-sel" value=${selectedWeek} onChange=${function(e){changeWeek(e.target.value);}}>
-        ${weekOptions.map(function(w){return html`<option key=${w}>${w}</option>`;})}
-      </select>
-    </div>`;
-
-    return html`<div className="fh-shell">
-      <div className="fh-hero">
-        <div>
-          <div className="fh-kicker">Funnel Health</div>
-          <div className="fh-title">Attention is measurable. Revenue attribution is not connected yet.</div>
-          <div className="fh-sub">A CEO-friendly read on where the current marketing funnel is visible, partial, or broken.</div>
-        </div>
-        <div>
-          ${weekPicker}
-          <div className="fh-week-pill" style=${{marginTop:8}}><strong>${metrics.week || selectedWeek || 'W25'}</strong><span>${metrics.dateRange || 'Sample period'}</span></div>
-        </div>
-      </div>
-
-      <div className="fh-input">
-        <button className="fh-input-toggle" onClick=${function(){setInputOpen(function(o){return !o;});}}>
-          <span className="fh-input-title">Manual metrics input</span>
-          <span>${inputOpen ? 'Hide' : 'Show'}</span>
-        </button>
-        ${inputOpen ? html`<div className="fh-input-body">
-          <textarea className="fh-json" value=${jsonText} onInput=${function(e){setJsonText(e.target.value);}}
-            placeholder="Paste weekly metrics JSON"></textarea>
-          <div className="fh-input-actions">
-            <button className="fh-primary" onClick=${importMetrics}>Import metrics</button>
-            <button className="fh-secondary" onClick=${loadSample}>Load sample W25 data</button>
-            ${msg.text ? html`<span className=${'fh-msg '+msg.type}>${msg.text}</span>` : null}
-          </div>
-        </div>` : null}
-      </div>
-
-      <div className="fh-grid">${kpiEls}</div>
-
-      <div className="fh-panel">
-        <div className="fh-panel-head">
-          <div><div className="fh-panel-title">Where the chain breaks</div>
-          <div className="fh-panel-note">The weak point is not content visibility; it is the missing product-to-purchase connection.</div></div>
-        </div>
-        <svg className="pipe" viewBox="0 0 1100 174" role="img" aria-label="Marketing funnel tracking pipeline">
-          <line className="pipe-link-good" x1="145" y1="74" x2="235" y2="74"></line>
-          <line className="pipe-link-mid" x1="325" y1="74" x2="415" y2="74"></line>
-          <line className="pipe-link-mid" x1="505" y1="74" x2="595" y2="74"></line>
-          <line className="pipe-link-bad" x1="685" y1="74" x2="775" y2="74"></line>
-          <line className="pipe-link-bad" x1="865" y1="74" x2="955" y2="74"></line>
-          <rect className="pipe-good" x="20" y="38" width="125" height="72" rx="18"></rect>
-          <rect className="pipe-good" x="235" y="38" width="90" height="72" rx="18"></rect>
-          <rect className="pipe-mid" x="415" y="38" width="90" height="72" rx="18"></rect>
-          <rect className="pipe-mid" x="595" y="38" width="90" height="72" rx="18"></rect>
-          <rect className="pipe-bad" x="775" y="38" width="90" height="72" rx="18"></rect>
-          <rect className="pipe-bad" x="955" y="38" width="110" height="72" rx="18"></rect>
-          <text className="pipe-stage-label" x="82" y="69" text-anchor="middle">Content / Reach</text>
-          <text className="pipe-caption" x="82" y="89" text-anchor="middle">measurable</text>
-          <text className="pipe-stage-label" x="280" y="69" text-anchor="middle">Click</text>
-          <text className="pipe-caption" x="280" y="89" text-anchor="middle">measurable</text>
-          <text className="pipe-stage-label" x="460" y="69" text-anchor="middle">Product Path</text>
-          <text className="pipe-caption" x="460" y="89" text-anchor="middle">partial visibility</text>
-          <text className="pipe-stage-label" x="640" y="69" text-anchor="middle">Checkout</text>
-          <text className="pipe-caption" x="640" y="89" text-anchor="middle">partial visibility</text>
-          <text className="pipe-stage-label" x="820" y="69" text-anchor="middle">Purchase</text>
-          <text className="pipe-caption" x="820" y="89" text-anchor="middle">unreliable</text>
-          <text className="pipe-stage-label" x="1010" y="69" text-anchor="middle">Revenue</text>
-          <text className="pipe-caption" x="1010" y="89" text-anchor="middle">not connected</text>
-          <text x="735" y="124" fill="#B91C1C" font-size="28" font-weight="800">!</text>
-          <path d="M900 48 l-18 52 M920 48 l-18 52" stroke="#B91C1C" stroke-width="5" stroke-linecap="round"></path>
-        </svg>
-      </div>
-
-      <div className="fh-two-col">
-        <div className="fh-panel">
-          <div className="fh-panel-head"><div><div className="fh-panel-title">Social Funnel</div><div className="fh-panel-note">Reach → Engagement → Profile Visits → Link Clicks</div></div></div>
-          <div className="funnel-stack">${socialEls}</div>
-        </div>
-        <div className="fh-panel">
-          <div className="fh-panel-head"><div><div className="fh-panel-title">Email Funnel</div><div className="fh-panel-note">Opened → Clicked, sent volume unavailable</div></div><span className="fh-badge good">CTOR ${pct(ctor)}</span></div>
-          <div className="funnel-stack">${emailEls}</div>
-        </div>
-      </div>
-
-      <div className="fh-two-col">
-        <div className="fh-panel">
-          <div className="fh-panel-head"><div><div className="fh-panel-title">Channel Intent Comparison</div><div className="fh-panel-note">Secondary readout from currently available metrics.</div></div></div>
-          <div className="mini-bars">${intentBars}</div>
-        </div>
-        <div className="fh-panel">
-          <div className="fh-panel-head"><div><div className="fh-panel-title">Problem Spotlight</div><div className="fh-panel-note">Ranked by business impact.</div></div></div>
-          <div className="issue-grid">${issues}</div>
-        </div>
-      </div>
-
-      <div className="fh-panel">
-        <div className="fh-panel-head"><div><div className="fh-panel-title">Recommendation Impact Preview</div><div className="fh-panel-note">How future recommendations can map to funnel movement.</div></div></div>
-        <table className="impact-table">
-          <thead><tr><th>Recommendation</th><th>Funnel step</th><th>Before</th><th>After</th><th>Status</th></tr></thead>
-          <tbody>${impactRows}</tbody>
-        </table>
-      </div>
-
-      <div className="fh-flow-note">
-        <div><strong>Current prototype</strong>Weekly report data / manual metrics → Funnel Health → Recommendation follow-up</div>
-        <div><strong>Future version</strong>Meta / TikTok / MailerLite / GA4 APIs → generated weekly report → structured metrics → Funnel Health → Recommendation Tracker</div>
-      </div>
-    </div>`;
-  }
-
   // ── App ────────────────────────────────────────────────────────────
   function App() {
     var recsSt    = useState([]);    var recs=recsSt[0],setRecs=recsSt[1];
@@ -1498,7 +952,8 @@ e<script>
       db.load()
         .then(function(rows) {
           if (cancelled) return;
-          setRecs(rows.length ? rows : (loadLocal()||SEED));
+          // If sheet responded (even empty), use sheet data only — don't mix in seed
+          setRecs(rows.length ? rows : []);
         })
         .catch(function(err) {
           if (cancelled) return;
@@ -1542,25 +997,19 @@ e<script>
     }
 
     function onStatus(id, next) {
-      var updated = null;
-      setRecs(function(prev) {
-        return prev.map(function(r) {
-          if (r.id===id) { updated=Object.assign({},r,{status:next}); return updated; }
-          return r;
-        });
-      });
-      if (updated) syncOp(function(){ return db.update(updated); });
+      var current = recs.find(function(r) { return r.id === id; });
+      if (!current) return;
+      var updated = Object.assign({}, current, { status: next });
+      setRecs(function(prev) { return prev.map(function(r) { return r.id===id ? updated : r; }); });
+      syncOp(function(){ return db.update(updated); });
     }
 
     function onResult(id, result) {
-      var updated = null;
-      setRecs(function(prev) {
-        return prev.map(function(r) {
-          if (r.id===id) { updated=Object.assign({},r,{result:result}); return updated; }
-          return r;
-        });
-      });
-      if (updated) syncOp(function(){ return db.update(updated); });
+      var current = recs.find(function(r) { return r.id === id; });
+      if (!current) return;
+      var updated = Object.assign({}, current, { result: result });
+      setRecs(function(prev) { return prev.map(function(r) { return r.id===id ? updated : r; }); });
+      syncOp(function(){ return db.update(updated); });
     }
 
     function onDelete(id) {
@@ -1602,16 +1051,11 @@ e<script>
         </div>`
       : null;
 
-    var content;
-    if (tab === 'fh') {
-      content = html`<${FunnelHealthTab} />`;
-    } else if (loading) {
-      content = html`<div className="loading-screen">Loading recommendations…</div>`;
-    } else if (tab === 'tw') {
-      content = html`<${ThisWeekTab} ...${shared} curWeek=${curWeek} setCurWeek=${setCurWeek} />`;
-    } else {
-      content = html`<${AllRecsTab}  ...${shared} />`;
-    }
+    var content = loading
+      ? html`<div className="loading-screen">Loading recommendations…</div>`
+      : tab==='tw'
+        ? html`<${ThisWeekTab} ...${shared} curWeek=${curWeek} setCurWeek=${setCurWeek} />`
+        : html`<${AllRecsTab}  ...${shared} />`;
 
     return html`<div>
       <header className="hdr">
@@ -1627,7 +1071,6 @@ e<script>
       <nav className="tab-bar">
         <button className=${'tab-btn'+(tab==='tw'?' active':'')} onClick=${function(){setTab('tw');}}>This Week</button>
         <button className=${'tab-btn'+(tab==='ar'?' active':'')} onClick=${function(){setTab('ar');}}>All Recommendations</button>
-        <button className=${'tab-btn'+(tab==='fh'?' active':'')} onClick=${function(){setTab('fh');}}>Funnel Health</button>
       </nav>
       <main className="main">${content}</main>
     </div>`;
