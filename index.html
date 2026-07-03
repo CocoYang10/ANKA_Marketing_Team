@@ -696,7 +696,7 @@
     row = row || {};
     var prevVal = String(row.previousValue || '').trim();
     var noteVal = String(row.note || row.notes || '').trim();
-    if (/^W\d+$/i.test(prevVal) && noteVal !== '') {
+    if (/^W\d+$/i.test(prevVal)) {
       return Object.assign({}, row, {
         previousWeek: prevVal.toUpperCase(),
         previousValue: row.changePct,
@@ -1788,9 +1788,20 @@
       var value = row ? cleanNumber(row.value) : num(fallback);
       var previous = row && row.previousValue !== '' ? cleanNumber(row.previousValue) : null;
       var change = row && row.changePct !== '' ? cleanNumber(row.changePct) : null;
-      if (change !== null && Math.abs(change) > 3) change = change / 100;
       if (change !== null && Math.abs(change) > 10) change = null;
       if (change === null && previous && previous !== 0) change = (value - previous) / previous;
+      return { value:value, previous:previous, change:change, unit:unit || 'count' };
+    }
+    function combineMetrics(items, unit) {
+      items = (items || []).filter(Boolean);
+      var value = items.reduce(function(sum, item) { return sum + num(item.value); }, 0);
+      var previousItems = items.filter(function(item) { return item.previous !== null && isFinite(item.previous); });
+      var previous = previousItems.length ? previousItems.reduce(function(sum, item) { return sum + num(item.previous); }, 0) : null;
+      var change = previous ? (value - previous) / previous : null;
+      if (change === null) {
+        var changes = items.map(function(item) { return item.change; }).filter(function(c) { return c !== null && isFinite(c); });
+        change = changes.length ? changes.reduce(function(sum, c) { return sum + c; }, 0) / changes.length : null;
+      }
       return { value:value, previous:previous, change:change, unit:unit || 'count' };
     }
     function metricForSingleWeek(week, channelAliases, metricAliases, fallback, unit) {
@@ -1949,7 +1960,9 @@
     var igClicks = metric(['Instagram Feed'], ['link_clicks','clicks'], num(instagram.linkClicks));
 
     var ttAttention = metric(['TikTok'], ['post_views','views','video_views'], num(tiktok.postViews));
-    var ttEngagement = metric(['TikTok'], ['likes','interactions','engagements'], num(tiktok.likes) + num(tiktok.shares));
+    var ttLikes = metric(['TikTok'], ['likes'], num(tiktok.likes));
+    var ttShares = metric(['TikTok'], ['shares'], num(tiktok.shares));
+    var ttEngagement = combineMetrics([ttLikes, ttShares]);
     var ttIntent = metric(['TikTok'], ['profile_views','profile_visits'], num(tiktok.profileViews));
 
     var emailOpens = metric(['Newsletter','Email'], ['opens','open'], num(newsletter.opens));
