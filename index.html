@@ -1746,8 +1746,8 @@
       function rank(r) {
         var section = norm(r.section);
         if (channelText.indexOf('newsletter') >= 0 || channelText.indexOf('email') >= 0) {
-          if (section === 'channel scorecard') return 0;
-          if (section === 'newsletter') return 1;
+          if (section === 'newsletter') return 0;
+          if (section === 'channel scorecard') return 1;
           return 2;
         }
         if (channelText.indexOf('facebook') >= 0 || channelText.indexOf('instagram') >= 0) {
