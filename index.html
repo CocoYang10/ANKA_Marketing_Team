@@ -950,7 +950,7 @@
     var s = props.status;
     if (s === 'syncing') return html`<span className="sync-badge sync-syncing">Syncing…</span>`;
     if (s === 'saved')   return html`<span className="sync-badge sync-saved">Saved ✓</span>`;
-    if (s === 'local')   return html`<span className="sync-badge sync-local">⚠ Local mode</span>`;
+    if (s === 'local')   return html`<span className="sync-badge sync-local">⚠ Read-only fallback</span>`;
     return null;
   }
 
@@ -2425,10 +2425,36 @@
     });
     var curWeek=cwSt[0],setCurWeek=cwSt[1];
 
+    function loadRecommendationRows() {
+      return db.load()
+        .then(function(rows) {
+          setLocalMode(false);
+          setSyncStatus('idle');
+          setConnErr('');
+          return rows;
+        })
+        .catch(function(err) {
+          var msg = err.message || String(err);
+          if (!CONFIG.WEB_APP_URL) throw err;
+          console.warn('Apps Script recommendation load failed; trying direct Sheets fallback:', msg);
+          return sheetsLoad()
+            .then(function(rows) {
+              setConnErr('Apps Script write connection failed; showing live Google Sheet data in read-only fallback. ' + msg);
+              setLocalMode(true);
+              setSyncStatus('local');
+              return rows;
+            })
+            .catch(function(sheetErr) {
+              sheetErr.message = msg + ' / Direct Sheet fallback failed: ' + (sheetErr.message || String(sheetErr));
+              throw sheetErr;
+            });
+        });
+    }
+
     // Initial load from Sheets
     useEffect(function() {
       var cancelled = false;
-      db.load()
+      loadRecommendationRows()
         .then(function(rows) {
           if (cancelled) return;
           setRecs(rows.length ? normalizeRecs(rows) : normalizeRecs(loadLocal()||SEED));
@@ -2468,8 +2494,8 @@
 
     function handleRefresh() {
       setLoading(true);
-      db.load()
-        .then(function(rows) { setRecs(rows.length?normalizeRecs(rows):normalizeRecs(loadLocal()||SEED)); setLocalMode(false); setSyncStatus('idle'); })
+      loadRecommendationRows()
+        .then(function(rows) { setRecs(rows.length?normalizeRecs(rows):normalizeRecs(loadLocal()||SEED)); })
         .catch(function(err) { console.warn('Refresh failed:', err.message||err); })
         .finally(function() { setLoading(false); });
     }
@@ -2540,7 +2566,7 @@
 
     var localBanner = localMode
       ? html`<div className="local-banner" style=${{flexDirection:'column',alignItems:'flex-start',gap:4}}>
-          <span>⚠ Running in local mode — changes are not shared with your team.</span>
+          <span>⚠ Read-only fallback — live data may be visible, but changes are not shared with your team.</span>
           ${connErr ? html`<span style=${{fontFamily:'monospace',fontSize:12,opacity:.8,wordBreak:'break-all'}}>${connErr}</span>` : null}
         </div>`
       : null;
