@@ -12,7 +12,7 @@ The project has moved from a reporting dashboard to a working local decision-age
 - The Action Center generates stable proposals with priority, evidence, owner, confidence, limitations and acceptance criteria.
 - An audited local registry supports the lifecycle from `PROPOSED` through approval, implementation, verification and closure.
 - The workspace contains Action Center, Growth & Revenue, Audience & Products, Events and Data Health views.
-- Growth & Revenue now includes source-mix and attribution donuts, a clean-session week comparison and a visual commerce-stage path.
+- Growth & Revenue now includes source-mix and attribution donuts, a known-channel-session week comparison and a visual commerce-stage path.
 - A reviewed aggregate fallback snapshot allows the static public demo to load safely after the branch is merged.
 
 ## What the Action Center does

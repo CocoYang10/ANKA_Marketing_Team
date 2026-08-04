@@ -2,7 +2,7 @@
   "meta": {
     "title": "ANKA Marketing Decision Workspace",
     "schema_version": "2.0.0",
-    "generated_at": "2026-08-04T13:15:24.717380+00:00",
+    "generated_at": "2026-08-04T13:22:05.190300+00:00",
     "period": {
       "since": "2026-07-27",
       "until": "2026-08-02"
@@ -58,8 +58,8 @@
     "transaction_attribution_coverage": 0.0
   },
   "comparison": {
-    "metric": "clean_sessions",
-    "definition": "GA4 sessions excluding Direct and Unknown / not set",
+    "metric": "known_channel_sessions",
+    "definition": "GA4 sessions assigned to a non-Direct, non-Unknown channel group",
     "previous": {
       "label": "Previous week",
       "since": "2026-07-20",

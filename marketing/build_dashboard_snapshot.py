@@ -364,8 +364,8 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
             "transaction_attribution_coverage": percent(attributed_transactions, commerce["transactions"]),
         },
         "comparison": {
-            "metric": "clean_sessions",
-            "definition": "GA4 sessions excluding Direct and Unknown / not set",
+            "metric": "known_channel_sessions",
+            "definition": "GA4 sessions assigned to a non-Direct, non-Unknown channel group",
             "previous": {
                 "label": "Previous week",
                 "since": previous["start_date"] if previous else None,

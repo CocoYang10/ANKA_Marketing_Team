@@ -69,7 +69,7 @@ class DashboardSnapshotTests(unittest.TestCase):
         self.assertGreater(payment["users"], 0)
         self.assertEqual(payment["status"], "available")
 
-    def test_clean_session_comparison_excludes_direct_and_unknown(self):
+    def test_known_channel_comparison_excludes_direct_and_unknown(self):
         comparison = self.snapshot["comparison"]
         excluded = {"Direct", "Unknown / not set"}
         expected = sum(
@@ -78,7 +78,8 @@ class DashboardSnapshotTests(unittest.TestCase):
             if row["channel"] not in excluded
         )
         self.assertEqual(comparison["current"]["value"], expected)
-        self.assertIn("excluding Direct", comparison["definition"])
+        self.assertEqual(comparison["metric"], "known_channel_sessions")
+        self.assertIn("non-Direct, non-Unknown", comparison["definition"])
 
 
 if __name__ == "__main__":
