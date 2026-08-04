@@ -157,6 +157,7 @@ def action_center(brief: dict | None, db_path: Path = ACTION_DB) -> dict:
 
 def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None = None) -> dict:
     current = ga4["current"]
+    previous = ga4.get("previous")
     traffic = current["traffic"]
     commerce = current["commerce"]
     funnel = current["funnel"]
@@ -167,6 +168,17 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
     facebook = meta_week["facebook"]["insights"]
     email = mailer["summary"]
     grouped_sources = aggregate_sources(traffic["sources"])
+    previous_sources = aggregate_sources(previous["traffic"]["sources"]) if previous else []
+
+    def clean_sessions(rows: list[dict]) -> int:
+        return sum(
+            int(row.get("sessions") or 0)
+            for row in rows
+            if row.get("channel") not in {"Direct", "Unknown / not set"}
+        )
+
+    current_clean_sessions = clean_sessions(grouped_sources)
+    previous_clean_sessions = clean_sessions(previous_sources)
 
     for row in grouped_sources:
         row["share"] = percent(row["sessions"], traffic["sessions"])
@@ -292,7 +304,7 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
                 "severity": "blocked",
                 "code": "PURCHASE_SOURCE_NOT_SET",
                 "message": (
-                    f"All {commerce['transactions']} transactions and ${commerce['purchase_revenue']:,.2f} "
+                    f"All {commerce['transactions']} transactions and {commerce['purchase_revenue']:,.2f} "
                     "of GA4 purchase revenue are assigned to (not set), so channel revenue attribution is unusable."
                 ),
             }
@@ -317,7 +329,8 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
         "executive_summary": {
             "decision": "Fix acquisition identity before changing channel budgets; use country and product purchase data for directional merchandising decisions in parallel.",
             "why": (
-                f"GA4 reports {commerce['transactions']} transactions and ${commerce['purchase_revenue']:,.2f} revenue, "
+                f"GA4 reports {commerce['transactions']} transactions and {commerce['purchase_revenue']:,.2f} revenue "
+                "in the GA4 property currency, "
                 "but the transactions are not connected to a usable marketing source."
             ),
             "can_do_now": [
@@ -349,6 +362,26 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
             "attributed_transactions": attributed_transactions,
             "attributed_revenue": round(attributed_revenue, 2),
             "transaction_attribution_coverage": percent(attributed_transactions, commerce["transactions"]),
+        },
+        "comparison": {
+            "metric": "clean_sessions",
+            "definition": "GA4 sessions excluding Direct and Unknown / not set",
+            "previous": {
+                "label": "Previous week",
+                "since": previous["start_date"] if previous else None,
+                "until": previous["end_date"] if previous else None,
+                "value": previous_clean_sessions if previous else None,
+            },
+            "current": {
+                "label": "Current week",
+                "since": current["start_date"],
+                "until": current["end_date"],
+                "value": current_clean_sessions,
+            },
+            "change_pct": percent(
+                current_clean_sessions - previous_clean_sessions,
+                previous_clean_sessions,
+            ) if previous else None,
         },
         "action_center": action_center(agent_brief),
         "traffic_sources": grouped_sources,
@@ -533,6 +566,11 @@ def main() -> None:
     parser.add_argument("--mailerlite", type=Path)
     parser.add_argument("--agent-brief", type=Path)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--public-demo-output",
+        type=Path,
+        help="Also write a validated aggregate fallback snapshot for the public static demo.",
+    )
     args = parser.parse_args()
 
     ga4_path = args.ga4 or latest("ga4_raw_*.json")
@@ -555,6 +593,16 @@ def main() -> None:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(snapshot, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Snapshot: {args.output}")
+    if args.public_demo_output:
+        public_demo = json.loads(json.dumps(snapshot))
+        public_demo["meta"]["snapshot_type"] = "reviewed aggregate public demo snapshot"
+        public_demo["meta"]["demo_mode"] = True
+        args.public_demo_output.parent.mkdir(parents=True, exist_ok=True)
+        args.public_demo_output.write_text(
+            json.dumps(public_demo, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        print(f"Public demo snapshot: {args.public_demo_output}")
     print(f"GA4: {ga4_path.name}; Meta: {meta_path.name}; MailerLite: {mailer_path.name}")
     print(f"Agent: {agent_brief_path.name if agent_brief_path else 'not generated'}")
 

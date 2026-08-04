@@ -69,6 +69,17 @@ class DashboardSnapshotTests(unittest.TestCase):
         self.assertGreater(payment["users"], 0)
         self.assertEqual(payment["status"], "available")
 
+    def test_clean_session_comparison_excludes_direct_and_unknown(self):
+        comparison = self.snapshot["comparison"]
+        excluded = {"Direct", "Unknown / not set"}
+        expected = sum(
+            row["sessions"]
+            for row in self.snapshot["traffic_sources"]
+            if row["channel"] not in excluded
+        )
+        self.assertEqual(comparison["current"]["value"], expected)
+        self.assertIn("excluding Direct", comparison["definition"])
+
 
 if __name__ == "__main__":
     unittest.main()

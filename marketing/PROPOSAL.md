@@ -42,6 +42,9 @@ winner, or close engineering work without human approval.
 - Instagram and MailerLite aggregate evidence; partial Facebook support.
 - Evidence-to-action rules and a persistent audited action registry.
 - A static decision workspace with desktop and mobile layouts.
+- Decision visuals for traffic mix, clean-session movement, purchase attribution
+  coverage and commerce-stage volume.
+- A reviewed aggregate fallback snapshot for the public static demo.
 - A private API boundary for dashboard reads, TikTok OAuth and action status
   transitions.
 - A weekly pipeline that refreshes evidence, proposals and the dashboard
