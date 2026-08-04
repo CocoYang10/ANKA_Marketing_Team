@@ -1,0 +1,7 @@
+.env
+.venv
+credentials
+working
+**/__pycache__
+**/*.pyc
+demo/data/marketing_snapshot.json

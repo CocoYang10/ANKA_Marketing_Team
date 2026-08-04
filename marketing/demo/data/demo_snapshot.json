@@ -1,0 +1,2652 @@
+{
+  "meta": {
+    "title": "ANKA Marketing Decision Workspace",
+    "schema_version": "2.0.0",
+    "generated_at": "2026-08-04T13:22:05.190300+00:00",
+    "period": {
+      "since": "2026-07-27",
+      "until": "2026-08-02"
+    },
+    "source_periods": {
+      "ga4": {
+        "since": "2026-07-27",
+        "until": "2026-08-02"
+      },
+      "meta": {
+        "since": "2026-07-20",
+        "until": "2026-07-26"
+      },
+      "mailerlite": {
+        "since": "2026-07-21",
+        "until": "2026-07-25"
+      }
+    },
+    "snapshot_type": "reviewed aggregate public demo snapshot",
+    "demo_mode": true
+  },
+  "executive_summary": {
+    "decision": "Fix acquisition identity before changing channel budgets; use country and product purchase data for directional merchandising decisions in parallel.",
+    "why": "GA4 reports 37 transactions and 4,059.91 revenue in the GA4 property currency, but the transactions are not connected to a usable marketing source.",
+    "can_do_now": [
+      "Monitor website, checkout, transaction and reported GA4 revenue trends.",
+      "Compare native Instagram attention and MailerLite campaign engagement.",
+      "Compare country-level sessions, transactions and reported revenue directionally.",
+      "Review purchased products and prioritize measurement fixes through the Action Center."
+    ],
+    "cannot_do_yet": [
+      "Move budget based on channel revenue, CAC or ROAS.",
+      "Know whether TikTok, Instagram, Pinterest or email caused an order.",
+      "Analyze purchaser age or interests reliably.",
+      "Measure website-to-Eventbrite registration or attendance conversion.",
+      "Calculate net revenue, refunds, margin or customer lifetime value without the order ledger."
+    ]
+  },
+  "kpis": {
+    "sessions": 10878,
+    "active_users": 7640,
+    "transactions": 37,
+    "revenue": 4059.91,
+    "revenue_per_session": 0.37,
+    "checkout_to_transaction_rate": 27.61,
+    "session_to_transaction_rate": 0.34,
+    "instagram_reach": 44125,
+    "instagram_views": 109645,
+    "email_sends": 137659,
+    "email_clicks": 857,
+    "attributed_transactions": 0,
+    "attributed_revenue": 0.0,
+    "transaction_attribution_coverage": 0.0
+  },
+  "comparison": {
+    "metric": "known_channel_sessions",
+    "definition": "GA4 sessions assigned to a non-Direct, non-Unknown channel group",
+    "previous": {
+      "label": "Previous week",
+      "since": "2026-07-20",
+      "until": "2026-07-26",
+      "value": 2719
+    },
+    "current": {
+      "label": "Current week",
+      "since": "2026-07-27",
+      "until": "2026-08-02",
+      "value": 2646
+    },
+    "change_pct": -2.68
+  },
+  "action_center": {
+    "status": "ready",
+    "summary": "Prioritize measurement reliability before channel budget optimization; run only low-risk learning work in parallel.",
+    "business_reason": "The current bottleneck is not a lack of charts. It is that engineering and marketing cannot safely act on attribution, product-funnel or revenue signals yet.",
+    "human_gate": "Vanessa reviews proposed actions before any ticket, campaign or experiment is created.",
+    "actions": [
+      {
+        "action_id": "4eed1fcaf79d",
+        "status": "PROPOSED",
+        "title": "Remove the duplicate client-side purchase signal",
+        "workstream": "measurement_reliability",
+        "priority": "P0",
+        "owner_role": "Checkout / Analytics Engineer",
+        "decision": "Prioritize this before using GA4 revenue for channel or experiment decisions.",
+        "evidence": [
+          {
+            "code": "PURCHASE_EVENT_MISMATCH",
+            "metric": "purchase events vs transactions",
+            "value": "58 vs 37",
+            "source": "GA4 Data API",
+            "period": {
+              "since": "2026-07-27",
+              "until": "2026-08-02"
+            }
+          }
+        ],
+        "confidence": "HIGH",
+        "why_it_matters": "Duplicate purchase signals can overstate conversion and revenue, which contaminates attribution, experiments and finance reconciliation.",
+        "next_steps": [
+          "Inventory every purchase tag in GTM and application code.",
+          "Disable the empty/residual browser purchase tag in a controlled release.",
+          "Keep the idempotent server-side purchase event as the canonical GA4 signal."
+        ],
+        "acceptance_criteria": [
+          "Daily purchase event count equals unique transaction ID count for 7 consecutive complete days.",
+          "No purchase row has a missing transaction ID or zero revenue.",
+          "Release date and tag change are recorded in the measurement changelog."
+        ],
+        "limitations": [
+          "Backend paid orders are still needed to prove financial completeness."
+        ],
+        "approval_required_from": "Vanessa",
+        "occurrence_count": 3,
+        "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
+        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+      },
+      {
+        "action_id": "dd4194ca1ed5",
+        "status": "PROPOSED",
+        "title": "Instrument product-detail views before optimizing the product funnel",
+        "workstream": "measurement_reliability",
+        "priority": "P0",
+        "owner_role": "Marketplace Frontend Engineer",
+        "decision": "Implement and validate view_item before reporting product-view conversion.",
+        "evidence": [
+          {
+            "code": "VIEW_ITEM_EVENT_MISSING",
+            "metric": "view_item users vs add_to_cart users",
+            "value": "0 vs 328",
+            "source": "GA4 Data API",
+            "period": {
+              "since": "2026-07-27",
+              "until": "2026-08-02"
+            }
+          }
+        ],
+        "confidence": "HIGH",
+        "why_it_matters": "Without product views, ANKA cannot separate discovery problems from product-page, pricing or merchandising problems.",
+        "next_steps": [
+          "Fire view_item once when a product detail view is rendered.",
+          "Include item_id, item_name, item_category, currency and displayed price.",
+          "QA event order and item fields in GA4 DebugView and the Data API."
+        ],
+        "acceptance_criteria": [
+          "view_item appears on tested product-detail pages with required item fields.",
+          "view_item users are non-zero and logically exceed or equal add-to-cart users.",
+          "Test orders preserve the same item_id from view through purchase."
+        ],
+        "limitations": [
+          "Product profitability remains unavailable until order and seller data are connected."
+        ],
+        "approval_required_from": "Vanessa",
+        "occurrence_count": 3,
+        "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
+        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+      },
+      {
+        "action_id": "fa63a8c4ebf2",
+        "status": "PROPOSED",
+        "title": "Create one acquisition naming contract and payment-referral audit",
+        "workstream": "attribution",
+        "priority": "P1",
+        "owner_role": "Marketing Operations + Analytics Engineer",
+        "decision": "Do not allocate channel budget from GA4 until campaign identity coverage improves.",
+        "evidence": [
+          {
+            "code": "HIGH_DIRECT_SHARE",
+            "metric": "sessions classified as Direct",
+            "value": "70.7%",
+            "source": "GA4 Data API",
+            "period": {
+              "since": "2026-07-27",
+              "until": "2026-08-02"
+            }
+          }
+        ],
+        "confidence": "HIGH",
+        "why_it_matters": "When most sessions have no attributable campaign, real channel winners are hidden and paid/email/social performance can be credited to Direct.",
+        "next_steps": [
+          "Define controlled source, medium, campaign and content values.",
+          "Audit the top active email, Meta, TikTok and partner links against the contract.",
+          "Audit payment-provider and marketplace domains for unwanted referrals."
+        ],
+        "acceptance_criteria": [
+          "At least 95% of audited active campaign links match the approved UTM contract.",
+          "Payment-provider domains are documented and handled without overwriting original acquisition.",
+          "A weekly unknown/direct share trend is reviewed for four complete weeks."
+        ],
+        "limitations": [
+          "A high Direct share can include legitimate direct visits; the agent does not assume all Direct traffic is broken."
+        ],
+        "approval_required_from": "Vanessa",
+        "occurrence_count": 3,
+        "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
+        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+      },
+      {
+        "action_id": "3b17a644d37e",
+        "status": "PROPOSED",
+        "title": "Connect the website-to-Eventbrite registration and attendance funnel",
+        "workstream": "event_measurement",
+        "priority": "P1",
+        "owner_role": "Marketing Engineer + Events Operations",
+        "decision": "Instrument one upcoming event end to end before using event traffic or city-interest polls to choose locations.",
+        "evidence": [
+          {
+            "code": "EVENTBRITE_FUNNEL_NOT_CONNECTED",
+            "metric": "measurable Eventbrite funnel stages",
+            "value": "0 of 5 stages connected",
+            "source": "ANKA integration inventory",
+            "period": {
+              "since": "2026-07-27",
+              "until": "2026-08-02"
+            }
+          }
+        ],
+        "confidence": "HIGH",
+        "why_it_matters": "Without a shared event identity, ANKA cannot tell which platform or city campaign produces registrations, attendance, or post-event commercial value.",
+        "next_steps": [
+          "Assign a stable event_id and approved UTMs to the ANKA event page and every Eventbrite link.",
+          "Track the outbound Eventbrite click with event_id before redirecting.",
+          "Pull privacy-safe event, order, registration and check-in aggregates through the backend."
+        ],
+        "acceptance_criteria": [
+          "A test journey preserves event_id and campaign identity from ANKA to Eventbrite.",
+          "Registrations, paid/free orders and check-ins load daily without attendee PII in the dashboard.",
+          "One completed event reconciles Eventbrite registrations and check-ins to the reported dashboard totals."
+        ],
+        "limitations": [
+          "Post-event marketplace lift requires a separate consented, privacy-safe customer or campaign join."
+        ],
+        "approval_required_from": "Vanessa",
+        "occurrence_count": 1,
+        "first_seen_at": "2026-08-03T13:55:49.365623+00:00",
+        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+      },
+      {
+        "action_id": "0f3644830472",
+        "status": "PROPOSED",
+        "title": "Test the post-open email proposition in French",
+        "workstream": "growth_experiment",
+        "priority": "P1",
+        "owner_role": "CRM / Lifecycle Marketing",
+        "decision": "Prepare a same-segment CTA/content test; do not interpret opens alone as commercial success.",
+        "evidence": [
+          {
+            "code": "OPEN_CLICK_GAP",
+            "metric": "same-segment high-open campaign",
+            "value": "Gift card French: 40.40% open, 0.12% click, 8,490 sent",
+            "source": "MailerLite API",
+            "period": {
+              "since": "2026-07-21",
+              "until": "2026-07-25"
+            }
+          },
+          {
+            "code": "CLICK_BENCHMARK",
+            "metric": "best same-segment campaign click rate",
+            "value": "New in Week 30 French: 0.65%, 8,506 sent",
+            "source": "MailerLite API",
+            "period": {
+              "since": "2026-07-21",
+              "until": "2026-07-25"
+            }
+          }
+        ],
+        "confidence": "MEDIUM",
+        "why_it_matters": "A strong subject-line response with weaker clicks suggests a possible message, offer or CTA handoff problem worth testing.",
+        "next_steps": [
+          "Use the French segment and hold audience/timing constant.",
+          "Test one CTA or offer-framing change against the current email.",
+          "Pre-register the primary metric as unique clicks per delivered email."
+        ],
+        "acceptance_criteria": [
+          "The test changes one main variable and uses a pre-defined sample split.",
+          "Unique click rate and unsubscribe rate are reported by variant.",
+          "No revenue winner is declared until campaign-to-order attribution exists."
+        ],
+        "limitations": [
+          "Campaigns differ by audience and creative, so the current comparison is hypothesis-generating, not causal."
+        ],
+        "approval_required_from": "Vanessa",
+        "occurrence_count": 3,
+        "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
+        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+      },
+      {
+        "action_id": "211d5d26fe98",
+        "status": "PROPOSED",
+        "title": "Deconstruct the strongest Instagram post into a repeatable content hypothesis",
+        "workstream": "content_learning",
+        "priority": "P2",
+        "owner_role": "Social Content Lead",
+        "decision": "Create two follow-up posts that reuse one identifiable creative mechanism, not the full post.",
+        "evidence": [
+          {
+            "code": "INSTAGRAM_REACH_OUTLIER",
+            "metric": "top post reach vs median post reach",
+            "value": "10,268 vs 4,362",
+            "source": "Meta Graph API",
+            "period": {
+              "since": "2026-07-20",
+              "until": "2026-07-26"
+            }
+          }
+        ],
+        "confidence": "MEDIUM",
+        "why_it_matters": "A materially stronger post is useful as a hypothesis source, but repeating it without isolating the mechanism will not create transferable learning.",
+        "next_steps": [
+          "Code the post for hook, format, subject, creator presence and call to action.",
+          "Reuse one mechanism in two posts while varying the creative execution.",
+          "Add campaign-tagged link or profile-action measurement where possible."
+        ],
+        "acceptance_criteria": [
+          "The hypothesized mechanism is written before publishing follow-ups.",
+          "Follow-up reach and profile intent are compared with the account median.",
+          "The result is recorded as supported, unsupported or inconclusive."
+        ],
+        "limitations": [
+          "Post-level engagement fields are currently incomplete, and reach alone is not revenue."
+        ],
+        "approval_required_from": "Vanessa",
+        "occurrence_count": 2,
+        "first_seen_at": "2026-08-03T13:47:29.509857+00:00",
+        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+      }
+    ],
+    "not_authorized": [
+      "Change campaign budgets",
+      "Publish content",
+      "Declare an A/B-test winner",
+      "Close an engineering issue",
+      "Expose customer or credential data"
+    ]
+  },
+  "traffic_sources": [
+    {
+      "channel": "Direct",
+      "sessions": 7687,
+      "active_users": 5832,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 70.67
+    },
+    {
+      "channel": "Organic search",
+      "sessions": 872,
+      "active_users": 433,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 8.02
+    },
+    {
+      "channel": "Instagram",
+      "sessions": 669,
+      "active_users": 546,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 6.15
+    },
+    {
+      "channel": "Unknown / not set",
+      "sessions": 545,
+      "active_users": 405,
+      "transactions": 37,
+      "revenue": 4059.91,
+      "session_conversion_rate": 6.79,
+      "revenue_per_session": 7.45,
+      "share": 5.01
+    },
+    {
+      "channel": "Email",
+      "sessions": 366,
+      "active_users": 101,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 3.36
+    },
+    {
+      "channel": "Referral",
+      "sessions": 284,
+      "active_users": 66,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 2.61
+    },
+    {
+      "channel": "Other",
+      "sessions": 259,
+      "active_users": 138,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 2.38
+    },
+    {
+      "channel": "Pinterest",
+      "sessions": 172,
+      "active_users": 107,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 1.58
+    },
+    {
+      "channel": "Facebook",
+      "sessions": 20,
+      "active_users": 10,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 0.18
+    },
+    {
+      "channel": "TikTok",
+      "sessions": 4,
+      "active_users": 2,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 0.04
+    }
+  ],
+  "source_detail": [
+    {
+      "source_medium": "(direct) / (none)",
+      "sessions": 7687,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "google / organic",
+      "sessions": 849,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "ig / social",
+      "sessions": 619,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "(not set)",
+      "sessions": 537,
+      "transactions": 37,
+      "revenue": 4059.91
+    },
+    {
+      "source_medium": "afrikrea / mail",
+      "sessions": 351,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "Pinterest / organic",
+      "sessions": 166,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "chatgpt.com / ai-assistant",
+      "sessions": 136,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "afrikrea.com / referral",
+      "sessions": 102,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "ANKA / website",
+      "sessions": 101,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "saas.veriff.com / referral",
+      "sessions": 63,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "checkout.square.site / referral",
+      "sessions": 52,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "IGShopping / Social",
+      "sessions": 30,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "linktr.ee / referral",
+      "sessions": 26,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "bing / organic",
+      "sessions": 23,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "l.instagram.com / referral",
+      "sessions": 19,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "checkout.flutterwave.com / referral",
+      "sessions": 16,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "checkout.paystack.com / referral",
+      "sessions": 8,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "facebook.com / referral",
+      "sessions": 8,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "marketplace.anka.africa / referral",
+      "sessions": 8,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "newsletter / email",
+      "sessions": 7,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "ecosia.org / organic",
+      "sessions": 5,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "m.facebook.com / referral",
+      "sessions": 5,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "mail02.orange.fr / referral",
+      "sessions": 5,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "pinterest.com / referral",
+      "sessions": 5,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "copilot.com / (not set)",
+      "sessions": 4,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "snapchat / social",
+      "sessions": 4,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "tiktok.com / referral",
+      "sessions": 4,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "yahoo / organic",
+      "sessions": 4,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "(not set) / social",
+      "sessions": 3,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "l.facebook.com / referral",
+      "sessions": 3,
+      "transactions": 0,
+      "revenue": 0.0
+    }
+  ],
+  "channels": [
+    {
+      "channel": "Instagram",
+      "native": {
+        "reach": 44125,
+        "views": 109645,
+        "profile_views": 1653,
+        "interactions": 4023
+      },
+      "website": {
+        "sessions": 669,
+        "transactions": 0,
+        "revenue": 0.0,
+        "session_conversion_rate": 0.0
+      },
+      "native_status": "connected",
+      "revenue_attribution_status": "unreliable",
+      "blocker": "Purchases are not retaining acquisition source."
+    },
+    {
+      "channel": "TikTok",
+      "native": null,
+      "website": {
+        "sessions": 4,
+        "transactions": 0,
+        "revenue": 0.0,
+        "session_conversion_rate": 0.0
+      },
+      "native_status": "not_connected",
+      "revenue_attribution_status": "unreliable",
+      "blocker": "Complete TikTok Business OAuth and confirm account scope."
+    },
+    {
+      "channel": "Facebook",
+      "native": {
+        "followers": 262246
+      },
+      "website": {
+        "sessions": 20,
+        "transactions": 0,
+        "revenue": 0.0,
+        "session_conversion_rate": 0.0
+      },
+      "native_status": "partial",
+      "revenue_attribution_status": "unreliable",
+      "blocker": "Meta App Review blocks Page insight metrics; follower context only."
+    },
+    {
+      "channel": "Pinterest",
+      "native": null,
+      "website": {
+        "sessions": 172,
+        "transactions": 0,
+        "revenue": 0.0,
+        "session_conversion_rate": 0.0
+      },
+      "native_status": "ga4_traffic_only",
+      "revenue_attribution_status": "unreliable",
+      "blocker": "Pinterest native analytics/API is not connected; GA4 sessions are available."
+    },
+    {
+      "channel": "Email",
+      "native": {
+        "sent": 137659,
+        "opens": 59402,
+        "clicks": 857
+      },
+      "website": {
+        "sessions": 366,
+        "transactions": 0,
+        "revenue": 0.0,
+        "session_conversion_rate": 0.0
+      },
+      "native_status": "connected",
+      "revenue_attribution_status": "unreliable",
+      "blocker": "Campaign clicks are not connected to orders."
+    }
+  ],
+  "funnel": [
+    {
+      "step": "Sessions",
+      "users": 10878,
+      "status": "available"
+    },
+    {
+      "step": "Product view",
+      "users": 0,
+      "status": "missing"
+    },
+    {
+      "step": "Add to cart",
+      "users": 328,
+      "status": "available"
+    },
+    {
+      "step": "Begin checkout",
+      "users": 77,
+      "status": "available"
+    },
+    {
+      "step": "Payment info",
+      "users": 51,
+      "status": "available"
+    },
+    {
+      "step": "Purchase users",
+      "users": 54,
+      "status": "review"
+    },
+    {
+      "step": "Transactions",
+      "users": 37,
+      "status": "available"
+    }
+  ],
+  "audience": {
+    "country": {
+      "status": "available",
+      "reason": null,
+      "rows": [
+        {
+          "segment": "France",
+          "active_users": 2044,
+          "sessions": 3185,
+          "transactions": 23,
+          "purchase_revenue": 2304.18,
+          "session_conversion_rate": 0.72
+        },
+        {
+          "segment": "United States",
+          "active_users": 1094,
+          "sessions": 1515,
+          "transactions": 1,
+          "purchase_revenue": 126.03,
+          "session_conversion_rate": 0.07
+        },
+        {
+          "segment": "Nigeria",
+          "active_users": 534,
+          "sessions": 1412,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Côte d’Ivoire",
+          "active_users": 396,
+          "sessions": 530,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Cameroon",
+          "active_users": 290,
+          "sessions": 381,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "United Kingdom",
+          "active_users": 238,
+          "sessions": 339,
+          "transactions": 2,
+          "purchase_revenue": 265.6,
+          "session_conversion_rate": 0.59
+        },
+        {
+          "segment": "Canada",
+          "active_users": 209,
+          "sessions": 277,
+          "transactions": 1,
+          "purchase_revenue": 64.64,
+          "session_conversion_rate": 0.36
+        },
+        {
+          "segment": "Senegal",
+          "active_users": 169,
+          "sessions": 220,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Benin",
+          "active_users": 159,
+          "sessions": 204,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Kenya",
+          "active_users": 155,
+          "sessions": 266,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Belgium",
+          "active_users": 140,
+          "sessions": 191,
+          "transactions": 3,
+          "purchase_revenue": 460.21,
+          "session_conversion_rate": 1.57
+        },
+        {
+          "segment": "Germany",
+          "active_users": 135,
+          "sessions": 176,
+          "transactions": 1,
+          "purchase_revenue": 83.0,
+          "session_conversion_rate": 0.57
+        },
+        {
+          "segment": "South Africa",
+          "active_users": 120,
+          "sessions": 146,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Ghana",
+          "active_users": 110,
+          "sessions": 145,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Netherlands",
+          "active_users": 98,
+          "sessions": 115,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Togo",
+          "active_users": 87,
+          "sessions": 112,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Congo - Kinshasa",
+          "active_users": 80,
+          "sessions": 89,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Burkina Faso",
+          "active_users": 58,
+          "sessions": 82,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Guadeloupe",
+          "active_users": 55,
+          "sessions": 66,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Italy",
+          "active_users": 55,
+          "sessions": 63,
+          "transactions": 1,
+          "purchase_revenue": 46.66,
+          "session_conversion_rate": 1.59
+        },
+        {
+          "segment": "Martinique",
+          "active_users": 53,
+          "sessions": 71,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Madagascar",
+          "active_users": 52,
+          "sessions": 66,
+          "transactions": 1,
+          "purchase_revenue": 295.89,
+          "session_conversion_rate": 1.52
+        },
+        {
+          "segment": "Switzerland",
+          "active_users": 52,
+          "sessions": 74,
+          "transactions": 1,
+          "purchase_revenue": 53.83,
+          "session_conversion_rate": 1.35
+        },
+        {
+          "segment": "Congo - Brazzaville",
+          "active_users": 48,
+          "sessions": 63,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Réunion",
+          "active_users": 46,
+          "sessions": 52,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Uganda",
+          "active_users": 43,
+          "sessions": 53,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Australia",
+          "active_users": 42,
+          "sessions": 49,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Gabon",
+          "active_users": 40,
+          "sessions": 44,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Morocco",
+          "active_users": 39,
+          "sessions": 52,
+          "transactions": 1,
+          "purchase_revenue": 186.5,
+          "session_conversion_rate": 1.92
+        },
+        {
+          "segment": "Spain",
+          "active_users": 35,
+          "sessions": 41,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Mali",
+          "active_users": 29,
+          "sessions": 39,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sweden",
+          "active_users": 27,
+          "sessions": 34,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Tanzania",
+          "active_users": 25,
+          "sessions": 27,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Trinidad & Tobago",
+          "active_users": 23,
+          "sessions": 27,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "French Guiana",
+          "active_users": 22,
+          "sessions": 27,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Zambia",
+          "active_users": 22,
+          "sessions": 37,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Portugal",
+          "active_users": 21,
+          "sessions": 24,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Niger",
+          "active_users": 20,
+          "sessions": 21,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "India",
+          "active_users": 19,
+          "sessions": 28,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Ireland",
+          "active_users": 19,
+          "sessions": 21,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Brazil",
+          "active_users": 16,
+          "sessions": 19,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Indonesia",
+          "active_users": 14,
+          "sessions": 20,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Luxembourg",
+          "active_users": 14,
+          "sessions": 17,
+          "transactions": 1,
+          "purchase_revenue": 84.42,
+          "session_conversion_rate": 5.88
+        },
+        {
+          "segment": "Chad",
+          "active_users": 13,
+          "sessions": 15,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Poland",
+          "active_users": 13,
+          "sessions": 15,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Romania",
+          "active_users": 13,
+          "sessions": 14,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Tunisia",
+          "active_users": 13,
+          "sessions": 13,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Türkiye",
+          "active_users": 13,
+          "sessions": 18,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Austria",
+          "active_users": 12,
+          "sessions": 16,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Guinea",
+          "active_users": 12,
+          "sessions": 14,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Zimbabwe",
+          "active_users": 12,
+          "sessions": 16,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Mayotte",
+          "active_users": 11,
+          "sessions": 12,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Norway",
+          "active_users": 11,
+          "sessions": 13,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Finland",
+          "active_users": 10,
+          "sessions": 11,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Japan",
+          "active_users": 10,
+          "sessions": 17,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Greece",
+          "active_users": 9,
+          "sessions": 17,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Malawi",
+          "active_users": 9,
+          "sessions": 13,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Rwanda",
+          "active_users": 9,
+          "sessions": 11,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Algeria",
+          "active_users": 8,
+          "sessions": 9,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Central African Republic",
+          "active_users": 8,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Guyana",
+          "active_users": 8,
+          "sessions": 14,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Hungary",
+          "active_users": 8,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Jamaica",
+          "active_users": 8,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Namibia",
+          "active_users": 8,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "United Arab Emirates",
+          "active_users": 8,
+          "sessions": 12,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Mauritius",
+          "active_users": 7,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Pakistan",
+          "active_users": 7,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Angola",
+          "active_users": 6,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Barbados",
+          "active_users": 6,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Bulgaria",
+          "active_users": 6,
+          "sessions": 9,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "China",
+          "active_users": 6,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Mauritania",
+          "active_users": 6,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Qatar",
+          "active_users": 6,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sierra Leone",
+          "active_users": 6,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Azerbaijan",
+          "active_users": 5,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Ethiopia",
+          "active_users": 5,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Haiti",
+          "active_users": 5,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Mexico",
+          "active_users": 5,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Mozambique",
+          "active_users": 5,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Russia",
+          "active_users": 5,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Seychelles",
+          "active_users": 5,
+          "sessions": 11,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "South Korea",
+          "active_users": 5,
+          "sessions": 5,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Botswana",
+          "active_users": 4,
+          "sessions": 5,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Egypt",
+          "active_users": 4,
+          "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Equatorial Guinea",
+          "active_users": 4,
+          "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Hong Kong",
+          "active_users": 4,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Israel",
+          "active_users": 4,
+          "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lebanon",
+          "active_users": 4,
+          "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Liberia",
+          "active_users": 4,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Malaysia",
+          "active_users": 4,
+          "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "New Zealand",
+          "active_users": 4,
+          "sessions": 5,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Saudi Arabia",
+          "active_users": 4,
+          "sessions": 5,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Singapore",
+          "active_users": 4,
+          "sessions": 7,
+          "transactions": 1,
+          "purchase_revenue": 88.97,
+          "session_conversion_rate": 14.29
+        },
+        {
+          "segment": "Slovakia",
+          "active_users": 4,
+          "sessions": 5,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "St. Martin",
+          "active_users": 4,
+          "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Syria",
+          "active_users": 4,
+          "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "(not set)",
+          "active_users": 3,
+          "sessions": 3,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Argentina",
+          "active_users": 3,
+          "sessions": 10,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Colombia",
+          "active_users": 3,
+          "sessions": 3,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Comoros",
+          "active_users": 3,
+          "sessions": 3,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        }
+      ]
+    },
+    "age": {
+      "status": "traffic_only",
+      "reason": "Traffic demographics are available, but all purchases are in the unknown bucket.",
+      "rows": [
+        {
+          "segment": "unknown",
+          "active_users": 5509,
+          "sessions": 8056,
+          "transactions": 37,
+          "purchase_revenue": 4059.91,
+          "session_conversion_rate": 0.46
+        },
+        {
+          "segment": "25-34",
+          "active_users": 584,
+          "sessions": 1059,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "35-44",
+          "active_users": 407,
+          "sessions": 546,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "18-24",
+          "active_users": 297,
+          "sessions": 525,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "45-54",
+          "active_users": 272,
+          "sessions": 337,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "55-64",
+          "active_users": 166,
+          "sessions": 218,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "65+",
+          "active_users": 117,
+          "sessions": 140,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        }
+      ]
+    },
+    "interests": {
+      "status": "traffic_only",
+      "reason": "Traffic demographics are available, but all purchases are in the unknown bucket.",
+      "rows": [
+        {
+          "segment": "News & Politics/Avid News Readers",
+          "active_users": 198,
+          "sessions": 296,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sports & Fitness/Sports Fans/Soccer Fans",
+          "active_users": 171,
+          "sessions": 227,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "News & Politics/Avid News Readers/Entertainment News Enthusiasts",
+          "active_users": 123,
+          "sessions": 181,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Travel/Travel Buffs",
+          "active_users": 118,
+          "sessions": 157,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Shoppers/Shopping Enthusiasts",
+          "active_users": 112,
+          "sessions": 165,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Technology/Technophiles",
+          "active_users": 97,
+          "sessions": 152,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Food & Dining/Cooking Enthusiasts/Aspiring Chefs",
+          "active_users": 89,
+          "sessions": 124,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Home & Garden/Home Decor Enthusiasts",
+          "active_users": 89,
+          "sessions": 124,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Movie Lovers",
+          "active_users": 84,
+          "sessions": 119,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Shutterbugs",
+          "active_users": 79,
+          "sessions": 117,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Banking & Finance/Avid Investors",
+          "active_users": 75,
+          "sessions": 115,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/TV Lovers",
+          "active_users": 74,
+          "sessions": 99,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Music Lovers",
+          "active_users": 73,
+          "sessions": 99,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "News & Politics/Avid News Readers/Avid Local News Readers",
+          "active_users": 71,
+          "sessions": 89,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sports & Fitness/Health & Fitness Buffs",
+          "active_users": 65,
+          "sessions": 83,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Technology/Social Media Enthusiasts",
+          "active_users": 57,
+          "sessions": 91,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Book Lovers",
+          "active_users": 55,
+          "sessions": 82,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Music Lovers/Pop Music Fans",
+          "active_users": 54,
+          "sessions": 77,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Technology/Mobile Enthusiasts",
+          "active_users": 54,
+          "sessions": 88,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Vehicles & Transportation/Auto Enthusiasts",
+          "active_users": 53,
+          "sessions": 62,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Outdoor Enthusiasts",
+          "active_users": 52,
+          "sessions": 62,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Light TV Viewers",
+          "active_users": 52,
+          "sessions": 59,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sports & Fitness/Sports Fans",
+          "active_users": 52,
+          "sessions": 82,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/TV Lovers/TV Drama Fans",
+          "active_users": 50,
+          "sessions": 66,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Travel/Travel Buffs/Beachbound Travelers",
+          "active_users": 50,
+          "sessions": 63,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Business Professionals",
+          "active_users": 43,
+          "sessions": 97,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Frequently Attends Live Events",
+          "active_users": 43,
+          "sessions": 65,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "News & Politics/Avid News Readers/Avid Business News Readers",
+          "active_users": 41,
+          "sessions": 62,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Family-Focused",
+          "active_users": 40,
+          "sessions": 45,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Fashionistas",
+          "active_users": 39,
+          "sessions": 60,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Shoppers/Bargain Hunters",
+          "active_users": 38,
+          "sessions": 50,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Comics & Animation Fans",
+          "active_users": 37,
+          "sessions": 56,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Home & Garden/Do-It-Yourselfers",
+          "active_users": 34,
+          "sessions": 53,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Shoppers/Shoppers by Store Type/Department Store Shoppers",
+          "active_users": 33,
+          "sessions": 52,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Beauty & Wellness/Beauty Mavens",
+          "active_users": 32,
+          "sessions": 52,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Gamers/Casual & Social Gamers",
+          "active_users": 31,
+          "sessions": 64,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Gamers/Hardcore Gamers",
+          "active_users": 31,
+          "sessions": 41,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "News & Politics/Avid News Readers/Avid Political News Readers",
+          "active_users": 31,
+          "sessions": 37,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Green Living Enthusiasts",
+          "active_users": 29,
+          "sessions": 51,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Pet Lovers",
+          "active_users": 28,
+          "sessions": 29,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/TV Lovers/Game, Reality & Talk Show Fans",
+          "active_users": 28,
+          "sessions": 45,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Shoppers/Luxury Shoppers",
+          "active_users": 28,
+          "sessions": 55,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Shoppers/Value Shoppers",
+          "active_users": 28,
+          "sessions": 45,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Nightlife Enthusiasts",
+          "active_users": 25,
+          "sessions": 36,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Music Lovers/World Music Fans",
+          "active_users": 25,
+          "sessions": 46,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Gamers",
+          "active_users": 24,
+          "sessions": 30,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Food & Dining/Cooking Enthusiasts/30 Minute Chefs",
+          "active_users": 22,
+          "sessions": 22,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Food & Dining/Foodies",
+          "active_users": 22,
+          "sessions": 35,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Art & Theater Aficionados",
+          "active_users": 21,
+          "sessions": 21,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Beauty & Wellness/Frequently Visits Salons",
+          "active_users": 20,
+          "sessions": 27,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Travel/Travel Buffs/Luxury Travelers",
+          "active_users": 20,
+          "sessions": 25,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Movie Lovers/Romance & Drama Movie Fans",
+          "active_users": 19,
+          "sessions": 22,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Music Lovers/Rap & Hip Hop Fans",
+          "active_users": 19,
+          "sessions": 28,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Food & Dining/Frequently Dines Out/Diners by Meal/Frequently Eats Dinner Out",
+          "active_users": 18,
+          "sessions": 29,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Music Lovers/Rock Music Fans",
+          "active_users": 18,
+          "sessions": 28,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Food & Dining/Cooking Enthusiasts",
+          "active_users": 17,
+          "sessions": 18,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Movie Lovers/Sci-Fi & Fantasy Movie Fans",
+          "active_users": 17,
+          "sessions": 17,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Food & Dining/Frequently Dines Out/Diners by Meal/Frequently Eats Lunch Out",
+          "active_users": 16,
+          "sessions": 33,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Pet Lovers/Dog Lovers",
+          "active_users": 15,
+          "sessions": 15,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Movie Lovers/Comedy Movie Fans",
+          "active_users": 15,
+          "sessions": 24,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Travel/Travel Buffs/Family Vacationers",
+          "active_users": 14,
+          "sessions": 14,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Movie Lovers/Action & Adventure Movie Fans",
+          "active_users": 13,
+          "sessions": 14,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Movie Lovers/Family Movie Fans",
+          "active_users": 13,
+          "sessions": 17,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Travel/Travel Buffs/Snowbound Travelers",
+          "active_users": 13,
+          "sessions": 19,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sports & Fitness/Sports Fans/Racquetball Enthusiasts",
+          "active_users": 12,
+          "sessions": 33,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "News & Politics/Avid News Readers/Women's Media Fans",
+          "active_users": 11,
+          "sessions": 25,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sports & Fitness/Sports Fans/Tennis Enthusiasts",
+          "active_users": 11,
+          "sessions": 31,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Thrill Seekers",
+          "active_users": 10,
+          "sessions": 11,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Gamers/Roleplaying Game Fans",
+          "active_users": 10,
+          "sessions": 13,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sports & Fitness/Sports Fans/Basketball Fans",
+          "active_users": 10,
+          "sessions": 12,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        }
+      ]
+    },
+    "buyer_identity_warning": "Country has purchase signal; age and interest purchases are currently all unknown."
+  },
+  "products": {
+    "status": "purchase_only",
+    "reason": "Purchased-item revenue is available, but view_item is missing and backend margin/refund data is not connected.",
+    "top_items": [
+      {
+        "item_id": "BNPKCPD",
+        "item_name": "Vangovango ordinary mixed man / woman",
+        "items_purchased": 1,
+        "item_revenue": 284.51
+      },
+      {
+        "item_id": "7AS2ID5",
+        "item_name": "Men's Yoruba Traditional Ensemble — Black &amp; Sky Blue",
+        "items_purchased": 1,
+        "item_revenue": 279.92
+      },
+      {
+        "item_id": "C353IT5",
+        "item_name": "Men Ankara Kaftan &amp; Wide-Leg Trouser Two-Piece ​Set for Owanbe Parties etc",
+        "items_purchased": 1,
+        "item_revenue": 174.94
+      },
+      {
+        "item_id": "TJ7RJN1",
+        "item_name": "NANYA STRAIGHT SET — BURNT ORANGE",
+        "items_purchased": 1,
+        "item_revenue": 151.36
+      },
+      {
+        "item_id": "XBKTM1Y",
+        "item_name": "CHIZI AFRICAN PRINT MIDI DRESS- B/W",
+        "items_purchased": 1,
+        "item_revenue": 149.55
+      },
+      {
+        "item_id": "MVRR2TN",
+        "item_name": "Hawau Blouse and Skirt Set",
+        "items_purchased": 1,
+        "item_revenue": 140.02
+      },
+      {
+        "item_id": "6XRTFNY",
+        "item_name": "Women’s African Batik Fringe Kaftan Dress",
+        "items_purchased": 1,
+        "item_revenue": 139.82
+      },
+      {
+        "item_id": "UIA7WE9",
+        "item_name": "Collier tissu traditionnel NDOP et argent 925",
+        "items_purchased": 1,
+        "item_revenue": 138.18
+      },
+      {
+        "item_id": "2MBX5Q3",
+        "item_name": "YADA  AFRICAN PRINT PANTS SET",
+        "items_purchased": 1,
+        "item_revenue": 134.83
+      },
+      {
+        "item_id": "8ZL4DF9",
+        "item_name": "Men's Luxury Kaftan Set – Sky Blue",
+        "items_purchased": 1,
+        "item_revenue": 130.45
+      },
+      {
+        "item_id": "IZ94RF9",
+        "item_name": "African costume",
+        "items_purchased": 1,
+        "item_revenue": 111.69
+      },
+      {
+        "item_id": "YZ1MC31",
+        "item_name": "Robe BOGO 2 EN 1",
+        "items_purchased": 1,
+        "item_revenue": 95.6
+      }
+    ],
+    "not_yet_measurable": [
+      "product view-to-cart rate",
+      "product view-to-purchase rate",
+      "product margin and return rate",
+      "frequently purchased-together baskets",
+      "coupon incrementality"
+    ]
+  },
+  "events": {
+    "status": "not_connected",
+    "eventbrite_referral_sessions": 0,
+    "funnel": [
+      {
+        "step": "Website event-page visitors",
+        "value": null,
+        "status": "needs tagged event page"
+      },
+      {
+        "step": "Eventbrite outbound clicks",
+        "value": null,
+        "status": "needs select_content / click event"
+      },
+      {
+        "step": "Eventbrite registrations",
+        "value": null,
+        "status": "needs Eventbrite API or webhook"
+      },
+      {
+        "step": "Paid / free orders",
+        "value": null,
+        "status": "needs Eventbrite order data"
+      },
+      {
+        "step": "Attendees checked in",
+        "value": null,
+        "status": "needs attendee/check-in access"
+      }
+    ],
+    "next_build": [
+      "Give every event and outbound Eventbrite link a stable event_id plus UTMs.",
+      "Connect Eventbrite private token and organization/event IDs on the backend.",
+      "Join click, registration and attendance on event_id; do not expose attendee PII."
+    ]
+  },
+  "email_campaigns": [
+    {
+      "name": "Office style Week 30  North America",
+      "segment": "North America",
+      "sent": 16353,
+      "opens": 7020,
+      "clicks": 130,
+      "open_rate": 42.93,
+      "click_rate": 0.79
+    },
+    {
+      "name": "Office style Week 30  Europe & Africa",
+      "segment": "Europe & Africa",
+      "sent": 9388,
+      "opens": 3832,
+      "clicks": 43,
+      "open_rate": 40.82,
+      "click_rate": 0.46
+    },
+    {
+      "name": "Office style Week 30  Australia",
+      "segment": "Australia",
+      "sent": 169,
+      "opens": 65,
+      "clicks": 1,
+      "open_rate": 38.46,
+      "click_rate": 0.59
+    },
+    {
+      "name": "Office style Week 30  French",
+      "segment": "French",
+      "sent": 8467,
+      "opens": 3312,
+      "clicks": 45,
+      "open_rate": 39.12,
+      "click_rate": 0.53
+    },
+    {
+      "name": "Office style Week 30 Latin America",
+      "segment": "Latin America",
+      "sent": 227,
+      "opens": 96,
+      "clicks": 1,
+      "open_rate": 42.29,
+      "click_rate": 0.44
+    },
+    {
+      "name": "Queen energy Week 30  North America",
+      "segment": "North America",
+      "sent": 16379,
+      "opens": 7066,
+      "clicks": 169,
+      "open_rate": 43.14,
+      "click_rate": 1.03
+    },
+    {
+      "name": "Queen energy Week 30  Europe & Africa",
+      "segment": "Europe & Africa",
+      "sent": 9408,
+      "opens": 3960,
+      "clicks": 59,
+      "open_rate": 42.09,
+      "click_rate": 0.63
+    },
+    {
+      "name": "Gift card French",
+      "segment": "French",
+      "sent": 8490,
+      "opens": 3430,
+      "clicks": 10,
+      "open_rate": 40.4,
+      "click_rate": 0.12
+    },
+    {
+      "name": "Queen energy Week 30  French",
+      "segment": "French",
+      "sent": 8491,
+      "opens": 3263,
+      "clicks": 35,
+      "open_rate": 38.43,
+      "click_rate": 0.41
+    },
+    {
+      "name": "Queen energy Week 30 Latin America",
+      "segment": "Latin America",
+      "sent": 229,
+      "opens": 103,
+      "clicks": 2,
+      "open_rate": 44.98,
+      "click_rate": 0.87
+    },
+    {
+      "name": "Queen energy Week 30 Australia",
+      "segment": "Australia",
+      "sent": 170,
+      "opens": 63,
+      "clicks": 1,
+      "open_rate": 37.06,
+      "click_rate": 0.59
+    },
+    {
+      "name": "Gift card English",
+      "segment": "Other",
+      "sent": 25145,
+      "opens": 11851,
+      "clicks": 90,
+      "open_rate": 47.13,
+      "click_rate": 0.36
+    },
+    {
+      "name": "New in Week 30 North America",
+      "segment": "North America",
+      "sent": 16407,
+      "opens": 7433,
+      "clicks": 150,
+      "open_rate": 45.3,
+      "click_rate": 0.91
+    },
+    {
+      "name": "New in Week 30  Europe & Africa",
+      "segment": "Europe & Africa",
+      "sent": 9427,
+      "opens": 4197,
+      "clicks": 64,
+      "open_rate": 44.52,
+      "click_rate": 0.68
+    },
+    {
+      "name": "New in Week 30 French",
+      "segment": "French",
+      "sent": 8506,
+      "opens": 3528,
+      "clicks": 55,
+      "open_rate": 41.48,
+      "click_rate": 0.65
+    },
+    {
+      "name": "New in  Week 30 Latin America",
+      "segment": "Latin America",
+      "sent": 231,
+      "opens": 116,
+      "clicks": 1,
+      "open_rate": 50.22,
+      "click_rate": 0.43
+    },
+    {
+      "name": "New in Week 30 Australia",
+      "segment": "Australia",
+      "sent": 172,
+      "opens": 67,
+      "clicks": 1,
+      "open_rate": 38.95,
+      "click_rate": 0.58
+    }
+  ],
+  "quality": {
+    "overall": "BLOCKED",
+    "direct_share": 0.7067,
+    "purchase_events": 58,
+    "transactions": 37,
+    "transaction_id_audit": {
+      "unique_transaction_ids": 37,
+      "audited_transactions": 37,
+      "audited_purchase_revenue": 4059.91,
+      "missing_transaction_id_rows": 0,
+      "zero_revenue_rows": 0,
+      "duplicate_transaction_id_rows": 0
+    },
+    "issues": [
+      {
+        "severity": "review",
+        "code": "HIGH_DIRECT_SHARE",
+        "message": "Direct accounts for 70.7% of sessions."
+      },
+      {
+        "severity": "review",
+        "code": "HIGH_NOT_SET_SHARE",
+        "message": "(not set) accounts for 5.0% of sessions."
+      },
+      {
+        "severity": "review",
+        "code": "VIEW_ITEM_EVENT_MISSING",
+        "message": "Add-to-cart users exist but view_item is zero; the top of the product funnel is not measurable."
+      },
+      {
+        "severity": "review",
+        "code": "PURCHASE_EVENT_MISMATCH",
+        "message": "GA4 recorded 58 purchase events but 37 transactions; investigate the residual client-side/GTM purchase tag."
+      },
+      {
+        "severity": "blocked",
+        "code": "PURCHASE_SOURCE_NOT_SET",
+        "message": "All 37 transactions and 4,059.91 of GA4 purchase revenue are assigned to (not set), so channel revenue attribution is unusable."
+      }
+    ],
+    "reconciliation_checks": [
+      {
+        "check": "Source sessions reconcile to GA4 total",
+        "status": "pass",
+        "evidence": "10,878 vs 10,878"
+      },
+      {
+        "check": "Source transactions reconcile to GA4 total",
+        "status": "pass",
+        "evidence": "37 vs 37"
+      },
+      {
+        "check": "Transaction IDs are usable at transaction grain",
+        "status": "pass",
+        "evidence": "37 unique IDs / 37 transactions"
+      },
+      {
+        "check": "Country purchases reconcile",
+        "status": "pass",
+        "evidence": "37 transactions; 4059.93 vs 4059.91 revenue"
+      },
+      {
+        "check": "Known-age purchaser coverage",
+        "status": "fail",
+        "evidence": "0 of 37 transactions have a known age bucket"
+      },
+      {
+        "check": "Interest purchaser coverage",
+        "status": "fail",
+        "evidence": "0 of 37 transactions appear in interest rows"
+      },
+      {
+        "check": "Cross-source reporting periods align",
+        "status": "fail",
+        "evidence": "GA4 2026-07-27–2026-08-02; Meta 2026-07-20–2026-07-26"
+      }
+    ],
+    "decision_rules": {
+      "safe_now": [
+        "Monitor sessions, checkout, transactions and reported GA4 revenue.",
+        "Use country purchase and purchased-item rankings directionally.",
+        "Compare Instagram and email attention/engagement within their own platform definitions."
+      ],
+      "not_safe_yet": [
+        "Channel ROAS, CAC or revenue contribution while purchases are (not set).",
+        "Net revenue, refunds, margin or LTV without the backend order ledger.",
+        "Product-view conversion while view_item is missing.",
+        "Payment-step abandonment while add_payment_info is missing.",
+        "Causal A/B-test conclusions without assignment and exposure data."
+      ]
+    }
+  },
+  "data_sources": [
+    {
+      "source": "GA4",
+      "period": "2026-07-27–2026-08-02",
+      "status": "connected_review",
+      "provides": "traffic, funnel, transactions, reported revenue, country and purchased items",
+      "missing": "usable purchase source; view_item; backend reconciliation"
+    },
+    {
+      "source": "Instagram",
+      "period": "2026-07-20–2026-07-26",
+      "status": "connected",
+      "provides": "reach, views, profile views and interactions",
+      "missing": "current-week refresh and reliable order attribution"
+    },
+    {
+      "source": "Facebook",
+      "period": "2026-07-20–2026-07-26",
+      "status": "partial",
+      "provides": "follower context",
+      "missing": "insights permission through Meta App Review"
+    },
+    {
+      "source": "TikTok",
+      "period": null,
+      "status": "not_connected",
+      "provides": "GA4-tagged website sessions only",
+      "missing": "Business OAuth, account scope and API validation"
+    },
+    {
+      "source": "Pinterest",
+      "period": "2026-07-27–2026-08-02",
+      "status": "ga4_traffic_only",
+      "provides": "GA4-tagged website sessions",
+      "missing": "native analytics connector and order attribution"
+    },
+    {
+      "source": "MailerLite",
+      "period": "2026-07-21–2026-07-25",
+      "status": "connected",
+      "provides": "campaign sends, opens and clicks",
+      "missing": "current-week refresh and campaign-to-order identity"
+    },
+    {
+      "source": "Eventbrite",
+      "period": null,
+      "status": "not_connected",
+      "provides": null,
+      "missing": "event, registration, order and check-in integration"
+    },
+    {
+      "source": "Backend orders",
+      "period": null,
+      "status": "not_connected",
+      "provides": null,
+      "missing": "paid/refunded status, net revenue, fees, margin, customer/order joins"
+    }
+  ],
+  "experimentation": {
+    "status": "NOT_READY",
+    "available": [
+      "GA4 sessions and commerce outcomes",
+      "Aggregate channel and campaign engagement"
+    ],
+    "missing": [
+      "experiment_id",
+      "variant_id",
+      "assignment timestamp",
+      "first exposure timestamp",
+      "stable anonymous user or session key",
+      "primary metric and guardrail definitions",
+      "sample-size plan and minimum detectable effect"
+    ],
+    "first_demo": {
+      "candidate": "Landing-page message test",
+      "primary_metric": "begin_checkout users / exposed users",
+      "guardrails": [
+        "transactions / exposed users",
+        "revenue / exposed user",
+        "page error rate"
+      ],
+      "warning": "Do not launch until exposure assignment is persisted and purchase duplication is fixed."
+    }
+  },
+  "ceo_feedback_coverage": [
+    {
+      "request": "Separate Instagram, TikTok, Facebook and Pinterest",
+      "status": "implemented_with_availability"
+    },
+    {
+      "request": "Country, age and interests",
+      "status": "implemented_with_privacy_and_buyer_warnings"
+    },
+    {
+      "request": "Traffic source to purchases",
+      "status": "visible_but_blocked_by_not_set"
+    },
+    {
+      "request": "Website to Eventbrite",
+      "status": "integration_blueprint_ready_data_not_connected"
+    },
+    {
+      "request": "Customer and product segments",
+      "status": "product_purchase_view_available_customer_join_pending"
+    }
+  ]
+}

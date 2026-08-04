@@ -9,9 +9,16 @@ node_modules/
 AGENTS.md
 CLAUDE.md
 fill_newsletter_stats.py
-marketing/
 marketing/.env
-marketing/*.json
+marketing/.venv/
+marketing/node_modules/
+marketing/credentials/
+marketing/anka-mkt-ai-*.json
+marketing/working/
+marketing/**/working/
+marketing/demo/data/marketing_snapshot.json
+marketing/**/__pycache__/
+marketing/**/*.pyc
 recommendation-tracker.html
 
 # Local spreadsheets and generated office artifacts
