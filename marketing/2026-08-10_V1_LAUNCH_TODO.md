@@ -2,6 +2,10 @@
 
 Target: **Thursday, 2026-08-13**
 
+Status on **Monday, 2026-08-10**: implementation and local QA are complete on
+branch `agent/v1-action-workflow`. The remaining V1 gates are external access,
+one controlled end-to-end task, private deployment and engineering data fixes.
+
 ## V1 scope
 
 V1 is complete when a reviewed data snapshot can produce an auditable action,
@@ -20,32 +24,35 @@ such as “tracking looks fixed” with a check that another person can repeat.
 
 V1 is done when:
 
-- [ ] Public GitHub Pages remains read-only and contains no credentials or PII.
-- [ ] The private/internal Action Center reads persisted Action Registry state.
-- [ ] Approve, reject and assign record actor, timestamp and note.
-- [ ] Reject creates no external task.
-- [ ] Approval creates no more than one external task for the action.
-- [ ] Engineering actions can create a GitHub Issue when server credentials are configured.
-- [ ] Marketing actions can create a Basecamp To-do when OAuth and destination IDs are configured.
-- [ ] Missing credentials disable the integration safely and explain what is needed.
-- [ ] Every action shows its history, current owner, external-task link and next verification date.
-- [ ] Closing a task moves it to verification pending; it does not prove the business outcome.
-- [ ] At least one deterministic verification rule can return verified, failed or inconclusive.
-- [ ] The exact weekly pipeline can be run in one command and has a deployable schedule definition.
-- [ ] Connector failure is shown as missing data, never zero performance.
-- [ ] Automated tests and desktop/mobile QA pass.
+- [x] Public GitHub Pages remains read-only and contains no credentials or PII.
+- [x] The private/internal Action Center reads persisted Action Registry state.
+- [x] Approve, reject and assign record actor, timestamp and note.
+- [x] Reject creates no external task.
+- [x] Approval creates no more than one external task for the action.
+- [x] Engineering actions can create a GitHub Issue when server credentials are configured.
+- [x] Marketing actions can create a Basecamp To-do when OAuth and destination IDs are configured.
+- [x] Missing credentials disable the integration safely and explain what is needed.
+- [x] Every action shows its history, current owner, external-task link and next verification date.
+- [x] Manually closing a task moves it to verification pending; it does not prove the business outcome.
+- [x] At least one deterministic verification rule can return verified, failed or inconclusive.
+- [x] The exact weekly pipeline can be run in one command and has a deployable schedule definition.
+- [x] Connector failure is shown as missing data, never zero performance.
+- [x] Automated tests and desktop/mobile QA pass.
+- [ ] Create one controlled GitHub Issue and, if approved by Vanessa, one Basecamp To-do.
+- [ ] Deploy the private API/UI and run the acceptance test with real authorized users.
 
 ## Roles
 
 ### Codex / implementation
 
-- [ ] Extend the Action Registry for owner, due date, verification and external-task identity.
-- [ ] Extend the private API for action detail, timeline, assignment and controlled transitions.
-- [ ] Wire the internal Action Center to those endpoints.
-- [ ] Implement GitHub and Basecamp adapter boundaries with idempotency and dry-run tests.
-- [ ] Implement verification scheduling and result recording.
-- [ ] Prepare the weekly scheduled-job configuration and runbook.
-- [ ] Add tests, QA, docs, commit and PR.
+- [x] Extend the Action Registry for owner, due date, verification and external-task identity.
+- [x] Extend the private API for action detail, timeline, assignment and controlled transitions.
+- [x] Wire the internal Action Center to those endpoints.
+- [x] Implement GitHub and Basecamp adapter boundaries with idempotency and dry-run tests.
+- [x] Implement verification scheduling and result recording.
+- [x] Prepare the weekly scheduled-job configuration and runbook.
+- [x] Add tests, QA, docs, commit and push an isolated branch.
+- [ ] Open/merge a PR after GitHub CLI access or manual PR review is available.
 
 ### Coco / access and coordination
 
@@ -68,21 +75,24 @@ V1 is done when:
 
 ### Monday, Aug 10
 
-- [ ] Freeze scope and engineering request.
-- [ ] Extend registry and API contract.
-- [ ] Start interactive approval/assignment UI.
+- [x] Freeze scope and engineering request.
+- [x] Extend registry and API contract.
+- [x] Complete the first interactive approval/assignment UI.
 
 ### Tuesday, Aug 11
 
-- [ ] Finish approval, rejection, assignment and timeline.
-- [ ] Complete GitHub adapter and test one controlled issue when authorized.
-- [ ] Complete Basecamp adapter contract and OAuth readiness.
+- [x] Finish approval, rejection, assignment and timeline.
+- [x] Complete GitHub adapter.
+- [ ] Test one controlled GitHub Issue when authorized.
+- [x] Complete Basecamp adapter contract.
+- [ ] Complete Basecamp OAuth only if Vanessa approves this workflow.
 
 ### Wednesday, Aug 12
 
-- [ ] Add task-status sync and verification-pending behavior.
-- [ ] Add weekly-job configuration, failure state and run history.
-- [ ] Run backend, security, desktop and mobile QA.
+- [x] Add manual task-complete and verification-pending behavior.
+- [ ] Add automatic GitHub/Basecamp task-status polling after V1 if it proves useful.
+- [x] Add weekly-job configuration and failure handling.
+- [x] Run backend, security, desktop and mobile QA.
 
 ### Thursday, Aug 13
 
