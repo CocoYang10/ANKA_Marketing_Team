@@ -492,9 +492,11 @@
   // When blank, the app falls back to the direct Sheets API (read-only via API key).
 
   var CONFIG = {
-    WEB_APP_URL:    'https://script.google.com/macros/s/AKfycbxd3uISoBsrlyDNdtKzMn4ZSzZ4jk5k50INqHZaRktisq3ROhoWkttXvGYdHHMFqBTzVA/exec',  // ← paste your Apps Script /exec URL here after deploying
+    // Public GitHub Pages must not contain writable backend URLs or API keys.
+    // Configure an authenticated server-side API before re-enabling shared writes.
+    WEB_APP_URL:    '',
     SHEETS_ID:      '1BNVjU8UuOwu5iQP9JDUUO2iH_6IbncqKjST_iPL5xgI',
-    GOOGLE_API_KEY: 'AIzaSyD0cn2Ppu-UosrRO8xlx3lG9q49avEh_z8',
+    GOOGLE_API_KEY: '',
     SHEET_NAME:     'Recommendations',
     FUNNEL_SHEET_NAME: 'FunnelMetrics',
   };
@@ -1024,31 +1026,14 @@
     var openSt   = useState(false);    var open=openSt[0],setOpen=openSt[1];
     var textSt   = useState('');       var text=textSt[0],setText=textSt[1];
     var weekSt   = useState(currentWeek||'W26'); var week=weekSt[0],setWeek=weekSt[1];
-    var keySt    = useState(function(){return localStorage.getItem(ANTHROPIC_LS)||'';});
-    var apiKey=keySt[0],setApiKey=keySt[1];
     var statusSt = useState('idle');   var status=statusSt[0],setStatus=statusSt[1];
     var parsedSt = useState([]);       var parsed=parsedSt[0],setParsed=parsedSt[1];
     var errSt    = useState('');       var err=errSt[0],setErr=errSt[1];
 
-    function saveKey(k) { setApiKey(k); try{localStorage.setItem(ANTHROPIC_LS,k);}catch(e){} }
-
     function handleImport() {
       if (!text.trim()) return;
-      if (!apiKey.trim()) { setErr('Enter your Anthropic API key to use AI import.'); setStatus('error'); return; }
-      setStatus('parsing'); setErr('');
-      parseWithClaude(text.trim(), apiKey.trim())
-        .then(function(items) {
-          if (!items.length) throw new Error('No recommendations found in the pasted text.');
-          setParsed(items); setStatus('preview');
-        })
-        .catch(function(e) {
-          var msg = e.message||'Unknown error';
-          if (/fetch|network|cors/i.test(msg)) {
-            msg = 'Cannot reach Anthropic API from the browser (CORS restriction). ' +
-                  'If this persists, paste the text into Claude directly and use the manual form below.';
-          }
-          setErr(msg); setStatus('error');
-        });
+      setErr('AI import is disabled on the public site. It will return through an authenticated server-side endpoint; use the manual form below for now.');
+      setStatus('error');
     }
 
     function handleConfirm() {
@@ -1104,15 +1089,9 @@
               value=${week} onChange=${function(e){setWeek(e.target.value);}} placeholder="W26" />
             <datalist id=${listId}>${weekOptions}</datalist>
           </div>
-          <div className="import-field">
-            <label className="import-lbl">Anthropic API Key</label>
-            <input className="import-inp import-inp-key" type="password"
-              value=${apiKey} onInput=${function(e){saveKey(e.target.value);}}
-              placeholder="sk-ant-…" autocomplete="off" />
-          </div>
           <button className="btn-import" onClick=${handleImport}
             disabled=${!text.trim()||status==='parsing'}>
-            ${status==='parsing'?'Parsing…':'Import'}
+            Import (server required)
           </button>
         </div>
         ${msgEl}
