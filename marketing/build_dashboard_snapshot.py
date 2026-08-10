@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
@@ -17,8 +18,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 REPORTS = ROOT / "working" / "reports"
 AGENT_RUNS = ROOT / "working" / "agent_runs"
-ACTION_DB = ROOT / "working" / "agent_state" / "actions.sqlite3"
-DEFAULT_OUTPUT = ROOT / "demo" / "data" / "marketing_snapshot.json"
+ACTION_DB = Path(
+    os.getenv("ANKA_ACTION_DB", ROOT / "working" / "agent_state" / "actions.sqlite3")
+)
+DEFAULT_OUTPUT = Path(
+    os.getenv("ANKA_SNAPSHOT_PATH", ROOT / "demo" / "data" / "marketing_snapshot.json")
+)
 
 
 def latest(pattern: str, directory: Path = REPORTS) -> Path:

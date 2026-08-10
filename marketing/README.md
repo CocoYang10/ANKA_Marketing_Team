@@ -53,6 +53,18 @@ and audited action-lifecycle endpoints only to callers with `X-ANKA-Key`.
 Static approval controls stay disabled because GitHub Pages cannot safely hold
 that key. See `TIKTOK_API_SETUP.md` before production deployment.
 
+Open `http://127.0.0.1:8000/internal/` after starting the API to use the
+controlled internal V1. Choose **Connect private workspace** and enter the local
+API URL and dashboard key. The key is held only for that browser tab; it is
+never added to the public snapshot. The internal Action Center supports audited
+approval, rejection, assignment, external-task links and verification plans.
+
+Approved engineering actions can create GitHub Issues when the server has
+`GITHUB_ISSUES_TOKEN` and `GITHUB_ISSUES_REPOSITORY`. Approved marketing actions
+can create Basecamp To-dos when its OAuth token, account ID and To-do List ID
+are configured. Basecamp is for tracked work—not for uploading the weekly
+report. Missing integration credentials disable task creation safely.
+
 ## Setup
 
 ```bash

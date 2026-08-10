@@ -21,6 +21,7 @@ CONNECTORS = {
 DEFAULT_SOURCES = ["ga4", "meta", "mailerlite"]
 SNAPSHOT_BUILDER = ROOT / "build_dashboard_snapshot.py"
 ACTION_AGENT = ROOT / "action_agent" / "run_agent.py"
+VERIFICATION_AGENT = ROOT / "action_agent" / "verify_actions.py"
 
 
 def completed_week():
@@ -90,12 +91,28 @@ def run_action_workflow():
                 "stdout_tail": refreshed_snapshot.stdout[-3000:],
                 "stderr_tail": refreshed_snapshot.stderr[-3000:],
             }
+        verifier = subprocess.run(
+            [sys.executable, str(VERIFICATION_AGENT)],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+        )
+        if verifier.returncode != 0:
+            return {
+                "status": "FAILED",
+                "stage": "verification_agent",
+                "stdout_tail": verifier.stdout[-3000:],
+                "stderr_tail": verifier.stderr[-3000:],
+            }
+    else:
+        verifier = None
     return {
         "status": "SUCCESS" if agent.returncode == 0 else "FAILED",
         "stage": "action_agent",
         "return_code": agent.returncode,
         "stdout_tail": agent.stdout[-3000:],
         "stderr_tail": agent.stderr[-3000:],
+        "verification_stdout_tail": verifier.stdout[-3000:] if verifier else "",
     }
 
 
