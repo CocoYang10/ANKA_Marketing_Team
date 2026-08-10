@@ -167,6 +167,25 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
     instagram = meta_week["instagram"]["insights"]
     facebook = meta_week["facebook"]["insights"]
     email = mailer["summary"]
+    generated_at = datetime.now(timezone.utc).isoformat()
+    daily_trend = [
+        {
+            "date": row["date"],
+            "week": row.get("week"),
+            "sessions": int(row.get("sessions") or 0),
+            "checkouts": int(row.get("checkouts") or 0),
+            "transactions": int(row.get("transactions") or 0),
+            "purchase_revenue": round(float(row.get("purchase_revenue") or 0), 2),
+            "measurement_state": row.get("measurement_state", "unknown"),
+            "event_label": row.get("event_label"),
+        }
+        for row in ga4.get("daily_trend", [])
+    ]
+    daily_trend.sort(key=lambda row: row["date"])
+    repair_boundary = next(
+        (row["date"] for row in daily_trend if row["measurement_state"] == "post_repair"),
+        None,
+    )
     grouped_sources = aggregate_sources(traffic["sources"])
     previous_sources = aggregate_sources(previous["traffic"]["sources"]) if previous else []
 
@@ -314,7 +333,7 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
         "meta": {
             "title": "ANKA Marketing Decision Workspace",
             "schema_version": "2.0.0",
-            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "generated_at": generated_at,
             "period": {"since": current["start_date"], "until": current["end_date"]},
             "source_periods": {
                 "ga4": {"since": current["start_date"], "until": current["end_date"]},
@@ -383,6 +402,121 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
                 previous_clean_sessions,
             ) if previous else None,
         },
+        "trends": {
+            "ga4_daily": {
+                "metric": "sessions",
+                "grain": "day",
+                "since": daily_trend[0]["date"] if daily_trend else None,
+                "until": daily_trend[-1]["date"] if daily_trend else None,
+                "rows": daily_trend,
+                "repair_boundary": repair_boundary,
+                "event_windows": [
+                    {
+                        "label": "NYC pop-up",
+                        "since": "2026-07-13",
+                        "until": "2026-07-19",
+                        "week": "W29",
+                    }
+                ],
+                "interpretation_note": (
+                    "Rows before the tracking-repair boundary are context only. "
+                    "Do not attribute the boundary movement entirely to marketing performance."
+                ),
+            }
+        },
+        "metric_catalog": [
+            {
+                "metric": "sessions",
+                "label": "Sessions",
+                "value": traffic["sessions"],
+                "format": "integer",
+                "source": "GA4",
+                "definition": "Visits that began on the website during the selected period.",
+                "period": f"{current['start_date']}–{current['end_date']}",
+                "complete_through": current["end_date"],
+                "refreshed_at": generated_at,
+                "status": "connected_review",
+                "decision_use": "Traffic monitoring and funnel denominator; repair boundary applies.",
+            },
+            {
+                "metric": "transactions",
+                "label": "Transactions",
+                "value": commerce["transactions"],
+                "format": "integer",
+                "source": "GA4",
+                "definition": "GA4-reported ecommerce transactions, audited against unique transaction IDs.",
+                "period": f"{current['start_date']}–{current['end_date']}",
+                "complete_through": current["end_date"],
+                "refreshed_at": generated_at,
+                "status": "connected_review",
+                "decision_use": "Overall purchase trend only; not safe for channel attribution.",
+            },
+            {
+                "metric": "ga4_reported_revenue",
+                "label": "Reported revenue",
+                "value": commerce["purchase_revenue"],
+                "format": "currency",
+                "source": "GA4",
+                "definition": "Purchase revenue reported by GA4 in the property currency before backend reconciliation.",
+                "period": f"{current['start_date']}–{current['end_date']}",
+                "complete_through": current["end_date"],
+                "refreshed_at": generated_at,
+                "status": "connected_review",
+                "decision_use": "Directional total revenue; not net revenue, margin, or channel ROAS.",
+            },
+            {
+                "metric": "known_channel_sessions",
+                "label": "Known-channel sessions",
+                "value": current_clean_sessions,
+                "format": "integer",
+                "source": "GA4",
+                "definition": "Sessions excluding Direct and Unknown / not set channel groups.",
+                "period": f"{current['start_date']}–{current['end_date']}",
+                "complete_through": current["end_date"],
+                "refreshed_at": generated_at,
+                "status": "connected_review",
+                "decision_use": "Directional acquisition trend; not a measure of caused orders.",
+            },
+            {
+                "metric": "transaction_attribution_coverage",
+                "label": "Transaction attribution coverage",
+                "value": percent(attributed_transactions, commerce["transactions"]),
+                "format": "percent",
+                "source": "GA4",
+                "definition": "Share of transactions retaining a usable non-unknown acquisition source.",
+                "period": f"{current['start_date']}–{current['end_date']}",
+                "complete_through": current["end_date"],
+                "refreshed_at": generated_at,
+                "status": "blocked",
+                "decision_use": "Gate for channel revenue, CAC and ROAS decisions.",
+            },
+            {
+                "metric": "instagram_reach",
+                "label": "Instagram reach",
+                "value": instagram.get("reach"),
+                "format": "integer",
+                "source": "Meta",
+                "definition": "Unique Instagram accounts reached during the reporting period.",
+                "period": f"{meta_week['period']['since']}–{meta_week['period']['until']}",
+                "complete_through": meta_week["period"]["until"],
+                "refreshed_at": generated_at,
+                "status": "connected",
+                "decision_use": "Native attention monitoring; does not prove website conversion.",
+            },
+            {
+                "metric": "email_clicks",
+                "label": "Email clicks",
+                "value": email.get("total_clicks"),
+                "format": "integer",
+                "source": "MailerLite",
+                "definition": "Total clicks reported across campaigns sent during the source period.",
+                "period": f"{campaign_dates[0]}–{campaign_dates[-1]}" if campaign_dates else "No campaigns",
+                "complete_through": campaign_dates[-1] if campaign_dates else None,
+                "refreshed_at": generated_at,
+                "status": "connected",
+                "decision_use": "Campaign engagement comparison; campaign-to-order identity is missing.",
+            },
+        ],
         "action_center": action_center(agent_brief),
         "traffic_sources": grouped_sources,
         "source_detail": [
@@ -492,11 +626,11 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
         },
         "data_sources": [
             {"source": "GA4", "period": f"{current['start_date']}–{current['end_date']}", "status": "connected_review", "provides": "traffic, funnel, transactions, reported revenue, country and purchased items", "missing": "usable purchase source; view_item; backend reconciliation"},
-            {"source": "Instagram", "period": f"{meta_week['period']['since']}–{meta_week['period']['until']}", "status": "connected", "provides": "reach, views, profile views and interactions", "missing": "current-week refresh and reliable order attribution"},
+            {"source": "Instagram", "period": f"{meta_week['period']['since']}–{meta_week['period']['until']}", "status": "connected", "provides": "reach, views, profile views and interactions", "missing": "reliable order attribution; Facebook Page insight fields remain permission-limited"},
             {"source": "Facebook", "period": f"{meta_week['period']['since']}–{meta_week['period']['until']}", "status": "partial", "provides": "follower context", "missing": "insights permission through Meta App Review"},
             {"source": "TikTok", "period": None, "status": "not_connected", "provides": "GA4-tagged website sessions only", "missing": "Business OAuth, account scope and API validation"},
             {"source": "Pinterest", "period": f"{current['start_date']}–{current['end_date']}", "status": "ga4_traffic_only", "provides": "GA4-tagged website sessions", "missing": "native analytics connector and order attribution"},
-            {"source": "MailerLite", "period": f"{campaign_dates[0]}–{campaign_dates[-1]}" if campaign_dates else None, "status": "connected", "provides": "campaign sends, opens and clicks", "missing": "current-week refresh and campaign-to-order identity"},
+            {"source": "MailerLite", "period": f"{campaign_dates[0]}–{campaign_dates[-1]}" if campaign_dates else None, "status": "connected", "provides": "campaign sends, opens and clicks", "missing": "campaign-to-order identity"},
             {"source": "Eventbrite", "period": None, "status": "not_connected", "provides": None, "missing": "event, registration, order and check-in integration"},
             {"source": "Backend orders", "period": None, "status": "not_connected", "provides": None, "missing": "paid/refunded status, net revenue, fees, margin, customer/order joins"},
         ],
@@ -542,6 +676,24 @@ def validate_snapshot(snapshot: dict) -> list[str]:
         errors.append(f"traffic source sessions {source_total} do not equal KPI sessions {kpis.get('sessions')}")
     if snapshot.get("quality", {}).get("transactions") != kpis.get("transactions"):
         errors.append("quality transaction count does not reconcile to KPI transactions")
+    trend_rows = snapshot.get("trends", {}).get("ga4_daily", {}).get("rows", [])
+    if len(trend_rows) < 8:
+        errors.append("GA4 daily trend needs at least 8 points")
+    if [row.get("date") for row in trend_rows] != sorted(row.get("date") for row in trend_rows):
+        errors.append("GA4 daily trend must be sorted by date")
+    required_metric_fields = {
+        "metric", "label", "value", "format", "source", "definition", "period",
+        "complete_through", "refreshed_at", "status", "decision_use",
+    }
+    for row in snapshot.get("metric_catalog", []):
+        missing_metric_fields = sorted(required_metric_fields - set(row))
+        if missing_metric_fields:
+            errors.append(
+                f"metric catalog entry {row.get('metric', '<unknown>')} missing: "
+                + ", ".join(missing_metric_fields)
+            )
+    if not snapshot.get("metric_catalog"):
+        errors.append("metric catalog is missing")
 
     forbidden = {"access_token", "refresh_token", "api_key", "email", "phone", "address", "transaction_id", "customer_id", "ip_address", "user_agent"}
 

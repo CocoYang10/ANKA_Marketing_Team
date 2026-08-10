@@ -33,9 +33,14 @@ python3 -m http.server 8001
 
 Open `http://127.0.0.1:8001`. The default view is the Action Center. Growth &
 Revenue, Audience & Products, Events and Data Health expose the evidence behind
-each proposed action. The generated JSON is ignored by Git because it is a
-local snapshot. Review it before intentionally publishing any aggregate
-snapshot.
+each proposed action. Growth & Revenue includes a 28-day GA4 trend with the NYC
+pop-up period and the July 23 tracking-repair boundary marked explicitly. Data
+Health contains the source, definition, reporting period and freshness date for
+every headline metric.
+
+The private `demo/data/marketing_snapshot.json` is ignored by Git. The reviewed,
+sanitized `demo/data/demo_snapshot.json` is the public fallback used by GitHub
+Pages; rebuild and inspect it explicitly before committing it.
 
 ## Private API and TikTok OAuth
 
@@ -92,6 +97,11 @@ The GA4 output distinguishes:
 - purchase/revenue and acquisition-source quality
 - funnel completeness
 - country, age and interest availability/coverage
+
+It also stores a daily 28-day trend so week-over-week changes can be read without
+mixing pre-repair and post-repair traffic. Connector failures are fail-closed:
+the pipeline must report `DATA MISSING` instead of replacing an unreachable
+source with zero performance.
 
 `CLEAN` or `TRUSTED` must never be inferred only from a successful API request.
 
