@@ -289,6 +289,35 @@ class GA4Connector:
             "total_revenue": round(number(values[3].value), 2),
         }
 
+    def daily_trend(self, start: str, end: str) -> list[dict[str, Any]]:
+        """Pull additive daily signals for an honest multi-week trend view."""
+        response = self.run(
+            start,
+            end,
+            ["sessions", "checkouts", "transactions", "purchaseRevenue"],
+            ["date"],
+            limit=366,
+        )
+        trusted_from = parse_iso(TRUSTED_FROM_RAW)
+        rows = []
+        for row in response.rows:
+            raw_date = row.dimension_values[0].value
+            day = datetime.strptime(raw_date, "%Y%m%d").date()
+            iso = day.isoformat()
+            rows.append(
+                {
+                    "date": iso,
+                    "week": f"W{day.isocalendar().week}",
+                    "sessions": integer(row.metric_values[0].value),
+                    "checkouts": integer(row.metric_values[1].value),
+                    "transactions": integer(row.metric_values[2].value),
+                    "purchase_revenue": round(number(row.metric_values[3].value), 2),
+                    "measurement_state": "post_repair" if day >= trusted_from else "pre_repair",
+                    "event_label": "NYC pop-up" if day.year == 2026 and day.isocalendar().week == 29 else None,
+                }
+            )
+        return sorted(rows, key=lambda item: item["date"])
+
     def event_funnel(self, start: str, end: str) -> dict[str, dict[str, int]]:
         response = self.run(
             start,
@@ -657,6 +686,7 @@ def save_outputs(
     current: dict[str, Any],
     previous: dict[str, Any] | None,
     quality: dict[str, Any],
+    daily_trend: list[dict[str, Any]],
 ):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     stamp = date.today().isoformat()
@@ -665,6 +695,7 @@ def save_outputs(
         "property_id": PROPERTY_ID,
         "current": current,
         "previous": previous,
+        "daily_trend": daily_trend,
         "quality": quality,
     }
     json_path = OUTPUT_DIR / f"ga4_raw_{stamp}.json"
@@ -752,8 +783,10 @@ def main():
     if args.weeks == 2:
         previous_start, previous_end = previous_period(start, end)
         previous = pull_period(connector, previous_start, previous_end)
+    trend_start = (parse_iso(start) - timedelta(days=21)).isoformat()
+    daily_trend = connector.daily_trend(trend_start, end)
     quality = evaluate_quality(current, previous, start, end)
-    paths = save_outputs(current, previous, quality)
+    paths = save_outputs(current, previous, quality, daily_trend)
 
     print(f"API status: CONNECTED")
     print(f"Data quality: {quality['status']}")
@@ -762,6 +795,7 @@ def main():
     print(f"Checkouts: {current['commerce']['checkouts']:,}")
     print(f"Transactions: {current['commerce']['transactions']:,}")
     print(f"Purchase revenue: {current['commerce']['purchase_revenue']:,.2f}")
+    print(f"Daily trend: {trend_start} to {end} ({len(daily_trend)} points)")
     for issue in quality["issues"]:
         print(f"- {issue['severity'].upper()} {issue['code']}: {issue['message']}")
     for path in paths:

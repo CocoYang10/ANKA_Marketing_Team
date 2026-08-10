@@ -81,6 +81,36 @@ class DashboardSnapshotTests(unittest.TestCase):
         self.assertEqual(comparison["metric"], "known_channel_sessions")
         self.assertIn("non-Direct, non-Unknown", comparison["definition"])
 
+    def test_daily_trend_has_real_points_and_measurement_boundaries(self):
+        trend = self.snapshot["trends"]["ga4_daily"]
+        rows = trend["rows"]
+        self.assertGreaterEqual(len(rows), 8)
+        self.assertEqual([row["date"] for row in rows], sorted(row["date"] for row in rows))
+        self.assertIn("pre_repair", {row["measurement_state"] for row in rows})
+        self.assertIn("post_repair", {row["measurement_state"] for row in rows})
+        self.assertEqual(trend["repair_boundary"], "2026-07-23")
+        self.assertEqual(trend["event_windows"][0]["label"], "NYC pop-up")
+
+    def test_metric_catalog_explains_source_freshness_and_decision_use(self):
+        required = {
+            "metric", "label", "value", "format", "source", "definition", "period",
+            "complete_through", "refreshed_at", "status", "decision_use",
+        }
+        self.assertGreaterEqual(len(self.snapshot["metric_catalog"]), 7)
+        for row in self.snapshot["metric_catalog"]:
+            self.assertTrue(required.issubset(row))
+            self.assertTrue(row["definition"])
+            self.assertTrue(row["decision_use"])
+
+    def test_connected_sources_do_not_claim_current_refresh_is_missing(self):
+        connected = {
+            row["source"]: row
+            for row in self.snapshot["data_sources"]
+            if row["source"] in {"Instagram", "MailerLite"}
+        }
+        self.assertNotIn("current-week refresh", connected["Instagram"]["missing"])
+        self.assertNotIn("current-week refresh", connected["MailerLite"]["missing"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -2,23 +2,23 @@
   "meta": {
     "title": "ANKA Marketing Decision Workspace",
     "schema_version": "2.0.0",
-    "generated_at": "2026-08-04T13:22:05.190300+00:00",
+    "generated_at": "2026-08-10T13:38:20.410398+00:00",
     "period": {
-      "since": "2026-07-27",
-      "until": "2026-08-02"
+      "since": "2026-08-03",
+      "until": "2026-08-09"
     },
     "source_periods": {
       "ga4": {
-        "since": "2026-07-27",
-        "until": "2026-08-02"
+        "since": "2026-08-03",
+        "until": "2026-08-09"
       },
       "meta": {
-        "since": "2026-07-20",
-        "until": "2026-07-26"
+        "since": "2026-08-03",
+        "until": "2026-08-09"
       },
       "mailerlite": {
-        "since": "2026-07-21",
-        "until": "2026-07-25"
+        "since": "2026-08-04",
+        "until": "2026-08-08"
       }
     },
     "snapshot_type": "reviewed aggregate public demo snapshot",
@@ -26,7 +26,7 @@
   },
   "executive_summary": {
     "decision": "Fix acquisition identity before changing channel budgets; use country and product purchase data for directional merchandising decisions in parallel.",
-    "why": "GA4 reports 37 transactions and 4,059.91 revenue in the GA4 property currency, but the transactions are not connected to a usable marketing source.",
+    "why": "GA4 reports 24 transactions and 2,974.81 revenue in the GA4 property currency, but the transactions are not connected to a usable marketing source.",
     "can_do_now": [
       "Monitor website, checkout, transaction and reported GA4 revenue trends.",
       "Compare native Instagram attention and MailerLite campaign engagement.",
@@ -42,17 +42,17 @@
     ]
   },
   "kpis": {
-    "sessions": 10878,
-    "active_users": 7640,
-    "transactions": 37,
-    "revenue": 4059.91,
-    "revenue_per_session": 0.37,
-    "checkout_to_transaction_rate": 27.61,
-    "session_to_transaction_rate": 0.34,
-    "instagram_reach": 44125,
-    "instagram_views": 109645,
-    "email_sends": 137659,
-    "email_clicks": 857,
+    "sessions": 10567,
+    "active_users": 7462,
+    "transactions": 24,
+    "revenue": 2974.81,
+    "revenue_per_session": 0.28,
+    "checkout_to_transaction_rate": 16.67,
+    "session_to_transaction_rate": 0.23,
+    "instagram_reach": 13897,
+    "instagram_views": 70853,
+    "email_sends": 100952,
+    "email_clicks": 700,
     "attributed_transactions": 0,
     "attributed_revenue": 0.0,
     "transaction_attribution_coverage": 0.0
@@ -62,18 +62,411 @@
     "definition": "GA4 sessions assigned to a non-Direct, non-Unknown channel group",
     "previous": {
       "label": "Previous week",
-      "since": "2026-07-20",
-      "until": "2026-07-26",
-      "value": 2719
-    },
-    "current": {
-      "label": "Current week",
       "since": "2026-07-27",
       "until": "2026-08-02",
       "value": 2646
     },
-    "change_pct": -2.68
+    "current": {
+      "label": "Current week",
+      "since": "2026-08-03",
+      "until": "2026-08-09",
+      "value": 2755
+    },
+    "change_pct": 4.12
   },
+  "trends": {
+    "ga4_daily": {
+      "metric": "sessions",
+      "grain": "day",
+      "since": "2026-07-13",
+      "until": "2026-08-09",
+      "rows": [
+        {
+          "date": "2026-07-13",
+          "week": "W29",
+          "sessions": 46548,
+          "checkouts": 17,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": "NYC pop-up"
+        },
+        {
+          "date": "2026-07-14",
+          "week": "W29",
+          "sessions": 48123,
+          "checkouts": 28,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": "NYC pop-up"
+        },
+        {
+          "date": "2026-07-15",
+          "week": "W29",
+          "sessions": 49714,
+          "checkouts": 23,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": "NYC pop-up"
+        },
+        {
+          "date": "2026-07-16",
+          "week": "W29",
+          "sessions": 43023,
+          "checkouts": 31,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": "NYC pop-up"
+        },
+        {
+          "date": "2026-07-17",
+          "week": "W29",
+          "sessions": 38180,
+          "checkouts": 39,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": "NYC pop-up"
+        },
+        {
+          "date": "2026-07-18",
+          "week": "W29",
+          "sessions": 29043,
+          "checkouts": 20,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": "NYC pop-up"
+        },
+        {
+          "date": "2026-07-19",
+          "week": "W29",
+          "sessions": 17067,
+          "checkouts": 15,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": "NYC pop-up"
+        },
+        {
+          "date": "2026-07-20",
+          "week": "W30",
+          "sessions": 13484,
+          "checkouts": 23,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-21",
+          "week": "W30",
+          "sessions": 3722,
+          "checkouts": 27,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-22",
+          "week": "W30",
+          "sessions": 1637,
+          "checkouts": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "measurement_state": "pre_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-23",
+          "week": "W30",
+          "sessions": 1667,
+          "checkouts": 11,
+          "transactions": 1,
+          "purchase_revenue": 13.12,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-24",
+          "week": "W30",
+          "sessions": 1427,
+          "checkouts": 6,
+          "transactions": 2,
+          "purchase_revenue": 167.25,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-25",
+          "week": "W30",
+          "sessions": 1357,
+          "checkouts": 9,
+          "transactions": 2,
+          "purchase_revenue": 137.34,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-26",
+          "week": "W30",
+          "sessions": 1401,
+          "checkouts": 13,
+          "transactions": 4,
+          "purchase_revenue": 357.08,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-27",
+          "week": "W31",
+          "sessions": 1589,
+          "checkouts": 20,
+          "transactions": 7,
+          "purchase_revenue": 966.03,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-28",
+          "week": "W31",
+          "sessions": 1719,
+          "checkouts": 18,
+          "transactions": 7,
+          "purchase_revenue": 457.13,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-29",
+          "week": "W31",
+          "sessions": 1703,
+          "checkouts": 16,
+          "transactions": 4,
+          "purchase_revenue": 533.21,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-30",
+          "week": "W31",
+          "sessions": 1612,
+          "checkouts": 13,
+          "transactions": 2,
+          "purchase_revenue": 79.95,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-07-31",
+          "week": "W31",
+          "sessions": 1474,
+          "checkouts": 10,
+          "transactions": 5,
+          "purchase_revenue": 609.57,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-08-01",
+          "week": "W31",
+          "sessions": 1348,
+          "checkouts": 23,
+          "transactions": 4,
+          "purchase_revenue": 353.08,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-08-02",
+          "week": "W31",
+          "sessions": 1445,
+          "checkouts": 34,
+          "transactions": 8,
+          "purchase_revenue": 1060.94,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-08-03",
+          "week": "W32",
+          "sessions": 1645,
+          "checkouts": 17,
+          "transactions": 2,
+          "purchase_revenue": 185.58,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-08-04",
+          "week": "W32",
+          "sessions": 1644,
+          "checkouts": 28,
+          "transactions": 5,
+          "purchase_revenue": 400.97,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-08-05",
+          "week": "W32",
+          "sessions": 1629,
+          "checkouts": 28,
+          "transactions": 3,
+          "purchase_revenue": 228.52,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-08-06",
+          "week": "W32",
+          "sessions": 1565,
+          "checkouts": 18,
+          "transactions": 5,
+          "purchase_revenue": 899.08,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-08-07",
+          "week": "W32",
+          "sessions": 1307,
+          "checkouts": 9,
+          "transactions": 2,
+          "purchase_revenue": 101.63,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-08-08",
+          "week": "W32",
+          "sessions": 1398,
+          "checkouts": 17,
+          "transactions": 2,
+          "purchase_revenue": 637.43,
+          "measurement_state": "post_repair",
+          "event_label": null
+        },
+        {
+          "date": "2026-08-09",
+          "week": "W32",
+          "sessions": 1326,
+          "checkouts": 27,
+          "transactions": 5,
+          "purchase_revenue": 521.6,
+          "measurement_state": "post_repair",
+          "event_label": null
+        }
+      ],
+      "repair_boundary": "2026-07-23",
+      "event_windows": [
+        {
+          "label": "NYC pop-up",
+          "since": "2026-07-13",
+          "until": "2026-07-19",
+          "week": "W29"
+        }
+      ],
+      "interpretation_note": "Rows before the tracking-repair boundary are context only. Do not attribute the boundary movement entirely to marketing performance."
+    }
+  },
+  "metric_catalog": [
+    {
+      "metric": "sessions",
+      "label": "Sessions",
+      "value": 10567,
+      "format": "integer",
+      "source": "GA4",
+      "definition": "Visits that began on the website during the selected period.",
+      "period": "2026-08-03–2026-08-09",
+      "complete_through": "2026-08-09",
+      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "status": "connected_review",
+      "decision_use": "Traffic monitoring and funnel denominator; repair boundary applies."
+    },
+    {
+      "metric": "transactions",
+      "label": "Transactions",
+      "value": 24,
+      "format": "integer",
+      "source": "GA4",
+      "definition": "GA4-reported ecommerce transactions, audited against unique transaction IDs.",
+      "period": "2026-08-03–2026-08-09",
+      "complete_through": "2026-08-09",
+      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "status": "connected_review",
+      "decision_use": "Overall purchase trend only; not safe for channel attribution."
+    },
+    {
+      "metric": "ga4_reported_revenue",
+      "label": "Reported revenue",
+      "value": 2974.81,
+      "format": "currency",
+      "source": "GA4",
+      "definition": "Purchase revenue reported by GA4 in the property currency before backend reconciliation.",
+      "period": "2026-08-03–2026-08-09",
+      "complete_through": "2026-08-09",
+      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "status": "connected_review",
+      "decision_use": "Directional total revenue; not net revenue, margin, or channel ROAS."
+    },
+    {
+      "metric": "known_channel_sessions",
+      "label": "Known-channel sessions",
+      "value": 2755,
+      "format": "integer",
+      "source": "GA4",
+      "definition": "Sessions excluding Direct and Unknown / not set channel groups.",
+      "period": "2026-08-03–2026-08-09",
+      "complete_through": "2026-08-09",
+      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "status": "connected_review",
+      "decision_use": "Directional acquisition trend; not a measure of caused orders."
+    },
+    {
+      "metric": "transaction_attribution_coverage",
+      "label": "Transaction attribution coverage",
+      "value": 0.0,
+      "format": "percent",
+      "source": "GA4",
+      "definition": "Share of transactions retaining a usable non-unknown acquisition source.",
+      "period": "2026-08-03–2026-08-09",
+      "complete_through": "2026-08-09",
+      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "status": "blocked",
+      "decision_use": "Gate for channel revenue, CAC and ROAS decisions."
+    },
+    {
+      "metric": "instagram_reach",
+      "label": "Instagram reach",
+      "value": 13897,
+      "format": "integer",
+      "source": "Meta",
+      "definition": "Unique Instagram accounts reached during the reporting period.",
+      "period": "2026-08-03–2026-08-09",
+      "complete_through": "2026-08-09",
+      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "status": "connected",
+      "decision_use": "Native attention monitoring; does not prove website conversion."
+    },
+    {
+      "metric": "email_clicks",
+      "label": "Email clicks",
+      "value": 700,
+      "format": "integer",
+      "source": "MailerLite",
+      "definition": "Total clicks reported across campaigns sent during the source period.",
+      "period": "2026-08-04–2026-08-08",
+      "complete_through": "2026-08-08",
+      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "status": "connected",
+      "decision_use": "Campaign engagement comparison; campaign-to-order identity is missing."
+    }
+  ],
   "action_center": {
     "status": "ready",
     "summary": "Prioritize measurement reliability before channel budget optimization; run only low-risk learning work in parallel.",
@@ -92,11 +485,11 @@
           {
             "code": "PURCHASE_EVENT_MISMATCH",
             "metric": "purchase events vs transactions",
-            "value": "58 vs 37",
+            "value": "36 vs 24",
             "source": "GA4 Data API",
             "period": {
-              "since": "2026-07-27",
-              "until": "2026-08-02"
+              "since": "2026-08-03",
+              "until": "2026-08-09"
             }
           }
         ],
@@ -116,9 +509,9 @@
           "Backend paid orders are still needed to prove financial completeness."
         ],
         "approval_required_from": "Vanessa",
-        "occurrence_count": 3,
+        "occurrence_count": 5,
         "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
-        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
       },
       {
         "action_id": "dd4194ca1ed5",
@@ -132,11 +525,11 @@
           {
             "code": "VIEW_ITEM_EVENT_MISSING",
             "metric": "view_item users vs add_to_cart users",
-            "value": "0 vs 328",
+            "value": "0 vs 251",
             "source": "GA4 Data API",
             "period": {
-              "since": "2026-07-27",
-              "until": "2026-08-02"
+              "since": "2026-08-03",
+              "until": "2026-08-09"
             }
           }
         ],
@@ -156,9 +549,9 @@
           "Product profitability remains unavailable until order and seller data are connected."
         ],
         "approval_required_from": "Vanessa",
-        "occurrence_count": 3,
+        "occurrence_count": 5,
         "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
-        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
       },
       {
         "action_id": "fa63a8c4ebf2",
@@ -172,11 +565,11 @@
           {
             "code": "HIGH_DIRECT_SHARE",
             "metric": "sessions classified as Direct",
-            "value": "70.7%",
+            "value": "67.8%",
             "source": "GA4 Data API",
             "period": {
-              "since": "2026-07-27",
-              "until": "2026-08-02"
+              "since": "2026-08-03",
+              "until": "2026-08-09"
             }
           }
         ],
@@ -196,9 +589,9 @@
           "A high Direct share can include legitimate direct visits; the agent does not assume all Direct traffic is broken."
         ],
         "approval_required_from": "Vanessa",
-        "occurrence_count": 3,
+        "occurrence_count": 5,
         "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
-        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
       },
       {
         "action_id": "3b17a644d37e",
@@ -215,8 +608,8 @@
             "value": "0 of 5 stages connected",
             "source": "ANKA integration inventory",
             "period": {
-              "since": "2026-07-27",
-              "until": "2026-08-02"
+              "since": "2026-08-03",
+              "until": "2026-08-09"
             }
           }
         ],
@@ -236,9 +629,9 @@
           "Post-event marketplace lift requires a separate consented, privacy-safe customer or campaign join."
         ],
         "approval_required_from": "Vanessa",
-        "occurrence_count": 1,
+        "occurrence_count": 3,
         "first_seen_at": "2026-08-03T13:55:49.365623+00:00",
-        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
       },
       {
         "action_id": "0f3644830472",
@@ -252,21 +645,21 @@
           {
             "code": "OPEN_CLICK_GAP",
             "metric": "same-segment high-open campaign",
-            "value": "Gift card French: 40.40% open, 0.12% click, 8,490 sent",
+            "value": "ANKA fav Week 32  French: 39.02% open, 0.34% click, 8,025 sent",
             "source": "MailerLite API",
             "period": {
-              "since": "2026-07-21",
-              "until": "2026-07-25"
+              "since": "2026-08-04",
+              "until": "2026-08-08"
             }
           },
           {
             "code": "CLICK_BENCHMARK",
             "metric": "best same-segment campaign click rate",
-            "value": "New in Week 30 French: 0.65%, 8,506 sent",
+            "value": "New in Week 32  French: 0.53%, 8,039 sent",
             "source": "MailerLite API",
             "period": {
-              "since": "2026-07-21",
-              "until": "2026-07-25"
+              "since": "2026-08-04",
+              "until": "2026-08-08"
             }
           }
         ],
@@ -286,9 +679,9 @@
           "Campaigns differ by audience and creative, so the current comparison is hypothesis-generating, not causal."
         ],
         "approval_required_from": "Vanessa",
-        "occurrence_count": 3,
+        "occurrence_count": 5,
         "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
-        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
       },
       {
         "action_id": "211d5d26fe98",
@@ -302,11 +695,11 @@
           {
             "code": "INSTAGRAM_REACH_OUTLIER",
             "metric": "top post reach vs median post reach",
-            "value": "10,268 vs 4,362",
+            "value": "6,162 vs 1,542",
             "source": "Meta Graph API",
             "period": {
-              "since": "2026-07-20",
-              "until": "2026-07-26"
+              "since": "2026-08-03",
+              "until": "2026-08-09"
             }
           }
         ],
@@ -326,9 +719,9 @@
           "Post-level engagement fields are currently incomplete, and reach alone is not revenue."
         ],
         "approval_required_from": "Vanessa",
-        "occurrence_count": 2,
+        "occurrence_count": 4,
         "first_seen_at": "2026-08-03T13:47:29.509857+00:00",
-        "last_seen_at": "2026-08-03T13:55:49.365623+00:00"
+        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
       }
     ],
     "not_authorized": [
@@ -342,181 +735,187 @@
   "traffic_sources": [
     {
       "channel": "Direct",
-      "sessions": 7687,
-      "active_users": 5832,
+      "sessions": 7162,
+      "active_users": 5446,
       "transactions": 0,
       "revenue": 0.0,
       "session_conversion_rate": 0.0,
       "revenue_per_session": 0.0,
-      "share": 70.67
+      "share": 67.78
     },
     {
       "channel": "Organic search",
-      "sessions": 872,
-      "active_users": 433,
+      "sessions": 1013,
+      "active_users": 491,
       "transactions": 0,
       "revenue": 0.0,
       "session_conversion_rate": 0.0,
       "revenue_per_session": 0.0,
-      "share": 8.02
+      "share": 9.59
     },
     {
       "channel": "Instagram",
-      "sessions": 669,
-      "active_users": 546,
+      "sessions": 665,
+      "active_users": 545,
       "transactions": 0,
       "revenue": 0.0,
       "session_conversion_rate": 0.0,
       "revenue_per_session": 0.0,
-      "share": 6.15
+      "share": 6.29
     },
     {
       "channel": "Unknown / not set",
-      "sessions": 545,
-      "active_users": 405,
-      "transactions": 37,
-      "revenue": 4059.91,
-      "session_conversion_rate": 6.79,
-      "revenue_per_session": 7.45,
-      "share": 5.01
+      "sessions": 650,
+      "active_users": 491,
+      "transactions": 24,
+      "revenue": 2974.81,
+      "session_conversion_rate": 3.69,
+      "revenue_per_session": 4.58,
+      "share": 6.15
     },
     {
       "channel": "Email",
-      "sessions": 366,
-      "active_users": 101,
+      "sessions": 325,
+      "active_users": 100,
       "transactions": 0,
       "revenue": 0.0,
       "session_conversion_rate": 0.0,
       "revenue_per_session": 0.0,
-      "share": 3.36
-    },
-    {
-      "channel": "Referral",
-      "sessions": 284,
-      "active_users": 66,
-      "transactions": 0,
-      "revenue": 0.0,
-      "session_conversion_rate": 0.0,
-      "revenue_per_session": 0.0,
-      "share": 2.61
+      "share": 3.08
     },
     {
       "channel": "Other",
-      "sessions": 259,
-      "active_users": 138,
+      "sessions": 256,
+      "active_users": 159,
       "transactions": 0,
       "revenue": 0.0,
       "session_conversion_rate": 0.0,
       "revenue_per_session": 0.0,
-      "share": 2.38
+      "share": 2.42
+    },
+    {
+      "channel": "Referral",
+      "sessions": 246,
+      "active_users": 69,
+      "transactions": 0,
+      "revenue": 0.0,
+      "session_conversion_rate": 0.0,
+      "revenue_per_session": 0.0,
+      "share": 2.33
     },
     {
       "channel": "Pinterest",
-      "sessions": 172,
-      "active_users": 107,
+      "sessions": 148,
+      "active_users": 76,
       "transactions": 0,
       "revenue": 0.0,
       "session_conversion_rate": 0.0,
       "revenue_per_session": 0.0,
-      "share": 1.58
+      "share": 1.4
     },
     {
       "channel": "Facebook",
-      "sessions": 20,
-      "active_users": 10,
+      "sessions": 101,
+      "active_users": 85,
       "transactions": 0,
       "revenue": 0.0,
       "session_conversion_rate": 0.0,
       "revenue_per_session": 0.0,
-      "share": 0.18
+      "share": 0.96
     },
     {
       "channel": "TikTok",
-      "sessions": 4,
-      "active_users": 2,
+      "sessions": 1,
+      "active_users": 0,
       "transactions": 0,
       "revenue": 0.0,
       "session_conversion_rate": 0.0,
       "revenue_per_session": 0.0,
-      "share": 0.04
+      "share": 0.01
     }
   ],
   "source_detail": [
     {
       "source_medium": "(direct) / (none)",
-      "sessions": 7687,
+      "sessions": 7162,
       "transactions": 0,
       "revenue": 0.0
     },
     {
       "source_medium": "google / organic",
-      "sessions": 849,
-      "transactions": 0,
-      "revenue": 0.0
-    },
-    {
-      "source_medium": "ig / social",
-      "sessions": 619,
+      "sessions": 990,
       "transactions": 0,
       "revenue": 0.0
     },
     {
       "source_medium": "(not set)",
-      "sessions": 537,
-      "transactions": 37,
-      "revenue": 4059.91
+      "sessions": 614,
+      "transactions": 24,
+      "revenue": 2974.81
     },
     {
-      "source_medium": "afrikrea / mail",
-      "sessions": 351,
+      "source_medium": "ig / social",
+      "sessions": 564,
       "transactions": 0,
       "revenue": 0.0
     },
     {
-      "source_medium": "Pinterest / organic",
-      "sessions": 166,
+      "source_medium": "afrikrea / mail",
+      "sessions": 308,
       "transactions": 0,
       "revenue": 0.0
     },
     {
       "source_medium": "chatgpt.com / ai-assistant",
-      "sessions": 136,
+      "sessions": 155,
       "transactions": 0,
       "revenue": 0.0
     },
     {
-      "source_medium": "afrikrea.com / referral",
-      "sessions": 102,
+      "source_medium": "Pinterest / organic",
+      "sessions": 146,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "fb / paid",
+      "sessions": 81,
       "transactions": 0,
       "revenue": 0.0
     },
     {
       "source_medium": "ANKA / website",
-      "sessions": 101,
+      "sessions": 80,
       "transactions": 0,
       "revenue": 0.0
     },
     {
-      "source_medium": "saas.veriff.com / referral",
-      "sessions": 63,
+      "source_medium": "afrikrea.com / referral",
+      "sessions": 76,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "ig / paid",
+      "sessions": 75,
       "transactions": 0,
       "revenue": 0.0
     },
     {
       "source_medium": "checkout.square.site / referral",
-      "sessions": 52,
+      "sessions": 61,
       "transactions": 0,
       "revenue": 0.0
     },
     {
-      "source_medium": "IGShopping / Social",
-      "sessions": 30,
+      "source_medium": "saas.veriff.com / referral",
+      "sessions": 43,
       "transactions": 0,
       "revenue": 0.0
     },
     {
-      "source_medium": "linktr.ee / referral",
-      "sessions": 26,
+      "source_medium": "(not set)",
+      "sessions": 32,
       "transactions": 0,
       "revenue": 0.0
     },
@@ -527,20 +926,32 @@
       "revenue": 0.0
     },
     {
-      "source_medium": "l.instagram.com / referral",
+      "source_medium": "IGShopping / Social",
       "sessions": 19,
       "transactions": 0,
       "revenue": 0.0
     },
     {
-      "source_medium": "checkout.flutterwave.com / referral",
+      "source_medium": "linktr.ee / referral",
       "sessions": 16,
       "transactions": 0,
       "revenue": 0.0
     },
     {
       "source_medium": "checkout.paystack.com / referral",
-      "sessions": 8,
+      "sessions": 12,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "m.facebook.com / referral",
+      "sessions": 9,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "marketplace.anka.africa / referral",
+      "sessions": 9,
       "transactions": 0,
       "revenue": 0.0
     },
@@ -551,14 +962,32 @@
       "revenue": 0.0
     },
     {
-      "source_medium": "marketplace.anka.africa / referral",
+      "source_medium": "newsletter / email",
       "sessions": 8,
       "transactions": 0,
       "revenue": 0.0
     },
     {
-      "source_medium": "newsletter / email",
+      "source_medium": "preview.mailerlite.io / referral",
+      "sessions": 8,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "checkout.flutterwave.com / referral",
       "sessions": 7,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "l.instagram.com / referral",
+      "sessions": 7,
+      "transactions": 0,
+      "revenue": 0.0
+    },
+    {
+      "source_medium": "duckduckgo / organic",
+      "sessions": 6,
       "transactions": 0,
       "revenue": 0.0
     },
@@ -569,55 +998,19 @@
       "revenue": 0.0
     },
     {
-      "source_medium": "m.facebook.com / referral",
-      "sessions": 5,
-      "transactions": 0,
-      "revenue": 0.0
-    },
-    {
-      "source_medium": "mail02.orange.fr / referral",
-      "sessions": 5,
-      "transactions": 0,
-      "revenue": 0.0
-    },
-    {
-      "source_medium": "pinterest.com / referral",
-      "sessions": 5,
-      "transactions": 0,
-      "revenue": 0.0
-    },
-    {
-      "source_medium": "copilot.com / (not set)",
+      "source_medium": "bazarapagne.fr / referral",
       "sessions": 4,
       "transactions": 0,
       "revenue": 0.0
     },
     {
-      "source_medium": "snapchat / social",
+      "source_medium": "ntp.msn.com / referral",
       "sessions": 4,
       "transactions": 0,
       "revenue": 0.0
     },
     {
-      "source_medium": "tiktok.com / referral",
-      "sessions": 4,
-      "transactions": 0,
-      "revenue": 0.0
-    },
-    {
-      "source_medium": "yahoo / organic",
-      "sessions": 4,
-      "transactions": 0,
-      "revenue": 0.0
-    },
-    {
-      "source_medium": "(not set) / social",
-      "sessions": 3,
-      "transactions": 0,
-      "revenue": 0.0
-    },
-    {
-      "source_medium": "l.facebook.com / referral",
+      "source_medium": "fr.wikipedia.org / referral",
       "sessions": 3,
       "transactions": 0,
       "revenue": 0.0
@@ -627,13 +1020,13 @@
     {
       "channel": "Instagram",
       "native": {
-        "reach": 44125,
-        "views": 109645,
-        "profile_views": 1653,
-        "interactions": 4023
+        "reach": 13897,
+        "views": 70853,
+        "profile_views": 950,
+        "interactions": 1493
       },
       "website": {
-        "sessions": 669,
+        "sessions": 665,
         "transactions": 0,
         "revenue": 0.0,
         "session_conversion_rate": 0.0
@@ -646,7 +1039,7 @@
       "channel": "TikTok",
       "native": null,
       "website": {
-        "sessions": 4,
+        "sessions": 1,
         "transactions": 0,
         "revenue": 0.0,
         "session_conversion_rate": 0.0
@@ -658,10 +1051,10 @@
     {
       "channel": "Facebook",
       "native": {
-        "followers": 262246
+        "followers": 262110
       },
       "website": {
-        "sessions": 20,
+        "sessions": 101,
         "transactions": 0,
         "revenue": 0.0,
         "session_conversion_rate": 0.0
@@ -674,7 +1067,7 @@
       "channel": "Pinterest",
       "native": null,
       "website": {
-        "sessions": 172,
+        "sessions": 148,
         "transactions": 0,
         "revenue": 0.0,
         "session_conversion_rate": 0.0
@@ -686,12 +1079,12 @@
     {
       "channel": "Email",
       "native": {
-        "sent": 137659,
-        "opens": 59402,
-        "clicks": 857
+        "sent": 100952,
+        "opens": 42033,
+        "clicks": 700
       },
       "website": {
-        "sessions": 366,
+        "sessions": 325,
         "transactions": 0,
         "revenue": 0.0,
         "session_conversion_rate": 0.0
@@ -704,7 +1097,7 @@
   "funnel": [
     {
       "step": "Sessions",
-      "users": 10878,
+      "users": 10567,
       "status": "available"
     },
     {
@@ -714,27 +1107,27 @@
     },
     {
       "step": "Add to cart",
-      "users": 328,
+      "users": 251,
       "status": "available"
     },
     {
       "step": "Begin checkout",
-      "users": 77,
+      "users": 68,
       "status": "available"
     },
     {
       "step": "Payment info",
-      "users": 51,
+      "users": 57,
       "status": "available"
     },
     {
       "step": "Purchase users",
-      "users": 54,
+      "users": 36,
       "status": "review"
     },
     {
       "step": "Transactions",
-      "users": 37,
+      "users": 24,
       "status": "available"
     }
   ],
@@ -745,294 +1138,286 @@
       "rows": [
         {
           "segment": "France",
-          "active_users": 2044,
-          "sessions": 3185,
-          "transactions": 23,
-          "purchase_revenue": 2304.18,
-          "session_conversion_rate": 0.72
+          "active_users": 2034,
+          "sessions": 3048,
+          "transactions": 10,
+          "purchase_revenue": 614.62,
+          "session_conversion_rate": 0.33
         },
         {
           "segment": "United States",
-          "active_users": 1094,
-          "sessions": 1515,
-          "transactions": 1,
-          "purchase_revenue": 126.03,
-          "session_conversion_rate": 0.07
+          "active_users": 1029,
+          "sessions": 1345,
+          "transactions": 3,
+          "purchase_revenue": 676.0,
+          "session_conversion_rate": 0.22
         },
         {
           "segment": "Nigeria",
-          "active_users": 534,
-          "sessions": 1412,
+          "active_users": 623,
+          "sessions": 1480,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Côte d’Ivoire",
-          "active_users": 396,
-          "sessions": 530,
+          "active_users": 386,
+          "sessions": 504,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Cameroon",
-          "active_users": 290,
-          "sessions": 381,
+          "active_users": 237,
+          "sessions": 308,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Canada",
+          "active_users": 205,
+          "sessions": 253,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "United Kingdom",
-          "active_users": 238,
-          "sessions": 339,
-          "transactions": 2,
-          "purchase_revenue": 265.6,
-          "session_conversion_rate": 0.59
-        },
-        {
-          "segment": "Canada",
-          "active_users": 209,
-          "sessions": 277,
-          "transactions": 1,
-          "purchase_revenue": 64.64,
-          "session_conversion_rate": 0.36
+          "active_users": 197,
+          "sessions": 266,
+          "transactions": 3,
+          "purchase_revenue": 369.09,
+          "session_conversion_rate": 1.13
         },
         {
           "segment": "Senegal",
-          "active_users": 169,
-          "sessions": 220,
+          "active_users": 148,
+          "sessions": 192,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Germany",
+          "active_users": 144,
+          "sessions": 190,
+          "transactions": 2,
+          "purchase_revenue": 86.39,
+          "session_conversion_rate": 1.05
+        },
+        {
+          "segment": "Kenya",
+          "active_users": 132,
+          "sessions": 249,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "South Africa",
+          "active_users": 125,
+          "sessions": 166,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Benin",
-          "active_users": 159,
-          "sessions": 204,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Kenya",
-          "active_users": 155,
-          "sessions": 266,
+          "active_users": 123,
+          "sessions": 175,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Belgium",
-          "active_users": 140,
-          "sessions": 191,
-          "transactions": 3,
-          "purchase_revenue": 460.21,
-          "session_conversion_rate": 1.57
-        },
-        {
-          "segment": "Germany",
-          "active_users": 135,
-          "sessions": 176,
-          "transactions": 1,
-          "purchase_revenue": 83.0,
-          "session_conversion_rate": 0.57
-        },
-        {
-          "segment": "South Africa",
-          "active_users": 120,
-          "sessions": 146,
+          "active_users": 121,
+          "sessions": 147,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Ghana",
-          "active_users": 110,
-          "sessions": 145,
+          "active_users": 108,
+          "sessions": 156,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Netherlands",
-          "active_users": 98,
-          "sessions": 115,
+          "active_users": 93,
+          "sessions": 116,
+          "transactions": 2,
+          "purchase_revenue": 156.33,
+          "session_conversion_rate": 1.72
+        },
+        {
+          "segment": "Réunion",
+          "active_users": 86,
+          "sessions": 104,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Togo",
-          "active_users": 87,
-          "sessions": 112,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Congo - Kinshasa",
-          "active_users": 80,
-          "sessions": 89,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Burkina Faso",
-          "active_users": 58,
-          "sessions": 82,
+          "segment": "Martinique",
+          "active_users": 78,
+          "sessions": 114,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Guadeloupe",
-          "active_users": 55,
-          "sessions": 66,
+          "active_users": 75,
+          "sessions": 100,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Togo",
+          "active_users": 70,
+          "sessions": 110,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Congo - Kinshasa",
+          "active_users": 68,
+          "sessions": 86,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Burkina Faso",
+          "active_users": 60,
+          "sessions": 90,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Switzerland",
+          "active_users": 52,
+          "sessions": 70,
+          "transactions": 1,
+          "purchase_revenue": 107.75,
+          "session_conversion_rate": 1.43
+        },
+        {
+          "segment": "Congo - Brazzaville",
+          "active_users": 51,
+          "sessions": 62,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Italy",
-          "active_users": 55,
+          "active_users": 50,
           "sessions": 63,
-          "transactions": 1,
-          "purchase_revenue": 46.66,
-          "session_conversion_rate": 1.59
-        },
-        {
-          "segment": "Martinique",
-          "active_users": 53,
-          "sessions": 71,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Madagascar",
-          "active_users": 52,
-          "sessions": 66,
-          "transactions": 1,
-          "purchase_revenue": 295.89,
-          "session_conversion_rate": 1.52
-        },
-        {
-          "segment": "Switzerland",
-          "active_users": 52,
-          "sessions": 74,
-          "transactions": 1,
-          "purchase_revenue": 53.83,
-          "session_conversion_rate": 1.35
-        },
-        {
-          "segment": "Congo - Brazzaville",
-          "active_users": 48,
-          "sessions": 63,
+          "active_users": 44,
+          "sessions": 54,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Réunion",
-          "active_users": 46,
-          "sessions": 52,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Uganda",
-          "active_users": 43,
-          "sessions": 53,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Australia",
-          "active_users": 42,
-          "sessions": 49,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Gabon",
+          "segment": "India",
           "active_users": 40,
-          "sessions": 44,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Morocco",
-          "active_users": 39,
-          "sessions": 52,
-          "transactions": 1,
-          "purchase_revenue": 186.5,
-          "session_conversion_rate": 1.92
-        },
-        {
-          "segment": "Spain",
-          "active_users": 35,
-          "sessions": 41,
+          "sessions": 58,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Mali",
+          "active_users": 38,
+          "sessions": 48,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Spain",
+          "active_users": 35,
+          "sessions": 50,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Uganda",
+          "active_users": 32,
+          "sessions": 40,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Australia",
           "active_users": 29,
-          "sessions": 39,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Sweden",
-          "active_users": 27,
-          "sessions": 34,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Tanzania",
-          "active_users": 25,
-          "sessions": 27,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Trinidad & Tobago",
-          "active_users": 23,
-          "sessions": 27,
+          "sessions": 40,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "French Guiana",
-          "active_users": 22,
-          "sessions": 27,
+          "active_users": 28,
+          "sessions": 36,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Zambia",
-          "active_users": 22,
-          "sessions": 37,
+          "segment": "United Arab Emirates",
+          "active_users": 27,
+          "sessions": 32,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Portugal",
+          "segment": "Gabon",
+          "active_users": 26,
+          "sessions": 30,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Morocco",
+          "active_users": 22,
+          "sessions": 25,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sweden",
+          "active_users": 22,
+          "sessions": 29,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Romania",
           "active_users": 21,
           "sessions": 24,
           "transactions": 0,
@@ -1040,79 +1425,71 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Niger",
+          "segment": "Zambia",
           "active_users": 20,
-          "sessions": 21,
+          "sessions": 31,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "India",
-          "active_users": 19,
-          "sessions": 28,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Ireland",
-          "active_users": 19,
-          "sessions": 21,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Brazil",
-          "active_users": 16,
-          "sessions": 19,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Indonesia",
-          "active_users": 14,
+          "segment": "Niger",
+          "active_users": 17,
           "sessions": 20,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Luxembourg",
+          "segment": "Ireland",
+          "active_users": 16,
+          "sessions": 16,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Tanzania",
+          "active_users": 15,
+          "sessions": 22,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Portugal",
           "active_users": 14,
-          "sessions": 17,
-          "transactions": 1,
-          "purchase_revenue": 84.42,
-          "session_conversion_rate": 5.88
-        },
-        {
-          "segment": "Chad",
-          "active_users": 13,
-          "sessions": 15,
+          "sessions": 22,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Poland",
-          "active_users": 13,
-          "sessions": 15,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Romania",
-          "active_users": 13,
-          "sessions": 14,
+          "segment": "Trinidad & Tobago",
+          "active_users": 14,
+          "sessions": 23,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Tunisia",
+          "active_users": 14,
+          "sessions": 16,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Austria",
+          "active_users": 13,
+          "sessions": 16,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "China",
           "active_users": 13,
           "sessions": 13,
           "transactions": 0,
@@ -1120,23 +1497,15 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Türkiye",
+          "segment": "Luxembourg",
           "active_users": 13,
-          "sessions": 18,
+          "sessions": 20,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Austria",
-          "active_users": 12,
-          "sessions": 16,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Guinea",
+          "segment": "Brazil",
           "active_users": 12,
           "sessions": 14,
           "transactions": 0,
@@ -1144,57 +1513,57 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Zimbabwe",
+          "segment": "Poland",
           "active_users": 12,
-          "sessions": 16,
+          "sessions": 14,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Mayotte",
-          "active_users": 11,
-          "sessions": 12,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Norway",
+          "segment": "Czechia",
           "active_users": 11,
           "sessions": 13,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Finland",
-          "active_users": 10,
-          "sessions": 11,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Japan",
-          "active_users": 10,
-          "sessions": 17,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Greece",
-          "active_users": 9,
-          "sessions": 17,
+          "active_users": 11,
+          "sessions": 15,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Malawi",
-          "active_users": 9,
+          "segment": "Zimbabwe",
+          "active_users": 10,
           "sessions": 13,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Angola",
+          "active_users": 9,
+          "sessions": 10,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Ethiopia",
+          "active_users": 9,
+          "sessions": 16,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Haiti",
+          "active_users": 9,
+          "sessions": 11,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
@@ -1202,21 +1571,13 @@
         {
           "segment": "Rwanda",
           "active_users": 9,
-          "sessions": 11,
+          "sessions": 13,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Algeria",
-          "active_users": 8,
-          "sessions": 9,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Central African Republic",
+          "segment": "Botswana",
           "active_users": 8,
           "sessions": 8,
           "transactions": 0,
@@ -1224,39 +1585,7 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Guyana",
-          "active_users": 8,
-          "sessions": 14,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Hungary",
-          "active_users": 8,
-          "sessions": 8,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Jamaica",
-          "active_users": 8,
-          "sessions": 8,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Namibia",
-          "active_users": 8,
-          "sessions": 8,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "United Arab Emirates",
+          "segment": "Finland",
           "active_users": 8,
           "sessions": 12,
           "transactions": 0,
@@ -1264,135 +1593,143 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Mauritius",
-          "active_users": 7,
-          "sessions": 7,
+          "segment": "Indonesia",
+          "active_users": 8,
+          "sessions": 8,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Pakistan",
-          "active_users": 7,
+          "segment": "Israel",
+          "active_users": 8,
           "sessions": 7,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
+          "transactions": 1,
+          "purchase_revenue": 625.9,
+          "session_conversion_rate": 14.29
         },
         {
-          "segment": "Angola",
-          "active_users": 6,
-          "sessions": 7,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Barbados",
-          "active_users": 6,
-          "sessions": 7,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Bulgaria",
-          "active_users": 6,
+          "segment": "Mexico",
+          "active_users": 8,
           "sessions": 9,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "China",
-          "active_users": 6,
-          "sessions": 7,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Mauritania",
-          "active_users": 6,
-          "sessions": 6,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Qatar",
-          "active_users": 6,
-          "sessions": 6,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Sierra Leone",
-          "active_users": 6,
-          "sessions": 6,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Azerbaijan",
-          "active_users": 5,
-          "sessions": 7,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Ethiopia",
-          "active_users": 5,
-          "sessions": 6,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Haiti",
-          "active_users": 5,
-          "sessions": 6,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Mexico",
-          "active_users": 5,
-          "sessions": 6,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Mozambique",
-          "active_users": 5,
-          "sessions": 6,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Russia",
-          "active_users": 5,
-          "sessions": 6,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Seychelles",
-          "active_users": 5,
+          "segment": "Türkiye",
+          "active_users": 8,
           "sessions": 11,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "South Korea",
+          "segment": "Chad",
+          "active_users": 7,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Denmark",
+          "active_users": 7,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Guinea",
+          "active_users": 7,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Japan",
+          "active_users": 7,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Norway",
+          "active_users": 7,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Central African Republic",
+          "active_users": 6,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Colombia",
+          "active_users": 6,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Egypt",
+          "active_users": 6,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Hungary",
+          "active_users": 6,
+          "sessions": 8,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Iran",
+          "active_users": 6,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Malawi",
+          "active_users": 6,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Malaysia",
+          "active_users": 6,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Mayotte",
+          "active_users": 6,
+          "sessions": 6,
+          "transactions": 1,
+          "purchase_revenue": 191.6,
+          "session_conversion_rate": 16.67
+        },
+        {
+          "segment": "Antigua & Barbuda",
           "active_users": 5,
           "sessions": 5,
           "transactions": 0,
@@ -1400,7 +1737,39 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Botswana",
+          "segment": "Liberia",
+          "active_users": 5,
+          "sessions": 7,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Mauritius",
+          "active_users": 5,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Saudi Arabia",
+          "active_users": 5,
+          "sessions": 5,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sierra Leone",
+          "active_users": 5,
+          "sessions": 5,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Albania",
           "active_users": 4,
           "sessions": 5,
           "transactions": 0,
@@ -1408,9 +1777,41 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Egypt",
+          "segment": "Algeria",
+          "active_users": 4,
+          "sessions": 5,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Bahamas",
           "active_users": 4,
           "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Barbados",
+          "active_users": 4,
+          "sessions": 6,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Costa Rica",
+          "active_users": 4,
+          "sessions": 5,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Cyprus",
+          "active_users": 4,
+          "sessions": 5,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
@@ -1418,45 +1819,13 @@
         {
           "segment": "Equatorial Guinea",
           "active_users": 4,
-          "sessions": 4,
+          "sessions": 7,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Hong Kong",
-          "active_users": 4,
-          "sessions": 6,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Israel",
-          "active_users": 4,
-          "sessions": 4,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Lebanon",
-          "active_users": 4,
-          "sessions": 4,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Liberia",
-          "active_users": 4,
-          "sessions": 8,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Malaysia",
           "active_users": 4,
           "sessions": 4,
           "transactions": 0,
@@ -1466,15 +1835,23 @@
         {
           "segment": "New Zealand",
           "active_users": 4,
+          "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Pakistan",
+          "active_users": 4,
           "sessions": 5,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Saudi Arabia",
+          "segment": "Philippines",
           "active_users": 4,
-          "sessions": 5,
+          "sessions": 9,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
@@ -1482,21 +1859,29 @@
         {
           "segment": "Singapore",
           "active_users": 4,
-          "sessions": 7,
-          "transactions": 1,
-          "purchase_revenue": 88.97,
-          "session_conversion_rate": 14.29
+          "sessions": 4,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
         },
         {
           "segment": "Slovakia",
           "active_users": 4,
-          "sessions": 5,
+          "sessions": 9,
+          "transactions": 1,
+          "purchase_revenue": 147.13,
+          "session_conversion_rate": 11.11
+        },
+        {
+          "segment": "Thailand",
+          "active_users": 4,
+          "sessions": 6,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "St. Martin",
+          "segment": "Vietnam",
           "active_users": 4,
           "sessions": 4,
           "transactions": 0,
@@ -1504,15 +1889,7 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Syria",
-          "active_users": 4,
-          "sessions": 4,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "(not set)",
+          "segment": "Cape Verde",
           "active_users": 3,
           "sessions": 3,
           "transactions": 0,
@@ -1520,15 +1897,7 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Argentina",
-          "active_users": 3,
-          "sessions": 10,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Colombia",
+          "segment": "Chile",
           "active_users": 3,
           "sessions": 3,
           "transactions": 0,
@@ -1536,7 +1905,31 @@
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Comoros",
+          "segment": "Croatia",
+          "active_users": 3,
+          "sessions": 3,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Guyana",
+          "active_users": 3,
+          "sessions": 13,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lebanon",
+          "active_users": 3,
+          "sessions": 3,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Namibia",
           "active_users": 3,
           "sessions": 3,
           "transactions": 0,
@@ -1551,56 +1944,56 @@
       "rows": [
         {
           "segment": "unknown",
-          "active_users": 5509,
-          "sessions": 8056,
-          "transactions": 37,
-          "purchase_revenue": 4059.91,
-          "session_conversion_rate": 0.46
+          "active_users": 5554,
+          "sessions": 7953,
+          "transactions": 24,
+          "purchase_revenue": 2974.81,
+          "session_conversion_rate": 0.3
         },
         {
           "segment": "25-34",
-          "active_users": 584,
-          "sessions": 1059,
+          "active_users": 490,
+          "sessions": 941,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "35-44",
-          "active_users": 407,
-          "sessions": 546,
+          "active_users": 331,
+          "sessions": 469,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "18-24",
-          "active_users": 297,
-          "sessions": 525,
+          "active_users": 300,
+          "sessions": 576,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "45-54",
-          "active_users": 272,
-          "sessions": 337,
+          "active_users": 248,
+          "sessions": 324,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "55-64",
-          "active_users": 166,
-          "sessions": 218,
+          "active_users": 142,
+          "sessions": 191,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "65+",
-          "active_users": 117,
-          "sessions": 140,
+          "active_users": 94,
+          "sessions": 113,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
@@ -1613,55 +2006,71 @@
       "rows": [
         {
           "segment": "News & Politics/Avid News Readers",
-          "active_users": 198,
-          "sessions": 296,
+          "active_users": 153,
+          "sessions": 263,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Sports & Fitness/Sports Fans/Soccer Fans",
-          "active_users": 171,
-          "sessions": 227,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "News & Politics/Avid News Readers/Entertainment News Enthusiasts",
-          "active_users": 123,
-          "sessions": 181,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Travel/Travel Buffs",
-          "active_users": 118,
-          "sessions": 157,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Shoppers/Shopping Enthusiasts",
-          "active_users": 112,
-          "sessions": 165,
+          "active_users": 134,
+          "sessions": 182,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Technology/Technophiles",
-          "active_users": 97,
-          "sessions": 152,
+          "active_users": 120,
+          "sessions": 189,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "News & Politics/Avid News Readers/Entertainment News Enthusiasts",
+          "active_users": 114,
+          "sessions": 154,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Food & Dining/Cooking Enthusiasts/Aspiring Chefs",
-          "active_users": 89,
+          "active_users": 105,
+          "sessions": 126,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Shoppers/Shopping Enthusiasts",
+          "active_users": 100,
+          "sessions": 146,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Travel/Travel Buffs",
+          "active_users": 99,
+          "sessions": 130,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Shutterbugs",
+          "active_users": 93,
+          "sessions": 138,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Movie Lovers",
+          "active_users": 81,
           "sessions": 124,
           "transactions": 0,
           "purchase_revenue": 0.0,
@@ -1669,504 +2078,416 @@
         },
         {
           "segment": "Home & Garden/Home Decor Enthusiasts",
-          "active_users": 89,
-          "sessions": 124,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Movie Lovers",
-          "active_users": 84,
-          "sessions": 119,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Lifestyles & Hobbies/Shutterbugs",
-          "active_users": 79,
-          "sessions": 117,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Banking & Finance/Avid Investors",
-          "active_users": 75,
-          "sessions": 115,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/TV Lovers",
-          "active_users": 74,
-          "sessions": 99,
+          "active_users": 70,
+          "sessions": 87,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Media & Entertainment/Music Lovers",
-          "active_users": 73,
-          "sessions": 99,
+          "active_users": 69,
+          "sessions": 108,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "News & Politics/Avid News Readers/Avid Local News Readers",
-          "active_users": 71,
-          "sessions": 89,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Sports & Fitness/Health & Fitness Buffs",
-          "active_users": 65,
-          "sessions": 83,
+          "segment": "Media & Entertainment/TV Lovers",
+          "active_users": 67,
+          "sessions": 93,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Technology/Social Media Enthusiasts",
-          "active_users": 57,
-          "sessions": 91,
+          "active_users": 67,
+          "sessions": 106,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Media & Entertainment/Book Lovers",
-          "active_users": 55,
-          "sessions": 82,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Music Lovers/Pop Music Fans",
-          "active_users": 54,
-          "sessions": 77,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Technology/Mobile Enthusiasts",
-          "active_users": 54,
-          "sessions": 88,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Vehicles & Transportation/Auto Enthusiasts",
-          "active_users": 53,
-          "sessions": 62,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Lifestyles & Hobbies/Outdoor Enthusiasts",
-          "active_users": 52,
-          "sessions": 62,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Light TV Viewers",
-          "active_users": 52,
-          "sessions": 59,
+          "segment": "News & Politics/Avid News Readers/Avid Local News Readers",
+          "active_users": 58,
+          "sessions": 74,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Sports & Fitness/Sports Fans",
+          "active_users": 58,
+          "sessions": 83,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sports & Fitness/Health & Fitness Buffs",
+          "active_users": 56,
+          "sessions": 70,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Banking & Finance/Avid Investors",
+          "active_users": 55,
+          "sessions": 84,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Technology/Mobile Enthusiasts",
           "active_users": 52,
-          "sessions": 82,
+          "sessions": 99,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Media & Entertainment/TV Lovers/TV Drama Fans",
-          "active_users": 50,
-          "sessions": 66,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Travel/Travel Buffs/Beachbound Travelers",
-          "active_users": 50,
-          "sessions": 63,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Lifestyles & Hobbies/Business Professionals",
-          "active_users": 43,
-          "sessions": 97,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Lifestyles & Hobbies/Frequently Attends Live Events",
-          "active_users": 43,
-          "sessions": 65,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "News & Politics/Avid News Readers/Avid Business News Readers",
-          "active_users": 41,
-          "sessions": 62,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Lifestyles & Hobbies/Family-Focused",
-          "active_users": 40,
-          "sessions": 45,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Lifestyles & Hobbies/Fashionistas",
-          "active_users": 39,
-          "sessions": 60,
+          "segment": "Media & Entertainment/Music Lovers/Pop Music Fans",
+          "active_users": 44,
+          "sessions": 77,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Shoppers/Bargain Hunters",
-          "active_users": 38,
-          "sessions": 50,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Comics & Animation Fans",
-          "active_users": 37,
-          "sessions": 56,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Home & Garden/Do-It-Yourselfers",
-          "active_users": 34,
-          "sessions": 53,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Shoppers/Shoppers by Store Type/Department Store Shoppers",
-          "active_users": 33,
-          "sessions": 52,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Beauty & Wellness/Beauty Mavens",
-          "active_users": 32,
-          "sessions": 52,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Gamers/Casual & Social Gamers",
-          "active_users": 31,
-          "sessions": 64,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Gamers/Hardcore Gamers",
-          "active_users": 31,
-          "sessions": 41,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "News & Politics/Avid News Readers/Avid Political News Readers",
-          "active_users": 31,
-          "sessions": 37,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Lifestyles & Hobbies/Green Living Enthusiasts",
-          "active_users": 29,
+          "active_users": 43,
           "sessions": 51,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Lifestyles & Hobbies/Pet Lovers",
-          "active_users": 28,
-          "sessions": 29,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/TV Lovers/Game, Reality & Talk Show Fans",
-          "active_users": 28,
+          "segment": "Vehicles & Transportation/Auto Enthusiasts",
+          "active_users": 42,
           "sessions": 45,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Shoppers/Luxury Shoppers",
-          "active_users": 28,
+          "segment": "Media & Entertainment/Light TV Viewers",
+          "active_users": 41,
+          "sessions": 58,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Travel/Travel Buffs/Beachbound Travelers",
+          "active_users": 41,
+          "sessions": 54,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Gamers/Casual & Social Gamers",
+          "active_users": 40,
+          "sessions": 96,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Business Professionals",
+          "active_users": 39,
+          "sessions": 96,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Frequently Attends Live Events",
+          "active_users": 37,
+          "sessions": 43,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Outdoor Enthusiasts",
+          "active_users": 37,
           "sessions": 55,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Shoppers/Value Shoppers",
-          "active_users": 28,
-          "sessions": 45,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Lifestyles & Hobbies/Nightlife Enthusiasts",
-          "active_users": 25,
-          "sessions": 36,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Music Lovers/World Music Fans",
-          "active_users": 25,
-          "sessions": 46,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Gamers",
-          "active_users": 24,
-          "sessions": 30,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Food & Dining/Cooking Enthusiasts/30 Minute Chefs",
-          "active_users": 22,
-          "sessions": 22,
+          "segment": "Media & Entertainment/Book Lovers",
+          "active_users": 34,
+          "sessions": 51,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Food & Dining/Foodies",
-          "active_users": 22,
-          "sessions": 35,
+          "active_users": 32,
+          "sessions": 36,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Lifestyles & Hobbies/Art & Theater Aficionados",
-          "active_users": 21,
-          "sessions": 21,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Beauty & Wellness/Frequently Visits Salons",
-          "active_users": 20,
-          "sessions": 27,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Travel/Travel Buffs/Luxury Travelers",
-          "active_users": 20,
-          "sessions": 25,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Movie Lovers/Romance & Drama Movie Fans",
-          "active_users": 19,
-          "sessions": 22,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Music Lovers/Rap & Hip Hop Fans",
-          "active_users": 19,
-          "sessions": 28,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Food & Dining/Frequently Dines Out/Diners by Meal/Frequently Eats Dinner Out",
-          "active_users": 18,
-          "sessions": 29,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Music Lovers/Rock Music Fans",
-          "active_users": 18,
-          "sessions": 28,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Food & Dining/Cooking Enthusiasts",
-          "active_users": 17,
-          "sessions": 18,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Media & Entertainment/Movie Lovers/Sci-Fi & Fantasy Movie Fans",
-          "active_users": 17,
-          "sessions": 17,
+          "segment": "Shoppers/Shoppers by Store Type/Department Store Shoppers",
+          "active_users": 32,
+          "sessions": 34,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Food & Dining/Frequently Dines Out/Diners by Meal/Frequently Eats Lunch Out",
-          "active_users": 16,
+          "active_users": 31,
+          "sessions": 38,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "News & Politics/Avid News Readers/Avid Business News Readers",
+          "active_users": 30,
+          "sessions": 47,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Food & Dining/Frequently Dines Out/Diners by Meal/Frequently Eats Dinner Out",
+          "active_users": 29,
           "sessions": 33,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Lifestyles & Hobbies/Pet Lovers/Dog Lovers",
-          "active_users": 15,
-          "sessions": 15,
+          "segment": "Lifestyles & Hobbies/Fashionistas",
+          "active_users": 29,
+          "sessions": 47,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Media & Entertainment/Movie Lovers/Comedy Movie Fans",
-          "active_users": 15,
-          "sessions": 24,
+          "segment": "Media & Entertainment/TV Lovers/Game, Reality & Talk Show Fans",
+          "active_users": 29,
+          "sessions": 39,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Travel/Travel Buffs/Family Vacationers",
-          "active_users": 14,
-          "sessions": 14,
+          "segment": "Travel/Travel Buffs/Luxury Travelers",
+          "active_users": 28,
+          "sessions": 37,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Media & Entertainment/Movie Lovers/Action & Adventure Movie Fans",
-          "active_users": 13,
-          "sessions": 14,
+          "segment": "Beauty & Wellness/Beauty Mavens",
+          "active_users": 27,
+          "sessions": 38,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Media & Entertainment/Movie Lovers/Family Movie Fans",
-          "active_users": 13,
-          "sessions": 17,
+          "segment": "Media & Entertainment/Gamers/Hardcore Gamers",
+          "active_users": 27,
+          "sessions": 39,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Travel/Travel Buffs/Snowbound Travelers",
-          "active_users": 13,
-          "sessions": 19,
+          "segment": "Shoppers/Luxury Shoppers",
+          "active_users": 27,
+          "sessions": 34,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Sports & Fitness/Sports Fans/Racquetball Enthusiasts",
-          "active_users": 12,
-          "sessions": 33,
+          "segment": "Shoppers/Value Shoppers",
+          "active_users": 27,
+          "sessions": 44,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "News & Politics/Avid News Readers/Women's Media Fans",
-          "active_users": 11,
-          "sessions": 25,
-          "transactions": 0,
-          "purchase_revenue": 0.0,
-          "session_conversion_rate": 0.0
-        },
-        {
-          "segment": "Sports & Fitness/Sports Fans/Tennis Enthusiasts",
-          "active_users": 11,
+          "segment": "Media & Entertainment/TV Lovers/TV Drama Fans",
+          "active_users": 23,
           "sessions": 31,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Lifestyles & Hobbies/Thrill Seekers",
-          "active_users": 10,
-          "sessions": 11,
+          "segment": "Lifestyles & Hobbies/Green Living Enthusiasts",
+          "active_users": 22,
+          "sessions": 47,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
-          "segment": "Media & Entertainment/Gamers/Roleplaying Game Fans",
-          "active_users": 10,
-          "sessions": 13,
+          "segment": "News & Politics/Avid News Readers/Avid Political News Readers",
+          "active_users": 22,
+          "sessions": 25,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Family-Focused",
+          "active_users": 21,
+          "sessions": 31,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Nightlife Enthusiasts",
+          "active_users": 21,
+          "sessions": 24,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Home & Garden/Do-It-Yourselfers",
+          "active_users": 19,
+          "sessions": 29,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Food & Dining/Cooking Enthusiasts/30 Minute Chefs",
+          "active_users": 18,
+          "sessions": 18,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Art & Theater Aficionados",
+          "active_users": 18,
+          "sessions": 26,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Pet Lovers/Dog Lovers",
+          "active_users": 17,
+          "sessions": 24,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Music Lovers/Rap & Hip Hop Fans",
+          "active_users": 17,
+          "sessions": 26,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Food & Dining/Cooking Enthusiasts",
+          "active_users": 16,
+          "sessions": 19,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Lifestyles & Hobbies/Pet Lovers",
+          "active_users": 16,
+          "sessions": 29,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Music Lovers/World Music Fans",
+          "active_users": 16,
+          "sessions": 44,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Beauty & Wellness/Frequently Visits Salons",
+          "active_users": 14,
+          "sessions": 17,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Comics & Animation Fans",
+          "active_users": 12,
+          "sessions": 17,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Gamers",
+          "active_users": 12,
+          "sessions": 24,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sports & Fitness/Sports Fans/Tennis Enthusiasts",
+          "active_users": 12,
+          "sessions": 35,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
         },
         {
           "segment": "Sports & Fitness/Sports Fans/Basketball Fans",
-          "active_users": 10,
+          "active_users": 11,
           "sessions": 12,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Sports & Fitness/Sports Fans/Racquetball Enthusiasts",
+          "active_users": 11,
+          "sessions": 34,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Travel/Travel Buffs/Family Vacationers",
+          "active_users": 11,
+          "sessions": 11,
+          "transactions": 0,
+          "purchase_revenue": 0.0,
+          "session_conversion_rate": 0.0
+        },
+        {
+          "segment": "Media & Entertainment/Movie Lovers/Comedy Movie Fans",
+          "active_users": 10,
+          "sessions": 13,
           "transactions": 0,
           "purchase_revenue": 0.0,
           "session_conversion_rate": 0.0
@@ -2180,76 +2501,76 @@
     "reason": "Purchased-item revenue is available, but view_item is missing and backend margin/refund data is not connected.",
     "top_items": [
       {
-        "item_id": "BNPKCPD",
-        "item_name": "Vangovango ordinary mixed man / woman",
+        "item_id": "7V73MDP",
+        "item_name": "Malamatra vangovango bracelet",
         "items_purchased": 1,
-        "item_revenue": 284.51
+        "item_revenue": 443.92
       },
       {
-        "item_id": "7AS2ID5",
-        "item_name": "Men's Yoruba Traditional Ensemble — Black &amp; Sky Blue",
-        "items_purchased": 1,
-        "item_revenue": 279.92
+        "item_id": "Y81V8XX",
+        "item_name": "Cap Queen",
+        "items_purchased": 4,
+        "item_revenue": 231.01
       },
       {
-        "item_id": "C353IT5",
-        "item_name": "Men Ankara Kaftan &amp; Wide-Leg Trouser Two-Piece ​Set for Owanbe Parties etc",
+        "item_id": "24QS365",
+        "item_name": "Mudcloth / Bogolan Fabric - 012 (Pre-Order)",
         "items_purchased": 1,
-        "item_revenue": 174.94
+        "item_revenue": 130.14
       },
       {
-        "item_id": "TJ7RJN1",
-        "item_name": "NANYA STRAIGHT SET — BURNT ORANGE",
+        "item_id": "TQWN5I7",
+        "item_name": "Fugu Fabric - 004",
         "items_purchased": 1,
-        "item_revenue": 151.36
+        "item_revenue": 130.14
       },
       {
-        "item_id": "XBKTM1Y",
-        "item_name": "CHIZI AFRICAN PRINT MIDI DRESS- B/W",
+        "item_id": "E9TA1A2",
+        "item_name": "Ankara Wool Mix Mid length Coat with hoodie",
         "items_purchased": 1,
-        "item_revenue": 149.55
+        "item_revenue": 116.65
       },
       {
-        "item_id": "MVRR2TN",
-        "item_name": "Hawau Blouse and Skirt Set",
+        "item_id": "85T3JH3",
+        "item_name": "Mirror",
         "items_purchased": 1,
-        "item_revenue": 140.02
+        "item_revenue": 114.41
       },
       {
-        "item_id": "6XRTFNY",
-        "item_name": "Women’s African Batik Fringe Kaftan Dress",
+        "item_id": "86RLJH2",
+        "item_name": "Mudcloth / Bogolan Fabric - 005 (Pre-Order)",
         "items_purchased": 1,
-        "item_revenue": 139.82
+        "item_revenue": 89.09
       },
       {
-        "item_id": "UIA7WE9",
-        "item_name": "Collier tissu traditionnel NDOP et argent 925",
-        "items_purchased": 1,
-        "item_revenue": 138.18
+        "item_id": "XS2Y2M2",
+        "item_name": "Coconut in ice bucket",
+        "items_purchased": 3,
+        "item_revenue": 86.5
       },
       {
-        "item_id": "2MBX5Q3",
-        "item_name": "YADA  AFRICAN PRINT PANTS SET",
+        "item_id": "2D2UWES",
+        "item_name": "MIROITER",
         "items_purchased": 1,
-        "item_revenue": 134.83
+        "item_revenue": 86.41
       },
       {
-        "item_id": "8ZL4DF9",
-        "item_name": "Men's Luxury Kaftan Set – Sky Blue",
+        "item_id": "SLJKZ6D",
+        "item_name": "Set Korya marron ",
         "items_purchased": 1,
-        "item_revenue": 130.45
+        "item_revenue": 80.61
       },
       {
-        "item_id": "IZ94RF9",
-        "item_name": "African costume",
+        "item_id": "19FFKZN",
+        "item_name": "Vangovango silver ring",
         "items_purchased": 1,
-        "item_revenue": 111.69
+        "item_revenue": 79.56
       },
       {
-        "item_id": "YZ1MC31",
-        "item_name": "Robe BOGO 2 EN 1",
+        "item_id": "MBCWWSH",
+        "item_name": "Vangovango Mixed Ring",
         "items_purchased": 1,
-        "item_revenue": 95.6
+        "item_revenue": 79.56
       }
     ],
     "not_yet_measurable": [
@@ -2298,168 +2619,150 @@
   },
   "email_campaigns": [
     {
-      "name": "Office style Week 30  North America",
+      "name": "Set and suit Week 32  North America",
       "segment": "North America",
-      "sent": 16353,
-      "opens": 7020,
-      "clicks": 130,
-      "open_rate": 42.93,
-      "click_rate": 0.79
-    },
-    {
-      "name": "Office style Week 30  Europe & Africa",
-      "segment": "Europe & Africa",
-      "sent": 9388,
-      "opens": 3832,
-      "clicks": 43,
-      "open_rate": 40.82,
-      "click_rate": 0.46
-    },
-    {
-      "name": "Office style Week 30  Australia",
-      "segment": "Australia",
-      "sent": 169,
-      "opens": 65,
-      "clicks": 1,
-      "open_rate": 38.46,
-      "click_rate": 0.59
-    },
-    {
-      "name": "Office style Week 30  French",
-      "segment": "French",
-      "sent": 8467,
-      "opens": 3312,
-      "clicks": 45,
-      "open_rate": 39.12,
-      "click_rate": 0.53
-    },
-    {
-      "name": "Office style Week 30 Latin America",
-      "segment": "Latin America",
-      "sent": 227,
-      "opens": 96,
-      "clicks": 1,
-      "open_rate": 42.29,
-      "click_rate": 0.44
-    },
-    {
-      "name": "Queen energy Week 30  North America",
-      "segment": "North America",
-      "sent": 16379,
-      "opens": 7066,
-      "clicks": 169,
-      "open_rate": 43.14,
-      "click_rate": 1.03
-    },
-    {
-      "name": "Queen energy Week 30  Europe & Africa",
-      "segment": "Europe & Africa",
-      "sent": 9408,
-      "opens": 3960,
-      "clicks": 59,
-      "open_rate": 42.09,
-      "click_rate": 0.63
-    },
-    {
-      "name": "Gift card French",
-      "segment": "French",
-      "sent": 8490,
-      "opens": 3430,
-      "clicks": 10,
-      "open_rate": 40.4,
-      "click_rate": 0.12
-    },
-    {
-      "name": "Queen energy Week 30  French",
-      "segment": "French",
-      "sent": 8491,
-      "opens": 3263,
-      "clicks": 35,
-      "open_rate": 38.43,
-      "click_rate": 0.41
-    },
-    {
-      "name": "Queen energy Week 30 Latin America",
-      "segment": "Latin America",
-      "sent": 229,
-      "opens": 103,
-      "clicks": 2,
-      "open_rate": 44.98,
+      "sent": 16241,
+      "opens": 6907,
+      "clicks": 142,
+      "open_rate": 42.53,
       "click_rate": 0.87
     },
     {
-      "name": "Queen energy Week 30 Australia",
-      "segment": "Australia",
-      "sent": 170,
-      "opens": 63,
-      "clicks": 1,
-      "open_rate": 37.06,
-      "click_rate": 0.59
-    },
-    {
-      "name": "Gift card English",
-      "segment": "Other",
-      "sent": 25145,
-      "opens": 11851,
-      "clicks": 90,
-      "open_rate": 47.13,
-      "click_rate": 0.36
-    },
-    {
-      "name": "New in Week 30 North America",
-      "segment": "North America",
-      "sent": 16407,
-      "opens": 7433,
-      "clicks": 150,
-      "open_rate": 45.3,
-      "click_rate": 0.91
-    },
-    {
-      "name": "New in Week 30  Europe & Africa",
+      "name": "Set and suit Week 32  Europe & Africa",
       "segment": "Europe & Africa",
-      "sent": 9427,
-      "opens": 4197,
-      "clicks": 64,
-      "open_rate": 44.52,
+      "sent": 9020,
+      "opens": 3421,
+      "clicks": 56,
+      "open_rate": 37.93,
+      "click_rate": 0.62
+    },
+    {
+      "name": "Set and suit Week 32  Australia",
+      "segment": "Australia",
+      "sent": 148,
+      "opens": 49,
+      "clicks": 1,
+      "open_rate": 33.11,
       "click_rate": 0.68
     },
     {
-      "name": "New in Week 30 French",
+      "name": "Set and suit Week 32  French",
       "segment": "French",
-      "sent": 8506,
-      "opens": 3528,
-      "clicks": 55,
-      "open_rate": 41.48,
-      "click_rate": 0.65
+      "sent": 8006,
+      "opens": 2908,
+      "clicks": 35,
+      "open_rate": 36.32,
+      "click_rate": 0.44
     },
     {
-      "name": "New in  Week 30 Latin America",
+      "name": "Sets and suits  Week 32 Latin America",
       "segment": "Latin America",
-      "sent": 231,
-      "opens": 116,
-      "clicks": 1,
-      "open_rate": 50.22,
-      "click_rate": 0.43
+      "sent": 182,
+      "opens": 96,
+      "clicks": 0,
+      "open_rate": 52.75,
+      "click_rate": 0
     },
     {
-      "name": "New in Week 30 Australia",
+      "name": "ANKA fav Week 32  North America",
+      "segment": "North America",
+      "sent": 16256,
+      "opens": 6822,
+      "clicks": 133,
+      "open_rate": 41.97,
+      "click_rate": 0.82
+    },
+    {
+      "name": "ANKA fav Week 32  French",
+      "segment": "French",
+      "sent": 8025,
+      "opens": 3131,
+      "clicks": 27,
+      "open_rate": 39.02,
+      "click_rate": 0.34
+    },
+    {
+      "name": "ANKA fav Week 32  Australia",
       "segment": "Australia",
-      "sent": 172,
-      "opens": 67,
+      "sent": 148,
+      "opens": 59,
+      "clicks": 3,
+      "open_rate": 39.86,
+      "click_rate": 2.03
+    },
+    {
+      "name": "ANKA Fav Week 32 Latin America",
+      "segment": "Latin America",
+      "sent": 182,
+      "opens": 86,
       "clicks": 1,
-      "open_rate": 38.95,
-      "click_rate": 0.58
+      "open_rate": 47.25,
+      "click_rate": 0.55
+    },
+    {
+      "name": "ANKA fav Week 32  Europe & Africa",
+      "segment": "Europe & Africa",
+      "sent": 9042,
+      "opens": 3724,
+      "clicks": 53,
+      "open_rate": 41.19,
+      "click_rate": 0.59
+    },
+    {
+      "name": "New in Week 32  North America",
+      "segment": "North America",
+      "sent": 16276,
+      "opens": 7508,
+      "clicks": 157,
+      "open_rate": 46.13,
+      "click_rate": 0.96
+    },
+    {
+      "name": "New in Week 32  Europe & Africa",
+      "segment": "Europe & Africa",
+      "sent": 9057,
+      "opens": 3966,
+      "clicks": 47,
+      "open_rate": 43.79,
+      "click_rate": 0.52
+    },
+    {
+      "name": "New in Week 32  French",
+      "segment": "French",
+      "sent": 8039,
+      "opens": 3213,
+      "clicks": 43,
+      "open_rate": 39.97,
+      "click_rate": 0.53
+    },
+    {
+      "name": "New in Week 32 Latin America",
+      "segment": "Latin America",
+      "sent": 182,
+      "opens": 85,
+      "clicks": 0,
+      "open_rate": 46.7,
+      "click_rate": 0
+    },
+    {
+      "name": "New in Week 32  Australia",
+      "segment": "Australia",
+      "sent": 148,
+      "opens": 58,
+      "clicks": 2,
+      "open_rate": 39.19,
+      "click_rate": 1.35
     }
   ],
   "quality": {
     "overall": "BLOCKED",
-    "direct_share": 0.7067,
-    "purchase_events": 58,
-    "transactions": 37,
+    "direct_share": 0.6778,
+    "purchase_events": 36,
+    "transactions": 24,
     "transaction_id_audit": {
-      "unique_transaction_ids": 37,
-      "audited_transactions": 37,
-      "audited_purchase_revenue": 4059.91,
+      "unique_transaction_ids": 24,
+      "audited_transactions": 24,
+      "audited_purchase_revenue": 2974.81,
       "missing_transaction_id_rows": 0,
       "zero_revenue_rows": 0,
       "duplicate_transaction_id_rows": 0
@@ -2467,13 +2770,8 @@
     "issues": [
       {
         "severity": "review",
-        "code": "HIGH_DIRECT_SHARE",
-        "message": "Direct accounts for 70.7% of sessions."
-      },
-      {
-        "severity": "review",
         "code": "HIGH_NOT_SET_SHARE",
-        "message": "(not set) accounts for 5.0% of sessions."
+        "message": "(not set) accounts for 6.2% of sessions."
       },
       {
         "severity": "review",
@@ -2483,49 +2781,49 @@
       {
         "severity": "review",
         "code": "PURCHASE_EVENT_MISMATCH",
-        "message": "GA4 recorded 58 purchase events but 37 transactions; investigate the residual client-side/GTM purchase tag."
+        "message": "GA4 recorded 36 purchase events but 24 transactions; investigate the residual client-side/GTM purchase tag."
       },
       {
         "severity": "blocked",
         "code": "PURCHASE_SOURCE_NOT_SET",
-        "message": "All 37 transactions and 4,059.91 of GA4 purchase revenue are assigned to (not set), so channel revenue attribution is unusable."
+        "message": "All 24 transactions and 2,974.81 of GA4 purchase revenue are assigned to (not set), so channel revenue attribution is unusable."
       }
     ],
     "reconciliation_checks": [
       {
         "check": "Source sessions reconcile to GA4 total",
         "status": "pass",
-        "evidence": "10,878 vs 10,878"
+        "evidence": "10,567 vs 10,567"
       },
       {
         "check": "Source transactions reconcile to GA4 total",
         "status": "pass",
-        "evidence": "37 vs 37"
+        "evidence": "24 vs 24"
       },
       {
         "check": "Transaction IDs are usable at transaction grain",
         "status": "pass",
-        "evidence": "37 unique IDs / 37 transactions"
+        "evidence": "24 unique IDs / 24 transactions"
       },
       {
         "check": "Country purchases reconcile",
         "status": "pass",
-        "evidence": "37 transactions; 4059.93 vs 4059.91 revenue"
+        "evidence": "24 transactions; 2974.81 vs 2974.81 revenue"
       },
       {
         "check": "Known-age purchaser coverage",
         "status": "fail",
-        "evidence": "0 of 37 transactions have a known age bucket"
+        "evidence": "0 of 24 transactions have a known age bucket"
       },
       {
         "check": "Interest purchaser coverage",
         "status": "fail",
-        "evidence": "0 of 37 transactions appear in interest rows"
+        "evidence": "0 of 24 transactions appear in interest rows"
       },
       {
         "check": "Cross-source reporting periods align",
-        "status": "fail",
-        "evidence": "GA4 2026-07-27–2026-08-02; Meta 2026-07-20–2026-07-26"
+        "status": "pass",
+        "evidence": "GA4 2026-08-03–2026-08-09; Meta 2026-08-03–2026-08-09"
       }
     ],
     "decision_rules": {
@@ -2546,21 +2844,21 @@
   "data_sources": [
     {
       "source": "GA4",
-      "period": "2026-07-27–2026-08-02",
+      "period": "2026-08-03–2026-08-09",
       "status": "connected_review",
       "provides": "traffic, funnel, transactions, reported revenue, country and purchased items",
       "missing": "usable purchase source; view_item; backend reconciliation"
     },
     {
       "source": "Instagram",
-      "period": "2026-07-20–2026-07-26",
+      "period": "2026-08-03–2026-08-09",
       "status": "connected",
       "provides": "reach, views, profile views and interactions",
-      "missing": "current-week refresh and reliable order attribution"
+      "missing": "reliable order attribution; Facebook Page insight fields remain permission-limited"
     },
     {
       "source": "Facebook",
-      "period": "2026-07-20–2026-07-26",
+      "period": "2026-08-03–2026-08-09",
       "status": "partial",
       "provides": "follower context",
       "missing": "insights permission through Meta App Review"
@@ -2574,17 +2872,17 @@
     },
     {
       "source": "Pinterest",
-      "period": "2026-07-27–2026-08-02",
+      "period": "2026-08-03–2026-08-09",
       "status": "ga4_traffic_only",
       "provides": "GA4-tagged website sessions",
       "missing": "native analytics connector and order attribution"
     },
     {
       "source": "MailerLite",
-      "period": "2026-07-21–2026-07-25",
+      "period": "2026-08-04–2026-08-08",
       "status": "connected",
       "provides": "campaign sends, opens and clicks",
-      "missing": "current-week refresh and campaign-to-order identity"
+      "missing": "campaign-to-order identity"
     },
     {
       "source": "Eventbrite",

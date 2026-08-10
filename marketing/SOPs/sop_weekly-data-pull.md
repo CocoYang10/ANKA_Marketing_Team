@@ -21,6 +21,8 @@ For every source record both:
 - data-quality/decision-use status
 
 If a connector fails, label its metrics `DATA MISSING`; do not substitute zeros.
+For Meta specifically, zero completed HTTP responses means a connection failure,
+even if cached account metadata is available.
 
 ## 3. GA4 checks
 
@@ -28,6 +30,7 @@ Before reporting:
 
 - review Direct and `(not set)` shares
 - check session step changes against the preceding period
+- inspect the 28-day daily trend and keep the July 23 repair boundary visible
 - confirm purchase revenue is non-zero when transactions exist
 - confirm no missing or duplicate transaction IDs
 - compare purchase event count with transactions

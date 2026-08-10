@@ -44,6 +44,7 @@ FUNNEL_FIELDS = [
     "previousWeek", "previousValue", "changeValue", "changePct", "status",
     "sourceReport", "notes",
 ]
+API_CALLS = {"attempts": 0, "http_responses": 0, "network_errors": 0, "api_errors": 0}
 
 
 def redact_secret(text):
@@ -110,16 +111,20 @@ def timestamp_range(since_date, until_date):
 
 def api_get(url, params):
     """Make a GET request and return JSON data, with error handling."""
+    API_CALLS["attempts"] += 1
     try:
-        resp = requests.get(url, params=params)
+        resp = requests.get(url, params=params, timeout=30)
+        API_CALLS["http_responses"] += 1
         data = resp.json()
     except requests.RequestException as exc:
+        API_CALLS["network_errors"] += 1
         print(f"   ⚠️  Network error: {redact_secret(exc)}")
         return None
     except ValueError:
         print(f"   ⚠️  API returned a non-JSON response from {url}")
         return None
     if "error" in data:
+        API_CALLS["api_errors"] += 1
         print(f"   ⚠️  API error: {redact_secret(data['error'].get('message', data['error']))}")
         return None
     return data
@@ -647,6 +652,17 @@ def main():
             "facebook":  {"insights": fb_insights, "posts": fb_posts},
             "instagram": {"insights": ig_insights, "posts": ig_posts},
         }
+
+    if API_CALLS["attempts"] and API_CALLS["http_responses"] == 0:
+        raise SystemExit(
+            "❌ Meta pull failed: every API request failed before an HTTP response. "
+            "No files were written, and missing data was not converted to zero performance."
+        )
+    output["api_status"] = {
+        "state": "CONNECTED" if API_CALLS["http_responses"] else "FAILED",
+        **API_CALLS,
+        "meaning": "HTTP connectivity only; individual metrics may remain unavailable because of permissions.",
+    }
 
     # Save files
     print(f"\n💾 Saving files...")
