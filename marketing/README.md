@@ -60,10 +60,11 @@ never added to the public snapshot. The internal Action Center supports audited
 approval, rejection, assignment, external-task links and verification plans.
 
 Approved engineering actions can create GitHub Issues when the server has
-`GITHUB_ISSUES_TOKEN` and `GITHUB_ISSUES_REPOSITORY`. Approved marketing actions
-can create Basecamp To-dos when its OAuth token, account ID and To-do List ID
-are configured. Basecamp is for tracked work—not for uploading the weekly
-report. Missing integration credentials disable task creation safely.
+`GITHUB_ISSUES_TOKEN` and `GITHUB_ISSUES_REPOSITORY`. This is optional until the
+project moves to the company-owned repository. Basecamp is intentionally not an
+API integration: the Agent will generate a Basecamp-ready weekly report for
+Vanessa to review and copy/paste. Missing GitHub credentials disable Issue
+creation safely.
 
 ## Setup
 

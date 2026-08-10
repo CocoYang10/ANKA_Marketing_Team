@@ -3,7 +3,6 @@ import unittest
 from unittest.mock import patch
 
 from backend.task_adapters import (
-    create_basecamp_todo,
     create_github_issue,
     integration_status,
 )
@@ -50,14 +49,10 @@ class TaskAdapterTests(unittest.TestCase):
         env = {
             "GITHUB_ISSUES_TOKEN": "secret-github",
             "GITHUB_ISSUES_REPOSITORY": "owner/repo",
-            "BASECAMP_ACCESS_TOKEN": "secret-basecamp",
-            "BASECAMP_ACCOUNT_ID": "123",
-            "BASECAMP_TODOLIST_ID": "456",
         }
         with patch.dict(os.environ, env, clear=True):
             result = integration_status()
         self.assertTrue(result["github"]["configured"])
-        self.assertTrue(result["basecamp"]["configured"])
         self.assertNotIn("secret", str(result))
 
     def test_github_issue_payload_contains_done_means(self):
@@ -72,26 +67,6 @@ class TaskAdapterTests(unittest.TestCase):
         payload = http.calls[0][1]["json"]
         self.assertIn("## Done means", payload["body"])
         self.assertNotIn("token", str(payload))
-
-    def test_basecamp_uses_flat_todolist_route(self):
-        http = FakeHttp({"id": 99, "app_url": "https://3.basecamp.com/todos/99"})
-        with patch.dict(
-            os.environ,
-            {
-                "BASECAMP_ACCESS_TOKEN": "token",
-                "BASECAMP_ACCOUNT_ID": "123",
-                "BASECAMP_TODOLIST_ID": "456",
-            },
-            clear=True,
-        ):
-            result = create_basecamp_todo(ACTION, http=http)
-        self.assertEqual(result["external_id"], "99")
-        self.assertEqual(
-            http.calls[0][0],
-            "https://3.basecampapi.com/123/todolists/456/todos.json",
-        )
-        self.assertEqual(http.calls[0][1]["json"]["due_on"], "2026-08-13")
-
 
 if __name__ == "__main__":
     unittest.main()

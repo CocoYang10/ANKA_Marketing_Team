@@ -14,8 +14,6 @@ import requests
 
 def integration_status() -> dict:
     github_repo = os.getenv("GITHUB_ISSUES_REPOSITORY", "").strip()
-    basecamp_account = os.getenv("BASECAMP_ACCOUNT_ID", "").strip()
-    basecamp_list = os.getenv("BASECAMP_TODOLIST_ID", "").strip()
     return {
         "github": {
             "configured": bool(
@@ -25,26 +23,7 @@ def integration_status() -> dict:
             "needs": []
             if os.getenv("GITHUB_ISSUES_TOKEN", "").strip() and github_repo
             else ["GITHUB_ISSUES_TOKEN", "GITHUB_ISSUES_REPOSITORY"],
-        },
-        "basecamp": {
-            "configured": bool(
-                os.getenv("BASECAMP_ACCESS_TOKEN", "").strip()
-                and basecamp_account
-                and basecamp_list
-            ),
-            "destination": basecamp_list or None,
-            "needs": []
-            if (
-                os.getenv("BASECAMP_ACCESS_TOKEN", "").strip()
-                and basecamp_account
-                and basecamp_list
-            )
-            else [
-                "BASECAMP_ACCESS_TOKEN",
-                "BASECAMP_ACCOUNT_ID",
-                "BASECAMP_TODOLIST_ID",
-            ],
-        },
+        }
     }
 
 
@@ -114,52 +93,8 @@ def create_github_issue(action: dict, http=requests) -> dict:
     }
 
 
-def create_basecamp_todo(action: dict, http=requests) -> dict:
-    token = os.getenv("BASECAMP_ACCESS_TOKEN", "").strip()
-    account_id = os.getenv("BASECAMP_ACCOUNT_ID", "").strip()
-    todolist_id = os.getenv("BASECAMP_TODOLIST_ID", "").strip()
-    if not token or not account_id or not todolist_id:
-        raise RuntimeError(
-            "Basecamp is not configured. Complete OAuth and add account and To-do List IDs."
-        )
-    payload: dict[str, Any] = {
-        "content": f"[{action['priority']}] {action['title']}",
-        "description": task_body(action),
-        "notify": True,
-    }
-    if action.get("due_date"):
-        payload["due_on"] = action["due_date"]
-    assignee_ids = [
-        value.strip()
-        for value in os.getenv("BASECAMP_ASSIGNEE_IDS", "").split(",")
-        if value.strip()
-    ]
-    if assignee_ids:
-        payload["assignee_ids"] = assignee_ids
-    response = http.post(
-        f"https://3.basecampapi.com/{account_id}/todolists/{todolist_id}/todos.json",
-        headers={
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json; charset=utf-8",
-            "User-Agent": os.getenv(
-                "BASECAMP_USER_AGENT", "ANKA Marketing Decision Agent (marketing@anka.africa)"
-            ),
-        },
-        json=payload,
-        timeout=30,
-    )
-    body = _response_json(response, "Basecamp")
-    return {
-        "system": "basecamp",
-        "external_id": str(body["id"]),
-        "url": body.get("app_url") or body.get("url"),
-    }
-
-
 def create_external_task(system: str, action: dict, http=requests) -> dict:
     normalized = system.lower()
     if normalized == "github":
         return create_github_issue(action, http=http)
-    if normalized == "basecamp":
-        return create_basecamp_todo(action, http=http)
-    raise ValueError("system must be github or basecamp")
+    raise ValueError("system must be github")

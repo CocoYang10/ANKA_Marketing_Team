@@ -1,35 +1,42 @@
 # ANKA V1 access setup — beginner guide for Coco
 
-Do not paste tokens, passwords or client secrets into chat, Basecamp messages,
-screenshots or GitHub. Put them only in `marketing/.env` or the approved cloud
+Do not paste tokens, passwords or client secrets into chat, screenshots,
+Basecamp or GitHub. Put them only in `marketing/.env` or an approved company
 secret manager.
 
-## 1. GitHub Issue: what it is and why ANKA needs it
+## What does not block V1 development
 
-A GitHub Issue is an engineering task attached to a code repository. It is not a
-code change and it is not the same as a pull request. ANKA uses it so an approved
-tracking problem has a real owner, discussion, status and link.
+- The project may remain in Coco's GitHub while V1 is being built.
+- GitHub Issue automation can stay disabled until the project is moved to the
+  company-owned repository.
+- Basecamp needs no API, OAuth or token. The Agent will generate a formatted
+  weekly report for Vanessa to review and copy/paste.
+- A company cloud project and internal URL can be decided after the local V1
+  workflow is complete.
 
-Example:
+## 1. GitHub repository and Issue automation — later
 
-```text
-[P0] Remove duplicate purchase tracking
-Owner: Checkout Engineer
-Evidence: 36 purchase events vs 24 transactions
-Done means: counts reconcile for seven complete days
-```
+A GitHub Issue is an engineering task attached to a code repository. It is not
+a code change and it is not required for GA4, TikTok, Meta, the Dashboard or the
+Action Registry to work.
 
-### First ask engineering
+The current V1 supports two valid workflows:
 
-Send:
+1. **Now:** approve an Action and use **Copy brief** to send it to engineering.
+2. **Later:** after the project moves to the company GitHub, let an approved
+   engineering Action create one Issue automatically.
 
-> Which GitHub repository should receive GA4/GTM/checkout measurement Issues,
-> and what is the GitHub username of the person who should initially receive
-> them?
+Only ask for the company repository when ANKA decides to enable workflow 2. At
+that point, ask:
 
-Do not create the token until the destination repository is confirmed.
+> Which company-owned GitHub repository should contain the Marketing Decision
+> Agent, and should approved measurement Actions create Issues in that same
+> repository or a separate engineering repository?
 
-### Create a fine-grained token
+Then ask for the GitHub username of the person or team that should initially
+receive those Issues.
+
+### Fine-grained token — create only after the destination is confirmed
 
 1. Open GitHub profile settings.
 2. Open **Developer settings**.
@@ -41,7 +48,7 @@ Do not create the token until the destination repository is confirmed.
 7. Under Repository permissions, set **Issues** to **Read and write**. Do not add
    code, administration or organization permissions.
 8. Generate and copy the token once.
-9. Put it in `marketing/.env`:
+9. Put it in the private environment:
 
 ```text
 GITHUB_ISSUES_TOKEN=the-token-you-copied
@@ -52,53 +59,59 @@ GITHUB_DEFAULT_ASSIGNEE=optional-github-username
 Official permission reference:
 https://docs.github.com/en/rest/issues/issues
 
-## 2. Basecamp: why it is optional
+## 2. Basecamp — report output only
 
-Basecamp is not being connected to upload every weekly report. The current
-weekly-report copy/paste process can stay unchanged.
+There is no Basecamp integration in V1.
 
-The proposed Basecamp connection has one purpose: an approved Marketing action
-such as “run the French CTA test” becomes a real Basecamp To-do with an owner,
-due date, evidence and Done Means.
+The Agent's Basecamp responsibility is:
 
-Before doing OAuth, ask Vanessa:
+1. generate one weekly Marketing Report using the approved structure and
+   styling;
+2. show a reviewable HTML version;
+3. produce content that Vanessa can copy/paste into Basecamp;
+4. never post automatically or require Basecamp OAuth.
 
-> Should approved Marketing Agent actions become Basecamp To-dos? If yes, which
-> Basecamp project and To-do List should receive them?
+The current reference format is:
 
-If the answer is no, V1 keeps **Copy brief** and Basecamp remains disabled.
+`/Users/cocoyang/Downloads/2026-07-20_Marketing-Report-Week-29 (1).html`
 
-If yes, the integration needs:
+The final report template will be locked after Coco confirms which sections,
+colors and comparison rules must be retained.
 
-- Basecamp OAuth approval;
-- Account ID;
-- To-do List ID;
-- optional Basecamp person IDs for assignment.
+## 3. Private API — part of ANKA, not TikTok or Meta
 
-The implementation code is already prepared; authorization is the only account
-step. Official API reference: https://github.com/basecamp/bc-api
+The ANKA Private API is the security door between the internal Dashboard and
+the Action Registry. It lets the internal page:
 
-## 3. Private API: what it is
-
-The ANKA Private API is our own security door between the internal Dashboard and
-the Action Registry. It is not the TikTok API and not the Meta API.
-
-It allows the internal page to:
-
-- read current action status and history;
+- read current Action status and history;
 - save approval/rejection and the human actor;
 - assign an owner and due date;
-- create an approved GitHub/Basecamp task;
+- optionally create a GitHub Issue after company migration;
 - schedule and record verification.
 
 TikTok, Meta, GA4 and MailerLite are upstream data sources. They feed evidence
-into the Agent; they do not save Action Center approvals.
+into the Agent; they do not store Action Center approvals.
 
-## 4. What Coco must do today
+## 4. Company cloud and internal access — later
 
-- [ ] Send `2026-08-10_ENGINEERING_TRACKING_REQUEST.md` to engineering.
-- [ ] Ask for an owner and Wednesday release expectation for each P0 fix.
-- [ ] Ask which GitHub repository receives measurement Issues.
-- [ ] Ask Vanessa whether Marketing Agent actions should become Basecamp To-dos.
-- [ ] Do not work on Google Cloud until the company confirms which project/owner
-  is appropriate.
+The local V1 can be completed before selecting a company cloud project.
+
+Cloud hosting becomes necessary only when another person needs to open the
+private Action Center from their own computer. The company Cloud Owner is the
+person who can approve where the private backend runs, who may access it and
+where its secrets are stored. This is usually an engineering, infrastructure or
+IT responsibility—not a new data source.
+
+Do not request cloud access yet. When the local V1 is accepted, ask engineering:
+
+> Which company-approved environment should host a small private internal API
+> and weekly scheduled job, and who owns deployment and secret management?
+
+## What Coco must do now
+
+- [ ] Send the GA4 validation follow-up to JF/engineering.
+- [ ] Try the TikTok Web Business Suite route in the TikTok access guide.
+- [ ] Identify the TikTok Business Center Admin only if account linking is
+  required.
+- [ ] Continue Meta App Review in the existing Meta conversation/project.
+- [ ] Do not create GitHub, Basecamp or cloud credentials yet.
