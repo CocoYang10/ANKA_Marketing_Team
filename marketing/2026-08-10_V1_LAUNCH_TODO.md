@@ -38,8 +38,8 @@ V1 is done when:
 - [x] The exact weekly pipeline can be run in one command and has a deployable schedule definition.
 - [x] Connector failure is shown as missing data, never zero performance.
 - [x] Automated tests and desktop/mobile QA pass.
-- [ ] Generate a Basecamp-ready weekly report from the approved Week 29 structure.
-- [ ] Run one local acceptance test with Coco using current data.
+- [x] Generate a Basecamp-ready weekly report from the locked decision-first structure.
+- [x] Run an isolated local acceptance workflow using current data; final human walkthrough with Coco remains.
 
 ## Roles
 
@@ -85,7 +85,7 @@ V1 is done when:
 - [x] Complete GitHub adapter.
 - [x] Defer controlled GitHub Issue creation until the company repository is selected.
 - [x] Remove Basecamp task integration from V1.
-- [ ] Lock the Basecamp copy/paste report template.
+- [x] Lock the Basecamp copy/paste report template.
 
 ### Wednesday, Aug 12
 
@@ -93,10 +93,11 @@ V1 is done when:
 - [ ] Add automatic GitHub task-status polling after migration if it proves useful.
 - [x] Add weekly-job configuration and failure handling.
 - [x] Run backend, security, desktop and mobile QA.
+- [x] Separate buyer and seller evidence, add 7/14/28-day traffic context, and redesign Events around one tracking link per event × channel.
 
 ### Thursday, Aug 13
 
-- [ ] Run one complete evidence-to-action workflow.
-- [ ] Generate one approved engineering handoff and one Basecamp-ready weekly report.
-- [ ] Confirm refresh-safe history and idempotency.
+- [x] Run one complete isolated evidence-to-action workflow through verification.
+- [x] Generate one engineering handoff and one Basecamp-ready weekly report.
+- [x] Confirm refresh-safe history and idempotency through automated tests.
 - [ ] Merge and freeze the local V1; record source-access exceptions explicitly.

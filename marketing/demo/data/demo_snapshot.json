@@ -2,7 +2,7 @@
   "meta": {
     "title": "ANKA Marketing Decision Workspace",
     "schema_version": "2.0.0",
-    "generated_at": "2026-08-10T13:38:20.410398+00:00",
+    "generated_at": "2026-08-12T15:02:56.924036+00:00",
     "period": {
       "since": "2026-08-03",
       "until": "2026-08-09"
@@ -22,6 +22,18 @@
       }
     },
     "snapshot_type": "reviewed aggregate public demo snapshot",
+    "supported_windows": {
+      "commerce_kpis": [
+        7
+      ],
+      "traffic_trend": [
+        7,
+        14,
+        28
+      ],
+      "default_traffic_trend": 28,
+      "note": "Commerce cards use the latest complete week; the traffic chart may show a longer context window."
+    },
     "demo_mode": true
   },
   "executive_summary": {
@@ -384,7 +396,7 @@
       "definition": "Visits that began on the website during the selected period.",
       "period": "2026-08-03–2026-08-09",
       "complete_through": "2026-08-09",
-      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "refreshed_at": "2026-08-12T15:02:56.924036+00:00",
       "status": "connected_review",
       "decision_use": "Traffic monitoring and funnel denominator; repair boundary applies."
     },
@@ -397,7 +409,7 @@
       "definition": "GA4-reported ecommerce transactions, audited against unique transaction IDs.",
       "period": "2026-08-03–2026-08-09",
       "complete_through": "2026-08-09",
-      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "refreshed_at": "2026-08-12T15:02:56.924036+00:00",
       "status": "connected_review",
       "decision_use": "Overall purchase trend only; not safe for channel attribution."
     },
@@ -410,7 +422,7 @@
       "definition": "Purchase revenue reported by GA4 in the property currency before backend reconciliation.",
       "period": "2026-08-03–2026-08-09",
       "complete_through": "2026-08-09",
-      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "refreshed_at": "2026-08-12T15:02:56.924036+00:00",
       "status": "connected_review",
       "decision_use": "Directional total revenue; not net revenue, margin, or channel ROAS."
     },
@@ -423,7 +435,7 @@
       "definition": "Sessions excluding Direct and Unknown / not set channel groups.",
       "period": "2026-08-03–2026-08-09",
       "complete_through": "2026-08-09",
-      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "refreshed_at": "2026-08-12T15:02:56.924036+00:00",
       "status": "connected_review",
       "decision_use": "Directional acquisition trend; not a measure of caused orders."
     },
@@ -436,7 +448,7 @@
       "definition": "Share of transactions retaining a usable non-unknown acquisition source.",
       "period": "2026-08-03–2026-08-09",
       "complete_through": "2026-08-09",
-      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "refreshed_at": "2026-08-12T15:02:56.924036+00:00",
       "status": "blocked",
       "decision_use": "Gate for channel revenue, CAC and ROAS decisions."
     },
@@ -449,7 +461,7 @@
       "definition": "Unique Instagram accounts reached during the reporting period.",
       "period": "2026-08-03–2026-08-09",
       "complete_through": "2026-08-09",
-      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "refreshed_at": "2026-08-12T15:02:56.924036+00:00",
       "status": "connected",
       "decision_use": "Native attention monitoring; does not prove website conversion."
     },
@@ -462,7 +474,7 @@
       "definition": "Total clicks reported across campaigns sent during the source period.",
       "period": "2026-08-04–2026-08-08",
       "complete_through": "2026-08-08",
-      "refreshed_at": "2026-08-10T13:38:20.410398+00:00",
+      "refreshed_at": "2026-08-12T15:02:56.924036+00:00",
       "status": "connected",
       "decision_use": "Campaign engagement comparison; campaign-to-order identity is missing."
     }
@@ -511,7 +523,7 @@
         "approval_required_from": "Vanessa",
         "occurrence_count": 5,
         "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
-        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
+        "last_seen_at": "2026-08-10T16:01:23.185932+00:00"
       },
       {
         "action_id": "dd4194ca1ed5",
@@ -551,7 +563,7 @@
         "approval_required_from": "Vanessa",
         "occurrence_count": 5,
         "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
-        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
+        "last_seen_at": "2026-08-10T16:01:23.185932+00:00"
       },
       {
         "action_id": "fa63a8c4ebf2",
@@ -591,7 +603,7 @@
         "approval_required_from": "Vanessa",
         "occurrence_count": 5,
         "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
-        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
+        "last_seen_at": "2026-08-10T16:01:23.185932+00:00"
       },
       {
         "action_id": "3b17a644d37e",
@@ -631,7 +643,7 @@
         "approval_required_from": "Vanessa",
         "occurrence_count": 3,
         "first_seen_at": "2026-08-03T13:55:49.365623+00:00",
-        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
+        "last_seen_at": "2026-08-10T16:01:23.185932+00:00"
       },
       {
         "action_id": "0f3644830472",
@@ -681,7 +693,7 @@
         "approval_required_from": "Vanessa",
         "occurrence_count": 5,
         "first_seen_at": "2026-07-30T14:22:56.358498+00:00",
-        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
+        "last_seen_at": "2026-08-10T16:01:23.185932+00:00"
       },
       {
         "action_id": "211d5d26fe98",
@@ -721,7 +733,7 @@
         "approval_required_from": "Vanessa",
         "occurrence_count": 4,
         "first_seen_at": "2026-08-03T13:47:29.509857+00:00",
-        "last_seen_at": "2026-08-10T13:37:51.094857+00:00"
+        "last_seen_at": "2026-08-10T16:01:23.185932+00:00"
       }
     ],
     "not_authorized": [
@@ -2494,7 +2506,35 @@
         }
       ]
     },
-    "buyer_identity_warning": "Country has purchase signal; age and interest purchases are currently all unknown."
+    "buyer_identity_warning": "Country has purchase signal; age and interest purchases are currently all unknown.",
+    "profiles": {
+      "buyers": {
+        "status": "partial",
+        "source": "GA4 aggregate traffic and purchase data",
+        "available": [
+          "Visitor country, age and interest distributions",
+          "Directional country-level purchase signal",
+          "Purchased-item units and GA4-reported item revenue"
+        ],
+        "missing": [
+          "Reliable purchaser age and interest coverage",
+          "Backend order, refund and customer-lifecycle truth",
+          "Privacy-safe repeat-buyer and cohort identity"
+        ],
+        "decision_use": "Understand demand and purchased products directionally; do not describe all visitors as customers."
+      },
+      "sellers": {
+        "status": "not_connected",
+        "source": "Seller account, catalog and backend order systems required",
+        "available": [],
+        "missing": [
+          "Approved seller/store business identifier",
+          "Seller country, category, lifecycle and active-listing status",
+          "Seller-level orders, net revenue, refunds and fulfillment outcomes"
+        ],
+        "decision_use": "Seller acquisition, activation, supply quality and seller-performance analysis remain blocked."
+      }
+    }
   },
   "products": {
     "status": "purchase_only",
@@ -2584,6 +2624,38 @@
   "events": {
     "status": "not_connected",
     "eventbrite_referral_sessions": 0,
+    "identity_model": {
+      "event_id": "One stable identifier per event; answers which event the journey belongs to.",
+      "tracking_link": "One Eventbrite tracking link per event and marketing channel; answers which channel generated registrations.",
+      "reporting_grain": "event_id × channel × reporting period, using aggregate counts only."
+    },
+    "channel_tracking_links": [
+      {
+        "channel": "Instagram",
+        "example_name": "<event-slug>__instagram",
+        "status": "not_configured"
+      },
+      {
+        "channel": "Facebook",
+        "example_name": "<event-slug>__facebook",
+        "status": "not_configured"
+      },
+      {
+        "channel": "TikTok",
+        "example_name": "<event-slug>__tiktok",
+        "status": "not_configured"
+      },
+      {
+        "channel": "Email",
+        "example_name": "<event-slug>__email",
+        "status": "not_configured"
+      },
+      {
+        "channel": "Partner / creator",
+        "example_name": "<event-slug>__partner",
+        "status": "not_configured"
+      }
+    ],
     "funnel": [
       {
         "step": "Website event-page visitors",
@@ -2591,14 +2663,14 @@
         "status": "needs tagged event page"
       },
       {
-        "step": "Eventbrite outbound clicks",
+        "step": "Channel tracking-link clicks",
         "value": null,
-        "status": "needs select_content / click event"
+        "status": "needs one link per event × channel"
       },
       {
-        "step": "Eventbrite registrations",
+        "step": "Registrations by tracking link",
         "value": null,
-        "status": "needs Eventbrite API or webhook"
+        "status": "needs Eventbrite tracking-link reporting"
       },
       {
         "step": "Paid / free orders",
@@ -2612,9 +2684,9 @@
       }
     ],
     "next_build": [
-      "Give every event and outbound Eventbrite link a stable event_id plus UTMs.",
-      "Connect Eventbrite private token and organization/event IDs on the backend.",
-      "Join click, registration and attendance on event_id; do not expose attendee PII."
+      "Assign one stable event_id, then create a separate Eventbrite tracking link for every event × channel combination.",
+      "Capture aggregate registration counts by tracking link and connect Eventbrite event/order/check-in data on the backend.",
+      "Report event and channel performance at aggregate grain; never expose attendee names, emails or ticket identifiers."
     ]
   },
   "email_campaigns": [
@@ -2935,12 +3007,20 @@
       "status": "implemented_with_privacy_and_buyer_warnings"
     },
     {
+      "request": "Separate buyers from sellers",
+      "status": "implemented_with_seller_data_gap"
+    },
+    {
+      "request": "Longer traffic time window",
+      "status": "implemented_7_14_28_day_context"
+    },
+    {
       "request": "Traffic source to purchases",
       "status": "visible_but_blocked_by_not_set"
     },
     {
-      "request": "Website to Eventbrite",
-      "status": "integration_blueprint_ready_data_not_connected"
+      "request": "Website to Eventbrite by channel",
+      "status": "tracking_link_blueprint_ready_data_not_connected"
     },
     {
       "request": "Customer and product segments",

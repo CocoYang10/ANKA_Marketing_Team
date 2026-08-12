@@ -36,8 +36,10 @@ into a Basecamp message.
   unavailable;
 - Vanessa reviews the final text before it is copied to Basecamp.
 
-## Remaining template decision
+## Locked V1 template decision
 
-Coco will confirm whether the final V1 should preserve every Week 29 section or
-use the shorter Week 31 structure. After that confirmation, the generator and
-copy button can be locked to one canonical format.
+V1 uses the shorter, decision-first Week 32 structure: Executive Summary,
+Channel Scorecard, Website & Commerce, Data Health, Recommended Actions,
+Questions to Close, and Caveats & Assumptions. It intentionally excludes
+non-copyable charts. `generate_basecamp_report.py` renders the reviewed Agent
+snapshot into this format and provides a rich-text Copy report button.
