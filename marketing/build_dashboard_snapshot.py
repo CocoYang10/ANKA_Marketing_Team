@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
@@ -17,8 +18,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 REPORTS = ROOT / "working" / "reports"
 AGENT_RUNS = ROOT / "working" / "agent_runs"
-ACTION_DB = ROOT / "working" / "agent_state" / "actions.sqlite3"
-DEFAULT_OUTPUT = ROOT / "demo" / "data" / "marketing_snapshot.json"
+ACTION_DB = Path(
+    os.getenv("ANKA_ACTION_DB", ROOT / "working" / "agent_state" / "actions.sqlite3")
+)
+DEFAULT_OUTPUT = Path(
+    os.getenv("ANKA_SNAPSHOT_PATH", ROOT / "demo" / "data" / "marketing_snapshot.json")
+)
 
 
 def latest(pattern: str, directory: Path = REPORTS) -> Path:
@@ -344,6 +349,12 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
                 },
             },
             "snapshot_type": "sanitized aggregate decision snapshot",
+            "supported_windows": {
+                "commerce_kpis": [7],
+                "traffic_trend": [7, 14, 28],
+                "default_traffic_trend": 28,
+                "note": "Commerce cards use the latest complete week; the traffic chart may show a longer context window.",
+            },
         },
         "executive_summary": {
             "decision": "Fix acquisition identity before changing channel budgets; use country and product purchase data for directional merchandising decisions in parallel.",
@@ -535,6 +546,34 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
             "age": audience_cut(audience.get("age"), buyer_dimension=True),
             "interests": audience_cut(audience.get("interests"), buyer_dimension=True),
             "buyer_identity_warning": "Country has purchase signal; age and interest purchases are currently all unknown.",
+            "profiles": {
+                "buyers": {
+                    "status": "partial",
+                    "source": "GA4 aggregate traffic and purchase data",
+                    "available": [
+                        "Visitor country, age and interest distributions",
+                        "Directional country-level purchase signal",
+                        "Purchased-item units and GA4-reported item revenue",
+                    ],
+                    "missing": [
+                        "Reliable purchaser age and interest coverage",
+                        "Backend order, refund and customer-lifecycle truth",
+                        "Privacy-safe repeat-buyer and cohort identity",
+                    ],
+                    "decision_use": "Understand demand and purchased products directionally; do not describe all visitors as customers.",
+                },
+                "sellers": {
+                    "status": "not_connected",
+                    "source": "Seller account, catalog and backend order systems required",
+                    "available": [],
+                    "missing": [
+                        "Approved seller/store business identifier",
+                        "Seller country, category, lifecycle and active-listing status",
+                        "Seller-level orders, net revenue, refunds and fulfillment outcomes",
+                    ],
+                    "decision_use": "Seller acquisition, activation, supply quality and seller-performance analysis remain blocked.",
+                },
+            },
         },
         "products": {
             "status": "purchase_only",
@@ -551,17 +590,29 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
         "events": {
             "status": "not_connected",
             "eventbrite_referral_sessions": eventbrite_sessions,
+            "identity_model": {
+                "event_id": "One stable identifier per event; answers which event the journey belongs to.",
+                "tracking_link": "One Eventbrite tracking link per event and marketing channel; answers which channel generated registrations.",
+                "reporting_grain": "event_id × channel × reporting period, using aggregate counts only.",
+            },
+            "channel_tracking_links": [
+                {"channel": "Instagram", "example_name": "<event-slug>__instagram", "status": "not_configured"},
+                {"channel": "Facebook", "example_name": "<event-slug>__facebook", "status": "not_configured"},
+                {"channel": "TikTok", "example_name": "<event-slug>__tiktok", "status": "not_configured"},
+                {"channel": "Email", "example_name": "<event-slug>__email", "status": "not_configured"},
+                {"channel": "Partner / creator", "example_name": "<event-slug>__partner", "status": "not_configured"},
+            ],
             "funnel": [
                 {"step": "Website event-page visitors", "value": None, "status": "needs tagged event page"},
-                {"step": "Eventbrite outbound clicks", "value": None, "status": "needs select_content / click event"},
-                {"step": "Eventbrite registrations", "value": None, "status": "needs Eventbrite API or webhook"},
+                {"step": "Channel tracking-link clicks", "value": None, "status": "needs one link per event × channel"},
+                {"step": "Registrations by tracking link", "value": None, "status": "needs Eventbrite tracking-link reporting"},
                 {"step": "Paid / free orders", "value": None, "status": "needs Eventbrite order data"},
                 {"step": "Attendees checked in", "value": None, "status": "needs attendee/check-in access"},
             ],
             "next_build": [
-                "Give every event and outbound Eventbrite link a stable event_id plus UTMs.",
-                "Connect Eventbrite private token and organization/event IDs on the backend.",
-                "Join click, registration and attendance on event_id; do not expose attendee PII.",
+                "Assign one stable event_id, then create a separate Eventbrite tracking link for every event × channel combination.",
+                "Capture aggregate registration counts by tracking link and connect Eventbrite event/order/check-in data on the backend.",
+                "Report event and channel performance at aggregate grain; never expose attendee names, emails or ticket identifiers.",
             ],
         },
         "email_campaigns": campaigns,
@@ -652,8 +703,10 @@ def build_snapshot(ga4: dict, meta: dict, mailer: dict, agent_brief: dict | None
         "ceo_feedback_coverage": [
             {"request": "Separate Instagram, TikTok, Facebook and Pinterest", "status": "implemented_with_availability"},
             {"request": "Country, age and interests", "status": "implemented_with_privacy_and_buyer_warnings"},
+            {"request": "Separate buyers from sellers", "status": "implemented_with_seller_data_gap"},
+            {"request": "Longer traffic time window", "status": "implemented_7_14_28_day_context"},
             {"request": "Traffic source to purchases", "status": "visible_but_blocked_by_not_set"},
-            {"request": "Website to Eventbrite", "status": "integration_blueprint_ready_data_not_connected"},
+            {"request": "Website to Eventbrite by channel", "status": "tracking_link_blueprint_ready_data_not_connected"},
             {"request": "Customer and product segments", "status": "product_purchase_view_available_customer_join_pending"},
         ],
     }

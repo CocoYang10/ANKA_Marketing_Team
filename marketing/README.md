@@ -53,6 +53,19 @@ and audited action-lifecycle endpoints only to callers with `X-ANKA-Key`.
 Static approval controls stay disabled because GitHub Pages cannot safely hold
 that key. See `TIKTOK_API_SETUP.md` before production deployment.
 
+Open `http://127.0.0.1:8000/internal/` after starting the API to use the
+controlled internal V1. Choose **Connect private workspace** and enter the local
+API URL and dashboard key. The key is held only for that browser tab; it is
+never added to the public snapshot. The internal Action Center supports audited
+approval, rejection, assignment, external-task links and verification plans.
+
+Approved engineering actions can create GitHub Issues when the server has
+`GITHUB_ISSUES_TOKEN` and `GITHUB_ISSUES_REPOSITORY`. This is optional until the
+project moves to the company-owned repository. Basecamp is intentionally not an
+API integration: the Agent will generate a Basecamp-ready weekly report for
+Vanessa to review and copy/paste. Missing GitHub credentials disable Issue
+creation safely.
+
 ## Setup
 
 ```bash
@@ -72,7 +85,9 @@ Store the GA4 service-account JSON under `credentials/` and update
 
 The default run pulls the connected sources, validates and rebuilds the
 sanitized snapshot, then creates an evidence-to-action brief and individual
-engineering/marketing issue drafts under `working/agent_runs/`. Use
+engineering/marketing issue drafts under `working/agent_runs/`. It also writes
+a dated, Basecamp-copyable HTML report under `working/reports/`; the report is
+reviewed and pasted manually rather than published through the Basecamp API. Use
 `--skip-agent` only when a source-only diagnostic is needed.
 
 ## GA4

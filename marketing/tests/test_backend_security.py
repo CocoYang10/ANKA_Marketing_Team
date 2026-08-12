@@ -6,7 +6,7 @@ from unittest.mock import patch
 from fastapi import HTTPException
 
 from backend import app as backend
-from action_agent.registry import connect, sync_run
+from action_agent.registry import connect, get_action, sync_run, transition
 
 
 class BackendSecurityTests(unittest.TestCase):
@@ -58,6 +58,50 @@ class BackendSecurityTests(unittest.TestCase):
                     backend.ActionTransition(to_status="APPROVED", actor="Vanessa"),
                 )
             self.assertEqual(result["status"], "APPROVED")
+            db.close()
+
+    def test_approved_action_creates_one_external_task(self):
+        run = {
+            "run": {"evidence_period": {"since": "2026-08-03", "until": "2026-08-09"}},
+            "actions": [{
+                "action_id": "external-demo",
+                "title": "Repair tracking",
+                "priority": "P0",
+                "workstream": "measurement_reliability",
+                "owner_role": "Engineer",
+                "confidence": "HIGH",
+                "evidence": [{"code": "TEST"}],
+                "acceptance_criteria": ["Counts reconcile"],
+            }],
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            db = connect(Path(tmp) / "actions.sqlite3")
+            sync_run(db, run)
+            transition(db, "external-demo", "APPROVED", "Coco")
+            task = {
+                "system": "github",
+                "external_id": "42",
+                "url": "https://github.com/o/r/issues/42",
+            }
+            with (
+                patch.object(backend, "registry_connect", return_value=db),
+                patch.object(backend, "create_external_task", return_value=task) as create,
+            ):
+                first = backend.create_action_task(
+                    "external-demo",
+                    backend.ExternalTaskRequest(system="github", actor="Coco"),
+                )
+                replay = backend.create_action_task(
+                    "external-demo",
+                    backend.ExternalTaskRequest(system="github", actor="Coco"),
+                )
+            self.assertTrue(first["created"])
+            self.assertFalse(replay["created"])
+            self.assertEqual(create.call_count, 1)
+            detail = get_action(db, "external-demo")
+            self.assertEqual(detail["status"], "IN_PROGRESS")
+            self.assertEqual(detail["external_id"], "42")
+            db.close()
 
 
 if __name__ == "__main__":

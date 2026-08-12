@@ -64,6 +64,31 @@ class DashboardSnapshotTests(unittest.TestCase):
         self.assertEqual(self.snapshot["audience"]["age"]["status"], "traffic_only")
         self.assertEqual(self.snapshot["audience"]["interests"]["status"], "traffic_only")
 
+    def test_buyers_and_sellers_are_separate_evidence_profiles(self):
+        profiles = self.snapshot["audience"]["profiles"]
+        self.assertEqual(set(profiles), {"buyers", "sellers"})
+        self.assertEqual(profiles["buyers"]["status"], "partial")
+        self.assertEqual(profiles["sellers"]["status"], "not_connected")
+        self.assertIn("Seller", profiles["sellers"]["decision_use"])
+
+    def test_supported_windows_do_not_mix_weekly_commerce_with_traffic_context(self):
+        windows = self.snapshot["meta"]["supported_windows"]
+        self.assertEqual(windows["commerce_kpis"], [7])
+        self.assertEqual(windows["traffic_trend"], [7, 14, 28])
+        self.assertEqual(windows["default_traffic_trend"], 28)
+        self.assertGreaterEqual(len(self.snapshot["trends"]["ga4_daily"]["rows"]), 28)
+
+    def test_event_channel_plan_uses_one_tracking_link_per_channel(self):
+        events = self.snapshot["events"]
+        self.assertIn("event_id", events["identity_model"])
+        self.assertIn("tracking_link", events["identity_model"])
+        channels = {row["channel"] for row in events["channel_tracking_links"]}
+        self.assertTrue({"Instagram", "Facebook", "TikTok", "Email"}.issubset(channels))
+        self.assertEqual(
+            len({row["example_name"] for row in events["channel_tracking_links"]}),
+            len(events["channel_tracking_links"]),
+        )
+
     def test_current_payment_step_is_not_labeled_missing(self):
         payment = next(row for row in self.snapshot["funnel"] if row["step"] == "Payment info")
         self.assertGreater(payment["users"], 0)

@@ -21,13 +21,20 @@ from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from action_agent.registry import (
+    assign as registry_assign,
+    attach_external_task as registry_attach_external_task,
     connect as registry_connect,
+    get_action as registry_get_action,
     list_actions as registry_list_actions,
+    record_verification as registry_record_verification,
+    schedule_verification as registry_schedule_verification,
     transition as registry_transition,
 )
+from backend.task_adapters import create_external_task, integration_status
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -65,6 +72,30 @@ class ActionTransition(BaseModel):
     to_status: str = Field(min_length=3, max_length=32)
     actor: str = Field(min_length=2, max_length=120)
     note: str = Field(default="", max_length=1000)
+
+
+class ActionAssignment(BaseModel):
+    assigned_to: str = Field(min_length=2, max_length=120)
+    actor: str = Field(min_length=2, max_length=120)
+    due_date: str | None = Field(default=None, max_length=10)
+    note: str = Field(default="", max_length=1000)
+
+
+class VerificationPlan(BaseModel):
+    due_at: str = Field(min_length=10, max_length=40)
+    rule: str = Field(min_length=8, max_length=2000)
+    actor: str = Field(min_length=2, max_length=120)
+
+
+class VerificationRecord(BaseModel):
+    outcome: str = Field(min_length=6, max_length=20)
+    actor: str = Field(min_length=2, max_length=120)
+    evidence: str = Field(min_length=3, max_length=3000)
+
+
+class ExternalTaskRequest(BaseModel):
+    system: str = Field(min_length=6, max_length=20)
+    actor: str = Field(min_length=2, max_length=120)
 
 
 def require_api_key(x_anka_key: str | None = Header(default=None)) -> None:
@@ -139,6 +170,14 @@ def actions() -> dict:
     return {"actions": registry_list_actions(registry_connect())}
 
 
+@app.get("/api/v1/actions/{action_id}", dependencies=[Depends(require_api_key)])
+def action_detail(action_id: str) -> dict:
+    try:
+        return registry_get_action(registry_connect(), action_id)
+    except ValueError as exc:
+        raise HTTPException(404, str(exc)) from exc
+
+
 @app.post("/api/v1/actions/{action_id}/transition", dependencies=[Depends(require_api_key)])
 def transition_action(action_id: str, request: ActionTransition) -> dict:
     """Record a human-controlled, audited action lifecycle transition."""
@@ -153,6 +192,95 @@ def transition_action(action_id: str, request: ActionTransition) -> dict:
     except ValueError as exc:
         raise HTTPException(400, str(exc)) from exc
     return {"action_id": action_id, "status": request.to_status.upper()}
+
+
+@app.post("/api/v1/actions/{action_id}/assignment", dependencies=[Depends(require_api_key)])
+def assign_action(action_id: str, request: ActionAssignment) -> dict:
+    try:
+        registry_assign(
+            registry_connect(),
+            action_id,
+            request.assigned_to,
+            request.actor,
+            request.note,
+            request.due_date,
+        )
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    return {
+        "action_id": action_id,
+        "assigned_to": request.assigned_to,
+        "due_date": request.due_date,
+    }
+
+
+@app.post("/api/v1/actions/{action_id}/verification-plan", dependencies=[Depends(require_api_key)])
+def plan_verification(action_id: str, request: VerificationPlan) -> dict:
+    try:
+        registry_schedule_verification(
+            registry_connect(), action_id, request.due_at, request.rule, request.actor
+        )
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    return {"action_id": action_id, "verification_due_at": request.due_at}
+
+
+@app.post("/api/v1/actions/{action_id}/verification-result", dependencies=[Depends(require_api_key)])
+def save_verification(action_id: str, request: VerificationRecord) -> dict:
+    try:
+        registry_record_verification(
+            registry_connect(),
+            action_id,
+            request.outcome,
+            request.actor,
+            request.evidence,
+        )
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    return {"action_id": action_id, "status": request.outcome.upper()}
+
+
+@app.get("/api/v1/integrations", dependencies=[Depends(require_api_key)])
+def integrations() -> dict:
+    """Return configuration readiness, never the credentials themselves."""
+    return integration_status()
+
+
+@app.post("/api/v1/actions/{action_id}/external-task", dependencies=[Depends(require_api_key)])
+def create_action_task(action_id: str, request: ExternalTaskRequest) -> dict:
+    db = registry_connect()
+    try:
+        action_row = registry_get_action(db, action_id)
+        if action_row.get("external_id"):
+            return {
+                "action_id": action_id,
+                "system": action_row["external_system"],
+                "external_id": action_row["external_id"],
+                "url": action_row["external_url"],
+                "created": False,
+            }
+        task = create_external_task(request.system, action_row)
+        registry_attach_external_task(
+            db,
+            action_id,
+            task["system"],
+            task["external_id"],
+            task["url"],
+            request.actor,
+        )
+        if action_row["status"] == "APPROVED":
+            registry_transition(
+                db,
+                action_id,
+                "IN_PROGRESS",
+                request.actor,
+                f"External {task['system']} task created.",
+            )
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    except RuntimeError as exc:
+        raise HTTPException(503, str(exc)) from exc
+    return {"action_id": action_id, **task, "created": True}
 
 
 @app.get("/oauth/tiktok/start")
@@ -193,3 +321,8 @@ def tiktok_callback(auth_code: str = "", state: str = "") -> str:
         raise HTTPException(502, f"TikTok token exchange failed: {body.get('message', 'unknown error')}")
     save_tiktok_tokens(body.get("data", {}))
     return "<h1>TikTok connected</h1><p>Tokens were stored server-side. You may close this tab.</p>"
+
+
+# The same static shell remains read-only on GitHub Pages. When served from the
+# private backend it may connect to the authenticated action endpoints above.
+app.mount("/internal", StaticFiles(directory=ROOT / "demo", html=True), name="internal-dashboard")

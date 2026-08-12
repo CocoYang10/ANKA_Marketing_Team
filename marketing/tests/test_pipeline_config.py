@@ -11,6 +11,8 @@ class PipelineConfigTests(unittest.TestCase):
     def test_action_agent_is_part_of_normal_workflow(self):
         self.assertTrue(pipeline.ACTION_AGENT.exists())
         self.assertTrue(pipeline.SNAPSHOT_BUILDER.exists())
+        self.assertTrue(pipeline.VERIFICATION_AGENT.exists())
+        self.assertTrue(pipeline.BASECAMP_REPORT_GENERATOR.exists())
 
 
 if __name__ == "__main__":

@@ -1,0 +1,22 @@
+FROM python:3.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    ANKA_SNAPSHOT_PATH=/data/marketing_snapshot.json \
+    ANKA_ACTION_DB=/data/actions.sqlite3
+
+WORKDIR /app
+
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+COPY run_weekly_pipeline.py build_dashboard_snapshot.py /app/
+COPY action_agent /app/action_agent
+COPY skills /app/skills
+
+RUN useradd --create-home --uid 10001 anka \
+    && mkdir -p /app/working/reports /app/working/agent_runs /data \
+    && chown -R anka:anka /app/working /data
+USER anka
+
+CMD ["python", "run_weekly_pipeline.py"]

@@ -26,6 +26,10 @@ installing a JavaScript toolchain.
 - `renderEvents()` — website-to-Eventbrite measurement design
 - `renderHealth()` — source availability, quality issues and reconciliation
 
+When served from `/internal/` by the private API, the same shell can connect to
+the Action Registry with a session-only key entered by the user. The public
+GitHub Pages version never enables that connection automatically.
+
 Shared formatting and layout helpers live above those functions. Navigation
 state is kept in `currentView`; no framework or hidden router is involved.
 
